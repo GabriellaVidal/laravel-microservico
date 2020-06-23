@@ -34,7 +34,7 @@ class MicroServicoServiceProvider extends ServiceProvider
         |---------------------------------------------------
         */
         $this->publishes([
-            __DIR__.'/src/config/microservico.php' => config_path('microservico.php'),
+            __DIR__.'/config/microservico.php' => config_path('microservico.php'),
         ]);
     }
 }
