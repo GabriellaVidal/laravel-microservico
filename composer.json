@@ -1,0 +1,37 @@
+{
+    "name": "gsferro/microservico",
+    "description": "Criado com objetivo de generalizar o consumo de API/WEBSERVICES",
+    "keywords": ["laravel", "api", "websevices", "microservice"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilherme Ferro",
+            "email": "gsferroti@gmail.com"
+        },
+        {
+            "name": "Caio Martins",
+            "email": "guilherme.higino@gmail.com"
+        }
+    ],
+    "require": {
+        "ixudra/curl": "^6.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gsferro\\MicroServico\\": "src/"
+        },
+        "files": [
+            "src\\Helpers\\microservico.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gsferro\\MicroServico\\Providers\\MicroServicoServiceProvider"
+            ],
+            "aliases": {
+                "MicroServico": "Gsferro\\MicroServico\\Facades\\MicroServico"
+            }
+        }
+    }
+}
