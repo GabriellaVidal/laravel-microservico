@@ -2,7 +2,7 @@
 
 namespace Gsferro\MicroServico\Providers;
 
-use App\Services\Microservico;
+use Gsferro\MicroServico\Services\MicroServico;
 use Illuminate\Support\ServiceProvider;
 
 class MicroServicoServiceProvider extends ServiceProvider
@@ -25,7 +25,7 @@ class MicroServicoServiceProvider extends ServiceProvider
     public function boot()
     {
         app()->bind('microservico', function () {
-            return new Microservico();
+            return new MicroServico();
         });
 
         /*
