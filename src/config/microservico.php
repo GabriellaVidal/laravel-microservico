@@ -10,8 +10,8 @@
     */
 
 $host_api = env('HOST_API', 'http://homolog.acesso.fiocruz.br');
-$host_ei  = env('HOST_EI', 'http://ei.fiocruz.br');
-$host_ei_https  = env('HOST_EI_HTTPS', 'httpS://ei.fiocruz.br');
+$host_ei  = env('HOST_EI', 'http://ei.fiocruz.br').env('API_PREFIX_ENV', '');
+$host_ei_https  = env('HOST_EI_HTTPS', 'httpS://ei.fiocruz.br').env('API_PREFIX_ENV', '');
 
 return [
 
