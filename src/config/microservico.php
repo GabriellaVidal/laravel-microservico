@@ -10,10 +10,55 @@
     */
 
 $host_api = env('HOST_API', 'http://homolog.acesso.fiocruz.br');
-$host_ei  = env('HOST_EI', 'http://ei.fiocruz.br').env('API_PREFIX_ENV', '');
-$host_ei_https  = env('HOST_EI_HTTPS', 'httpS://ei.fiocruz.br').env('API_PREFIX_ENV', '');
-
+//$host_ei  = env('HOST_EI', 'http://ei.fiocruz.br').env('API_PREFIX_ENV', '');
+//$host_ei_https  = env('HOST_EI_HTTPS', 'https://ei.fiocruz.br').env('API_PREFIX_ENV', '');
+$host_ei       = env('HOST_EI', 'http://ei.fiocruz.br');
+$host_ei_https = env('HOST_EI_HTTPS', 'https://ei.fiocruz.br');
+$host_siga     = "https://www.siga.fiocruz.br/api/strictosensu/v1";
 return [
+
+    /*
+    |---------------------------------------------------
+    | ACESSO X SIEF X PS
+    |---------------------------------------------------
+    */
+    //    https://ei.fiocruz.br/services/acesso/dadosModal/{idEdicao}
+    //    https://ei.fiocruz.br/services/acesso/minhasInscricoes/{cpf}
+    //    https://ei.fiocruz.br/services/acesso/dataDivulgacao/{idEdital}
+
+    'dadosModal'       => "{$host_ei_https}/services/acesso/dadosModal",
+    'minhasInscricoes' => "{$host_ei_https}/services/acesso/minhasInscricoes",
+    'dataDivulgacao'   => "{$host_ei_https}/services/acesso/dataDivulgacao",
+    'editaisAbertos'   => "{$host_ei_https}/services/teste-basecorporativa/edital_busca_filtros",
+    'editaisDocs'      => "{$host_ei_https}/services/teste-basecorporativa/busca_editaldoc_filtros",
+
+    /*
+    |---------------------------------------------------
+    | SIGA
+    |---------------------------------------------------
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/unidades/ - Todas as unidades do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/unidades/{id} - Uma unidade específica do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/ - Todos os programas do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/{id} - Um programa específico do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/{id}/cursos - Todos os cursos de um programa do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/{id}/docentes - Todos os docentes de um programa do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/{id}/orientadores - Todos os orientadores de um programa do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/programas/{id}/linhas-areas - Todos as áreas de concentração e linhas de pesquisa de um programa do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/cursos/ - Todos os cursos do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/cursos/{id} - Um curso específico do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/cursos/{id}/disciplinas - Todas as disciplinas de um curso do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/cursos/{id}/docentes - Todas os docentes de um curso do SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/disciplinas/ - Todas as disciplinas cadastradas no SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/disciplinas/{id} - Uma disciplina específica
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/disciplinas/{id}/docentes - Todos os docentes de uma disciplina cadastrada no SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/docentes/ - Todos os docentes cadastrados no SIGA
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/docentes/{id} - Um docente específico
+    •	https://www.siga.fiocruz.br/api/strictosensu/v1/processo-seletivo/ - Dados relacionados aos processos seletivos em andamento no SIGA
+
+    */
+
+    'sigaCursos' => "{$host_siga}/cursos",
+    'sigaPS'     => "{$host_siga}/processo-seletivo",
 
     /*
     |---------------------------------------------------
@@ -34,8 +79,10 @@ return [
     | Armazenagem
     |-----------------------------------------------------------
     */
-    'ROUTE_UPLOAD' => "{$host_ei}/armazenagem/upload",
-    'ROUTE_DOWNLOAD' => "{$host_ei}/armazenagem/download",
+    'armazenagem_pesquisar' => "{$host_ei}" . env('API_PREFIX_ENV', '') . "/armazenagem/pesquisar",
+    'armazenagem_upload'    => "{$host_ei}" . env('API_PREFIX_ENV', '') . "/armazenagem/upload",
+    'armazenagem_download'  => "{$host_ei}" . env('API_PREFIX_ENV', '') . "/armazenagem/download",
+
     /*
     |-----------------------------------------------------------------
     | Processo Seletivo

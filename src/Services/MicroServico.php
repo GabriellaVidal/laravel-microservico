@@ -7,6 +7,17 @@ use Ixudra\Curl\Facades\Curl;
 class MicroServico
 {
     private $link;
+    private $extraHeader = [];
+
+    /**
+     * @param array $extraHeader
+     */
+    public function setExtraHeader(array $extraHeader): MicroServico
+    {
+        $this->extraHeader = $extraHeader;
+        return $this;
+    }
+
 
     private function valide($api)
     {
@@ -31,15 +42,11 @@ class MicroServico
     private function curl($url)
     {
         return Curl::to($url)
-            //->withContentType('application/json')
-            ->withHeaders(
+            ->withHeaders(array_merge(
                 [
-                    //"accept" => "*/*",
-                    "accept" => "application/json",
+                    "accept"          => "application/json",
                     "accept-language" => "en-US,en;q=0.8",
-                    //"content-type" => "application/json",
-                ]
-            )
+                ], $this->extraHeader))
             ->asJsonResponse();
     }
     /**
@@ -54,7 +61,7 @@ class MicroServico
         $this->valide($api);
 
         $url = $this->link . (!empty($params) ? "/{$params}" : "");
-
+        //        dump($url);
         return $this->curl($url)
             ->get();
     }
@@ -204,7 +211,7 @@ class MicroServico
     }
 
     /**
-     * Efetua consulta utilizadno VERBO HTTP GET 
+     * Efetua consulta utilizadno VERBO HTTP GET
      * um link customizado não listado nas configurações
      * @param string $link
      * @param string $params
@@ -212,7 +219,7 @@ class MicroServico
      * @return json Com resposta da API/WEBSERVICE
      */
     public function to(string $link, string $params = null)
-    {        
+    {
 
         $url = $link . (!empty($params) ? "/{$params}" : "");
 
@@ -239,7 +246,6 @@ class MicroServico
      */
     public function getSecurity(string $api, string $token, string $params = null)
     {
-
         $link = self::link($api);
         if (is_null($link)) {
             $res = [
@@ -253,14 +259,11 @@ class MicroServico
         $url = $link . (!empty($params) ? "/{$params}" : "");
 
         return Curl::to($url)
-            //->withContentType('application/json')
             ->withHeaders(
                 [
-                    //"accept" => "*/*",
                     "accept" => "application/json",
                     "Authorization" => "Bearer ".$token,
                     "accept-language" => "en-US,en;q=0.8",
-                    //"content-type" => "application/json",
                 ]
             )
             ->asJsonResponse()
