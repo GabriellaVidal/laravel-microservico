@@ -40,7 +40,7 @@ microservico()->to(string $link, string $params = null);
 microservico()->setExtraHeader([
        "content-type"  => "application/json",
        "Authorization" => "Basic abcdefghijabcdefghijABCDEFGHIJ=",
-   ])->get();
+   ]);
 ```
 
 #### EXEMPLOS ####
