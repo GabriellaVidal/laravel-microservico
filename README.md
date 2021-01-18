@@ -12,19 +12,36 @@ php artisan vendor:publish --provider="Gsferro\MicroServico\Providers\MicroServi
 Os hosts são pré-configurados no arquivo microserviço.
 
 ##### POST #####
+```php
 microservico()->post($host_texto, $array);
+```
 
 ##### PUT #####
+```php
 microservico()->put($host_texto, $id, $array);
+```
 
 ##### GET #####
+```php
 microservico()->get($host_texto, $id);
+```
 
 #### DELETE ####
+```php
 microservico()->delete($host_texto, $id);
+```
 
 #### Chamada get de api via url ####
+```php
 microservico()->to(string $link, string $params = null);
+```
+#### Adicionar extra Header 
+```php
+microservico()->setExtraHeader([
+       "content-type"  => "application/json",
+       "Authorization" => "Basic abcdefghijabcdefghijABCDEFGHIJ=",
+   ])->get();
+```
 
 #### EXEMPLOS ####
 ```php
