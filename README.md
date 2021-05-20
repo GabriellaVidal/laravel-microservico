@@ -32,6 +32,19 @@ para ser usada com parametros url
 microservico()->getWithData($api, $arrayData);
 ```
 
+##### Token Access #####
+Recupera o token oauth2 / jwt
+
+```php
+microservico()->tokenAccess(
+    $api, 
+    $clienteId, 
+    $clienteSecret, 
+    $grantType = "client_credentials", 
+    $authorization = "Basic"
+);
+```
+
 ##### CURL #####
 Devolve uma chamada de Curl::to
 ```php
