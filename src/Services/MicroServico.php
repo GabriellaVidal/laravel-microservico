@@ -18,7 +18,6 @@ class MicroServico
         return $this;
     }
 
-
     private function valide($api)
     {
         $link = $this->link($api);
@@ -49,21 +48,35 @@ class MicroServico
                 ], $this->extraHeader))
             ->asJsonResponse();
     }
+
+    /*private function apiException($message)
+    {
+        $res = [
+            'data'      => [],
+            'success'   => false,
+            'message'   => $message,
+        ];
+        return response()->json($res, 404);
+    }*/
+
     /**
      * Efetua consulta utilizadno VERBO HTTP GET
      * @param string $apis
      * @param string $params
      *
-     * @return json Com resposta da API/WEBSERVICE
+     * @return \Illuminate\Http\JsonResponse
      */
     public function get(string $api, string $params = null)
     {
+        //        try {
         $this->valide($api);
-
         $url = $this->link . (!empty($params) ? "/{$params}" : "");
-        //        dump($url);
+
         return $this->curl($url)
             ->get();
+        //        } catch (\Exception $e) {
+        //            return $this->apiException($e->getMessage());
+        //        }
     }
 
     /**
@@ -75,17 +88,9 @@ class MicroServico
      */
     public function post($api, $dados)
     {
-        $link = self::link($api);
-        if (is_null($link)) {
-            $res = [
-                'data'      => [],
-                'success'   => false,
-                'message'   => "API {$api} não encontrada ou liberada para uso!",
-            ];
-            return response()->json($res, 404);
-        }
+        $this->valide($api);
 
-        $url = $link . (!empty($params) ? "/{$params}" : "");
+        $url = $this->link . (!empty($params) ? "/{$params}" : "");
 
         return Curl::to($url)
             ->withData($dados)
@@ -269,4 +274,60 @@ class MicroServico
             ->asJsonResponse()
             ->get();
     }
+
+    /**
+     * Metodo para retornar token oath2 / JWT
+     *
+     * @param string $api
+     * @param string $clienteId
+     * @param string $clienteSecret
+     * @param string $grantType
+     * @param string $authorization
+     * @return json
+     */
+    public function tokenAccess(
+        string $api,
+        string $clienteId,
+        string $clienteSecret,
+        string $grantType       = "client_credentials",
+        string $authorization   = "Basic"
+    )
+    {
+        $this->valide($api);
+
+        $base64 = base64_encode("{$clienteId}:{$clienteSecret}");
+        return $this->api()
+            ->withData([
+                "grant_type" => $grantType,
+            ])
+            ->withContentType('application/x-www-form-urlencoded')
+            ->asJsonResponse()
+            ->withAuthorization("{$authorization} {$base64}")
+            ->post();
+    }
+
+    public function getWithData($api, $dados)
+    {
+        $this->valide($api);
+
+        return $this->api()
+            ->withData($dados)
+            ->asJsonResponse()
+            ->get();
+    }
+
+    /**
+     * @param null $api
+     * @return Ixudra\Curl\Facades\Curl
+     */
+    public function api($api = null)
+    {
+        return Curl::to( is_null($api) ? $this->link : $this->link($api));
+    }
+
+    /**
+     * @version 2.0
+     * TODO tratar as apis lançando excpetions internas e devolvndo um json amigavel de erro
+     * TODO padronizar as msgs de retorno
+     */
 }

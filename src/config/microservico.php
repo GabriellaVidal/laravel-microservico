@@ -37,6 +37,28 @@ $v2HostEiAmbiente = "{$v2HostEi}" . env('API_PREFIX_ENV', '');
 // variaveis contendo o nome da api / service / proxy
 $v2BaseCorporativa = "{$v2HostEiAmbiente}/basecorporativa";
 
+/*
+|---------------------------------------------------
+| SERPRO
+|---------------------------------------------------
+|
+| So tem 2 ambientes: homol e prod
+| para tal, todos os nossos ambientes irão usar homol
+| so prod usa prod
+|
+*/
+
+/**
+ * URL com prefixo do ambiente:
+ * @ambiente desenv / teste / homol
+ * @url https://h-apigateway.br/conectagov.estaleiro.serpro.gov.br
+ *
+ * @ambiente prod
+ * @url https://apigateway.br/conectagov.estaleiro.serpro.gov.br
+ */
+
+$serproBase = env('SERPRO_BASE_URL','https://h-apigateway.br/conectagov.estaleiro.serpro.gov.br');
+
 return [
 
     /////////////////////////////////////////////////////// acesso.fiocruz
@@ -239,9 +261,11 @@ return [
     |---------------------------------------------------
     | V2
     |---------------------------------------------------
+    |
     | Padronização das rotas:
     | versao/ambiente-opcional/nome-api|service
     | ex: .../v2/homol/armazenagem/...
+    |
     */
 
     "v2" => [
@@ -249,16 +273,52 @@ return [
         |---------------------------------------------------
         | BASE CORPORATIVA
         |---------------------------------------------------
+        |
         | url base: https://ei.fiocruz.br/v2/basecorporativa
         | variavel: $v2BaseCorporativa
+        |
         */
 
         /**
-         * @url https://ei.fiocruz.br/v2/basecorporativa/{cpf}
+         * @url https://ei.fiocruz.br/v2/basecorporativa/dadosPessoais/{cpf}
          * @api     dadosPessoais
          * @methods get
          * @params  cpf
          */
         "dadosPessoais" => "{$v2BaseCorporativa}/dadosPessoais"
-    ]
+    ],
+
+    ///////////////////////////////////////////////////////////////////////////
+    /*
+    |---------------------------------------------------
+    | SERPRO
+    |---------------------------------------------------
+    */
+    "serpro" => [
+        "api-cep" => [
+            /**
+             * Recomendado guardar em cache por 2h o token
+             *
+             * @url https://< h- >apigateway.br/conectagov.estaleiro.serpro.gov.br/oauth2/jwt-token
+             * @api         serpro.api-cep.token
+             * @methods     getSecur
+             * @Security    OAuth2
+             * @params      clientID
+             * @params      clienteSecret
+             */
+            "token" => "{$serproBase}/oauth2/jwt-token",
+
+            "v1" => [
+
+                /**
+                 * @url https://< h- >apigateway.br/conectagov.estaleiro.serpro.gov.br/api-cep/v1/consulta/cep/{cep}
+                 * @api     serpro.api-cep.v1.consulta
+                 * @methods getSecurity
+                 * @params  cep
+                 * @params  token serpro.token
+                 */
+                "consulta"   => "{$serproBase}/api-cep/v1/consulta/cep"
+            ],
+        ],
+    ],
 ];

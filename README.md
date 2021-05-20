@@ -13,27 +13,39 @@ Os hosts são pré-configurados no arquivo microserviço.
 
 ##### POST #####
 ```php
-microservico()->post($host_texto, $array);
+microservico()->post($api, $array);
 ```
 
 ##### PUT #####
 ```php
-microservico()->put($host_texto, $id, $array);
+microservico()->put($api, $param, $array);
 ```
 
 ##### GET #####
 ```php
-microservico()->get($host_texto, $id);
+microservico()->get($api, $param);
+```
+
+##### GET WITH DATA #####
+para ser usada com parametros url
+```php
+microservico()->getWithData($api, $arrayData);
+```
+
+##### CURL #####
+Devolve uma chamada de Curl::to
+```php
+microservico()->api($api);
 ```
 
 #### DELETE ####
 ```php
-microservico()->delete($host_texto, $id);
+microservico()->delete($api, $param);
 ```
 
 #### Chamada get de api via url ####
 ```php
-microservico()->to(string $link, string $params = null);
+microservico()->to($url, $params = null);
 ```
 #### Adicionar extra Header 
 ```php
@@ -60,7 +72,7 @@ public function removerTaxa(Request $request)
     $id         = $dados['taxa_id'];
     $host_taxa  = 'ROUTE_EDITAIS_ETAPAS_TAXAS';
 
-    $resultado = microservico()->delete($host_taxa, $id);
+    $resultado = microservico()->delete($host_taxa, $param);
 
     if ($resultado->success == true) {
         $return = [
@@ -99,6 +111,7 @@ public function adicionarTaxa(Request $request)
 }
 
 public function editarTaxa(Request $request)
+
 {
     $dados = $request->all();
 
@@ -108,7 +121,7 @@ public function editarTaxa(Request $request)
 
     $host_taxa = 'ROUTE_EDITAIS_ETAPAS_TAXAS';
 
-    $resultado = microservico()-put($host_taxa, $id ,$dados);
+    $resultado = microservico()-put($host_taxa, $param ,$dados);
 
     if ($resultado->success == true) {
         $return = [
@@ -124,5 +137,8 @@ public function editarTaxa(Request $request)
 
     return $return;
 }
+
+microservico()->getWithData("exemplo", ["foo" => "bar"]);
+// url: http://exemplo.com.br?foo=bar
 
 ```
