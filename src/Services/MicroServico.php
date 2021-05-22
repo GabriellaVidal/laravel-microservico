@@ -285,7 +285,7 @@ class MicroServico
      * @param string $authorization
      * @return json
      */
-    public function tokenAccess(
+    public function accessToken(
         string $api,
         string $clienteId,
         string $clienteSecret,

@@ -32,11 +32,11 @@ para ser usada com parametros url
 microservico()->getWithData($api, $arrayData);
 ```
 
-##### Token Access #####
+##### Access Token #####
 Recupera o token oauth2 / jwt
 
 ```php
-microservico()->tokenAccess(
+microservico()->accessToken(
     $api, 
     $clienteId, 
     $clienteSecret, 
