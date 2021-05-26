@@ -237,6 +237,8 @@ return [
     'projeto_sgf'                 => "{$host_ei}/services/projetoSGF",
     'projeto_sief_homol_ds'       => "{$host_ei}/services/ProjetoSiefHomolDS",
     'servidores'                  => "{$host_ei}/services/Servidores",
+    'servidoresV2'                => "{$host_ei}/services/ServidoresV2",
+    'buscarColaboradorPorCpf'     => "{$host_ei}/services/ServidoresV2/buscarColaboradorPorCpf",
     'sief_apoio'                  => "{$host_ei}/services/SiefApoio",
     'sief_cursos'                 => "{$host_ei}/services/SiefCursos",
     'transporte'                  => "{$host_ei}/services/transporte",
@@ -255,7 +257,6 @@ return [
     'https_sief_cursos'           => "{$host_ei_https}/services/SiefCursos",
     'https_transporte'            => "{$host_ei_https}/services/transporte",
     'https_service_unidades'      => "{$host_ei_https}/services/Unidades",
-
     ///////////////////////////////////////////////////////////////////////////
     /*
     |---------------------------------------------------
