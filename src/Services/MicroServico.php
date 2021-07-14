@@ -3,11 +3,25 @@
 namespace Gsferro\MicroServico\Services;
 
 use Ixudra\Curl\Facades\Curl;
+use Gsferro\MicroServico\Traits\Gets;
 
 class MicroServico
 {
+    Use Gets;
+
     private $link;
     private $extraHeader = [];
+    private $return      = [];
+    private $returnArray = true;
+
+    /**
+     * set returnArray false
+     */
+    public function returnJson(): MicroServico
+    {
+        $this->returnArray = false;
+        return $this;
+    }
 
     /**
      * @param array $extraHeader
@@ -44,7 +58,7 @@ class MicroServico
             ->withHeaders(array_merge(
                 [
                     "accept"          => "application/json",
-                    "accept-language" => "en-US,en;q=0.8",
+                    "accept-language" => "pt-BR,pt;q=0.8",
                 ], $this->extraHeader))
             ->asJsonResponse();
     }
@@ -92,14 +106,8 @@ class MicroServico
 
         $url = $this->link . (!empty($params) ? "/{$params}" : "");
 
-        return Curl::to($url)
+        return $this->curl($url)
             ->withData($dados)
-            ->withHeaders(
-                [
-                    "accept" => "*/*",
-                    "accept-language" => "en-US,en;q=0.8",
-                ]
-            )
             ->asJson(true)
             ->withContentType('application/json')
             ->asJsonResponse()
@@ -129,14 +137,8 @@ class MicroServico
 
         $url = $link . (!empty($params) ? "/{$params}" : "");
 
-        return Curl::to($url)
+        return $this->curl($url)
             ->withData($dados)
-            ->withHeaders(
-                [
-                    "accept" => "*/*",
-                    "accept-language" => "en-US,en;q=0.8",
-                ]
-            )
             ->asJson(true)
             ->withContentType('application/json')
             ->asJsonResponse()
@@ -228,15 +230,8 @@ class MicroServico
 
         $url = $link . (!empty($params) ? "/{$params}" : "");
 
-        return Curl::to($url)
+        return $this->curl($url)
             ->withContentType('application/json')
-            ->withHeaders(
-                [
-                    "accept" => "*/*",
-                    "accept-language" => "en-US,en;q=0.8",
-                    "content-type" => "application/json",
-                ]
-            )
             ->asJsonResponse()
             ->get();
     }
