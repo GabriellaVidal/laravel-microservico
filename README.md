@@ -9,6 +9,7 @@ composer require gsferro/microservico
 php artisan vendor:publish --provider="Gsferro\MicroServico\Providers\MicroServicoServiceProvider"
 ```
 
+# Versão 1.0
 Os hosts são pré-configurados no arquivo microserviço.
 
 ##### POST #####
@@ -189,18 +190,11 @@ APP_AMBIENTE (
 ```
 
 ### Uso
-- Para usar a api de algum serviço/projeto, é necessário solicitar usuário e senha e colocar no env seguindo a logica:
+- Para usar a api de algum serviço/projeto, é necessário solicitar usuário e senha e colocar no env:
 
 ```env
 GSFERRO_MICROSERVICO_WSO2_EI_USER
 GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
-```
-
-- Exemplo:
-
-```env
-GSFERRO_MICROSERVICO_ACESSO_USER
-GSFERRO_MICROSERVICO_ACESSO_PASSWORD
 ```
 
 - lista de apis por serviço:
@@ -208,4 +202,5 @@ GSFERRO_MICROSERVICO_ACESSO_PASSWORD
         1. `getProgramasEspeciais()`
         1. `getDadosModal($idEdicao)`
         1. `getPessoaInscricoes($pessoaId)`
+        1. `getListaProgramasEspeciais(int $idProgramaEspecial)`
         

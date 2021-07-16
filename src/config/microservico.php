@@ -320,39 +320,48 @@ return [
          * @param   $idEdicao
          * @api     dadosModal
          * @methods get
-         * @middleware("autheticate", user={"userAcesso"})
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "dadosModal" => "{$serviceV2Acesso}/dadosModal",
-
-        /**
-         * @url     https://ei.fiocruz.br/services/v2-acesso/programasEspeciais
-         * @api     programasEspeciais
-         * @methods get
-         * @middleware("autheticate", user={"userAcesso"})
-         */
-        "programasEspeciais" => "{$serviceV2Acesso}/programasEspeciais",
 
         /**
          * @url     https://ei.fiocruz.br/services/v2-acesso/pessoaInscricoes/{pessoa_id}
          * @param   $pessoa_id
          * @api     pessoaInscricoes
          * @methods get
-         * @middleware("autheticate", user={"userAcesso"})
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "pessoaInscricoes" => "{$serviceV2Acesso}/pessoaInscricoes",
 
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/programasEspeciais
+         * @api     programasEspeciais
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "programasEspeciais" => "{$serviceV2Acesso}/programasEspeciais",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciais/{id_programaEspecial}
+         * @param   $id_programaEspecial
+         * @api     listaProgramasEspeciais
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listaProgramasEspeciais" => "{$serviceV2Acesso}/listaProgramasEspeciais",
+
         /*
-            https://ei.fiocruz.br/services/v2-acesso/minhasInscricoes/{cpf}
-            https://ei.fiocruz.br/services/v2-acesso/dataDivulgacao/{idEdital}
-            https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciais
+
             https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciais/{id_programaEspecial}
-            
+
             https://ei.fiocruz.br/services/v2-acesso/listaEditaisAbertos
             https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciaisComFuturos/{id_programaEspecial}
             https://ei.fiocruz.br/services/v2-acesso/listaCandidatosProgramaEspecial/{id_programaEspecial}
             https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
             https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
         */
+
+        //https://ei.fiocruz.br/services/v2-acesso/dataDivulgacao/{idEdital}
     ],
 
     ///////////////////////////////////////////////////////////////////////////
