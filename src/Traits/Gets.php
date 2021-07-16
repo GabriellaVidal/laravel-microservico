@@ -451,7 +451,6 @@ trait Gets
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
      * @return array|json ( "cur_idcurso", "und_idunidade", "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "pla_descricao", "pla_objetivo", "pla_regimeeduracao", "pla_alvo", "pla_inscricao", "pla_processoseletivo", "pla_matricula", "pla_disposicoesgerais", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "id_siga_spc", "unidade", "nivel", "data_inicio_inscricao", "data_termino_inscricao",)
      */
-
     public function getListaEditaisAbertos()
     {
         // busca api
@@ -496,6 +495,65 @@ trait Gets
             $return[ "nivel" ]                  = trim($item->nivel) ?? null;
             $return[ "data_inicio_inscricao" ]  = trim($item->data_inicio_inscricao) ?? null;
             $return[ "data_termino_inscricao" ] = trim($item->data_termino_inscricao) ?? null;
+
+            $this->return[] = $return;
+        }
+
+        return $this->trateReturn();
+    }
+
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
+     * @api     listaProgramasEspeciaisComFuturos
+     *
+     * @param   int $idProgramaEspecial
+     * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_Sief", )
+     */
+    public function getListaProgramasEspeciaisComFuturos(int $idProgramaEspecial)
+    {
+        if (blank($idProgramaEspecial)) {
+            return $this->trateReturn();
+        }
+
+        // busca api
+        $api = microservico()
+            ->getSecurity(
+                "v2.listaProgramasEspeciaisComFuturos",
+                "{$this->tokenWso2Ei()}",
+                "{$idProgramaEspecial}"
+            )
+            ->progEspeciaisComFuturos
+        ;
+
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        // trata os dados
+        $return = [];
+        foreach ($api->progEspecialComFuturo as $key => $item) {
+            $return[ "numero" ]                  = trim($item->numero) ?? null;
+            $return[ "titulo" ]                  = trim($item->titulo) ?? null;
+            $return[ "data_hora_inicio" ]        = trim($item->data_hora_inicio) ?? null;
+            $return[ "data_hora_termino" ]       = trim($item->data_hora_termino) ?? null;
+            $return[ "pro_idprograma" ]          = trim($item->pro_idprograma) ?? null;
+            $return[ "edital_id" ]               = trim($item->edital_id) ?? null;
+            $return[ "edicao_curso_id" ]         = trim($item->edicao_curso_id) ?? null;
+            $return[ "edi_modalidade" ]          = trim($item->edi_modalidade) ?? null;
+            $return[ "descricao" ]               = trim($item->descricao) ?? null;
+            $return[ "id_siga_pc" ]              = trim($item->id_siga_pc) ?? null;
+            $return[ "id_siga_edc" ]             = trim($item->id_siga_edc) ?? null;
+            $return[ "nome" ]                    = trim($item->nome) ?? null;
+            $return[ "pro_nome" ]                = trim($item->pro_nome) ?? null;
+            $return[ "unidade" ]                 = trim($item->unidade) ?? null;
+            $return[ "tipo_etapa_atividade_id" ] = trim($item->tipo_etapa_atividade_id) ?? null;
+            $return[ "nivel" ]                   = trim($item->nivel) ?? null;
+            $return[ "idcurso_Sief" ]            = trim($item->idcurso_Sief) ?? null;
 
             $this->return[] = $return;
         }
