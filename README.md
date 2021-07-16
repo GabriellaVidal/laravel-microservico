@@ -203,4 +203,5 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getDadosModal($idEdicao)`
         1. `getPessoaInscricoes($pessoaId)`
         1. `getListaProgramasEspeciais(int $idProgramaEspecial)`
+        1. `getListaEditaisAbertos()`
         

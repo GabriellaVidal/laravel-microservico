@@ -440,4 +440,66 @@ trait Gets
 
         return $this->trateReturn();
     }
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
+     * @api     listaEditaisAbertos
+     *
+     * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+     * @return array|json ( "cur_idcurso", "und_idunidade", "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "pla_descricao", "pla_objetivo", "pla_regimeeduracao", "pla_alvo", "pla_inscricao", "pla_processoseletivo", "pla_matricula", "pla_disposicoesgerais", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "id_siga_spc", "unidade", "nivel", "data_inicio_inscricao", "data_termino_inscricao",)
+     */
+
+    public function getListaEditaisAbertos()
+    {
+        // busca api
+        $api = microservico()
+            ->getSecurity(
+                "v2.listaEditaisAbertos",
+                "{$this->tokenWso2Ei()}"
+            )
+            ->editaisAbertos
+        ;
+
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        // trata os dados
+        $return = [];
+        foreach ($api->editalAberto as $key => $item) {
+            $return[ "cur_idcurso" ]            = trim($item->cur_idcurso) ?? null;
+            $return[ "und_idunidade" ]          = trim($item->und_idunidade) ?? null;
+            $return[ "numero" ]                 = trim($item->numero) ?? null;
+            $return[ "titulo" ]                 = trim($item->titulo) ?? null;
+            $return[ "data_hora_inicio" ]       = trim($item->data_hora_inicio) ?? null;
+            $return[ "data_hora_termino" ]      = trim($item->data_hora_termino) ?? null;
+            $return[ "pro_idprograma" ]         = trim($item->pro_idprograma) ?? null;
+            $return[ "edital_id" ]              = trim($item->edital_id) ?? null;
+            $return[ "pla_descricao" ]          = trim($item->pla_descricao) ?? null;
+            $return[ "pla_objetivo" ]           = trim($item->pla_objetivo) ?? null;
+            $return[ "pla_regimeeduracao" ]     = trim($item->pla_regimeeduracao) ?? null;
+            $return[ "pla_alvo" ]               = trim($item->pla_alvo) ?? null;
+            $return[ "pla_inscricao" ]          = trim($item->pla_inscricao) ?? null;
+            $return[ "pla_processoseletivo" ]   = trim($item->pla_processoseletivo) ?? null;
+            $return[ "pla_matricula" ]          = trim($item->pla_matricula) ?? null;
+            $return[ "pla_disposicoesgerais" ]  = trim($item->pla_disposicoesgerais) ?? null;
+            $return[ "edicao_curso_id" ]        = trim($item->edicao_curso_id) ?? null;
+            $return[ "edi_modalidade" ]         = trim($item->edi_modalidade) ?? null;
+            $return[ "descricao" ]              = trim($item->descricao) ?? null;
+            $return[ "id_siga_pc" ]             = trim($item->id_siga_pc) ?? null;
+            $return[ "id_siga_edc" ]            = trim($item->id_siga_edc) ?? null;
+            $return[ "id_siga_spc" ]            = trim($item->id_siga_spc) ?? null;
+            $return[ "unidade" ]                = trim($item->unidade) ?? null;
+            $return[ "nivel" ]                  = trim($item->nivel) ?? null;
+            $return[ "data_inicio_inscricao" ]  = trim($item->data_inicio_inscricao) ?? null;
+            $return[ "data_termino_inscricao" ] = trim($item->data_termino_inscricao) ?? null;
+
+            $this->return[] = $return;
+        }
+
+        return $this->trateReturn();
+    }
 }
