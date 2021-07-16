@@ -2,12 +2,13 @@
 
 namespace Gsferro\MicroServico\Services;
 
+use Gsferro\MicroServico\Traits\Tokens;
 use Ixudra\Curl\Facades\Curl;
 use Gsferro\MicroServico\Traits\Gets;
 
 class MicroServico
 {
-    Use Gets;
+    Use Gets, Tokens;
 
     private $link;
     private $extraHeader = [];
@@ -238,14 +239,24 @@ class MicroServico
 
     /**
      * Efetua consulta utilizadno VERBO HTTP GET (APIM/WSO2)
-     * @param string $apis
+     * @param string $api
      * @param string $token
      * @param string $params
+     * @param string $authorization
      *
      * @return json Com resposta da API/WEBSERVICE
      */
-    public function getSecurity(string $api, string $token, string $params = null)
+    public function getSecurity(string $api, string $token = null, string $params = null, string $authorization = "Basic")
     {
+        if (is_null($token)) {
+            $res = [
+                'data'      => [],
+                'success'   => false,
+                'message'   => __("Token nullo!"),
+            ];
+            return response()->json($res, 401);
+        }
+
         $link = self::link($api);
         if (is_null($link)) {
             $res = [
@@ -258,15 +269,8 @@ class MicroServico
 
         $url = $link . (!empty($params) ? "/{$params}" : "");
 
-        return Curl::to($url)
-            ->withHeaders(
-                [
-                    "accept" => "application/json",
-                    "Authorization" => "Bearer ".$token,
-                    "accept-language" => "en-US,en;q=0.8",
-                ]
-            )
-            ->asJsonResponse()
+        return $this->curl($url)
+            ->withAuthorization("{$authorization} {$token}")
             ->get();
     }
 
@@ -325,4 +329,25 @@ class MicroServico
      * TODO tratar as apis lançando excpetions internas e devolvndo um json amigavel de erro
      * TODO padronizar as msgs de retorno
      */
+
+    /**
+     * Trata o retorno dos novos metodos v2
+     *
+     * @param array|null $return
+     * @return array|json
+     */
+    private function trateReturn(array $return = null)
+    {
+        $return = $return ?? $this->return;
+
+        if (count($return) == 1) {
+            $return = current($return);
+        }
+
+        if ($this->returnArray) {
+            return $return;
+        }
+
+        return json_decode(json_encode($return));
+    }
 }

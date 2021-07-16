@@ -5,23 +5,38 @@
 | v1 - default
 |---------------------------------------------------
 */
-$host_api      = env('HOST_API', 'http://homolog.acesso.fiocruz.br');
+$host_siga     = "https://www.siga.fiocruz.br/api/strictosensu";
 $host_ei       = env('HOST_EI', 'http://ei.fiocruz.br');
 $host_ei_https = env('HOST_EI_HTTPS', 'https://ei.fiocruz.br');
-$host_siga     = "https://www.siga.fiocruz.br/api/strictosensu";
-$host_api_bc   = env('APP_URLAPISERV', 'https://ei.fiocruz.br/services/');
+$host_api      = env('APP_URLAPISERV', 'https://ei.fiocruz.br/services');
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 |---------------------------------------------------
-| v2
+| pegando o ambiente
+|---------------------------------------------------
+|
+| exemplo: APP_AMBIENTE="Desenv - "
+|
+*/
+
+$envAmbiente = strtolower(trim(str_replace('-', '', env('APP_AMBIENTE', ''))));
+
+/*
+|---------------------------------------------------
+| v2 - com proteção e metodos
 |---------------------------------------------------
 */
 
 /**
  * @url https://ei.fiocruz.br/v2
  */
-$v2HostEi = env('HOST_EI_HTTPS', 'https://ei.fiocruz.br') . "/v2";
+$v2HostEi = "{$host_ei_https}/v2";
+
+/**
+ * @url https://ei.fiocruz.br/services
+ */
+$hostEiServices = "{$host_ei_https}/services";
 
 /**
  * URL com prefixo do ambiente:
@@ -32,10 +47,19 @@ $v2HostEi = env('HOST_EI_HTTPS', 'https://ei.fiocruz.br') . "/v2";
         /homol
     }
 */
-$v2HostEiAmbiente = "{$v2HostEi}" . env('API_PREFIX_ENV', '');
+$ambientePrefix    = empty($envAmbiente) ? "" : "/{$envAmbiente}";
+$v2BaseCorporativa = "{$v2HostEi}{$ambientePrefix}/basecorporativa";
 
-// variaveis contendo o nome da api / service / proxy
-$v2BaseCorporativa = "{$v2HostEiAmbiente}/basecorporativa";
+/**
+ * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}acesso
+*/
+$ambienteServices = empty($envAmbiente) ? "" : "{$envAmbiente}-";
+$serviceV2Acesso  = "{$hostEiServices}/v2-{$ambienteServices}acesso";
+
+
+/*TODO*/
+$api_vi_service = env('API_V1_SERVICE', 'api-basecorporativa');
+$api_service    = "{$hostEiServices}/{$api_vi_service}";
 
 /*
 |---------------------------------------------------
@@ -74,8 +98,8 @@ return [
     'dadosModal'          => "{$host_ei_https}/services/acesso/dadosModal",
     'minhasInscricoes'    => "{$host_ei_https}/services/acesso/minhasInscricoes",
     'dataDivulgacao'      => "{$host_ei_https}/services/acesso/dataDivulgacao",
-    'editaisAbertos'      => "{$host_api_bc}/edital_busca_filtros",
-    'editaisDocs'         => "{$host_api_bc}/busca_editaldoc_filtros",
+    'editaisAbertos'      => "{$host_api}/edital_busca_filtros",
+    'editaisDocs'         => "{$host_api}/busca_editaldoc_filtros",
 
     /*
     |---------------------------------------------------
@@ -278,6 +302,9 @@ return [
         | url base: https://ei.fiocruz.br/v2/basecorporativa
         | variavel: $v2BaseCorporativa
         |
+        | url base: https://ei.fiocruz.br/services/v2-acesso
+        | variavel: $serviceV2Acesso
+        |
         */
 
         /**
@@ -286,7 +313,46 @@ return [
          * @methods get
          * @params  cpf
          */
-        "dadosPessoais" => "{$v2BaseCorporativa}/dadosPessoais"
+        "dadosPessoais" => "{$v2BaseCorporativa}/dadosPessoais",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/dadosModal/{idEdicao}
+         * @param   $idEdicao
+         * @api     dadosModal
+         * @methods get
+         * @middleware("autheticate", user={"userAcesso"})
+         */
+        "dadosModal" => "{$serviceV2Acesso}/dadosModal",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/programasEspeciais
+         * @api     programasEspeciais
+         * @methods get
+         * @middleware("autheticate", user={"userAcesso"})
+         */
+        "programasEspeciais" => "{$serviceV2Acesso}/programasEspeciais",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/pessoaInscricoes/{pessoa_id}
+         * @param   $pessoa_id
+         * @api     pessoaInscricoes
+         * @methods get
+         * @middleware("autheticate", user={"userAcesso"})
+         */
+        "pessoaInscricoes" => "{$serviceV2Acesso}/pessoaInscricoes",
+
+        /*
+            https://ei.fiocruz.br/services/v2-acesso/minhasInscricoes/{cpf}
+            https://ei.fiocruz.br/services/v2-acesso/dataDivulgacao/{idEdital}
+            https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciais
+            https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciais/{id_programaEspecial}
+            
+            https://ei.fiocruz.br/services/v2-acesso/listaEditaisAbertos
+            https://ei.fiocruz.br/services/v2-acesso/listaProgramasEspeciaisComFuturos/{id_programaEspecial}
+            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosProgramaEspecial/{id_programaEspecial}
+            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
+            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
+        */
     ],
 
     ///////////////////////////////////////////////////////////////////////////

@@ -155,3 +155,57 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 // url: http://exemplo.com.br?foo=bar
 
 ```
+
+# Versão 2.0
+- Implementação do principio: `Tell, Don´t ask`, criando métodos que já implementam a lógica em cima da chamada da api, evitando assim que toda a vez que for usado em um projeto, aja a necessidade de copiar o código. 
+- Para manter a compatibilidade, ainda poderá ser usado o metodo da v1 e o retorno não foi alterado como padrão de api.
+- Necessário para implementação de segurança, além das que já existe no integrator, nas apis internas seguindo o exigido pela nova lei da LGPD. 
+- O verbo http é o prefixo do metodo, seguindo com o devido endpoint configurado no `config.microservico`.
+- PHPDoc implementado em cada novo metodo com retornos e parametros
+
+### Retorno customizado
+
+- Para setar como deseja receber o retorno: array ou json (default array)
+`microservico()->returnJson()`
+
+### Configuração
+- No env, QUE NÃO SEJA DE PRODUÇÃO, sete:
+
+```env 
+############## configurar somente para ambientes de desenv/teste/homol:
+# !!!!!!!!!!!!!!
+API_V1_SERVICE (
+    desenv-basecorporativa
+    teste-basecorporativa
+    homolog-basecorporativa
+)
+
+# pode ser usado para concatenar ao nome do sistema para deixar claro o ambiente
+APP_AMBIENTE (
+    Desenv -   
+    Teste - 
+    Homolog - 
+)
+```
+
+### Uso
+- Para usar a api de algum serviço/projeto, é necessário solicitar usuário e senha e colocar no env seguindo a logica:
+
+```env
+GSFERRO_MICROSERVICO_WSO2_EI_USER
+GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
+```
+
+- Exemplo:
+
+```env
+GSFERRO_MICROSERVICO_ACESSO_USER
+GSFERRO_MICROSERVICO_ACESSO_PASSWORD
+```
+
+- lista de apis por serviço:
+    1. ACESSO
+        1. `getProgramasEspeciais()`
+        1. `getDadosModal($idEdicao)`
+        1. `getPessoaInscricoes($pessoaId)`
+        
