@@ -25,11 +25,9 @@ trait Gets
         }
 
         // busca api
-        $api = microservico()
-            ->get(
-                "buscarColaboradorPorCpf",
-                "{$cpf}"
-            )
+        $api = $this->getApiV2(
+            "buscarColaboradorPorCpf",
+            "{$cpf}")
             ->ColaboradorPorCpf;
 
         if (!isset($api)) {
@@ -44,31 +42,7 @@ trait Gets
                 continue;
             }
 
-            $return[ "nome" ]                 = trim($item->NOME);
-            $return[ "email" ]                = trim($item->EMAIL);
-            $return[ "emailalternativo" ]     = trim($item->EMAILALTERNATIVO) ?? null;
-            $return[ "logunico" ]             = trim($item->LOGUNICO) ?? null;
-            $return[ "datanascimento" ]       = trim($item->DATANASCIMENTO) ?? null;
-            $return[ "cpf" ]                  = trim($item->CPF) ?? null;
-            $return[ "unicodigo" ]            = trim($item->UNICODIGO) ?? null;
-            $return[ "localizacao" ]          = trim($item->LOCALIZACAO) ?? null;
-            $return[ "sexo" ]                 = trim($item->SEXO) ?? null;
-            $return[ "unisigla" ]             = trim($item->UNISIGLA) ?? null;
-            $return[ "empresa" ]              = trim($item->EMPRESA) ?? null;
-            $return[ "vinculo" ]              = trim($item->VINCULO) ?? null;
-            $return[ "situacao" ]             = trim($item->SITUACAO) ?? null;
-            $return[ "dataefetivoexercicio" ] = trim($item->DATAEFETIVOEXERCICIO) ?? null;
-            $return[ "matricula" ]            = trim($item->MATRICULA) ?? null;
-            $return[ "nacionalidade" ]        = trim($item->NACIONALIDADE) ?? null;
-            $return[ "endlogradouro" ]        = trim($item->ENDLOGRADOURO) ?? null;
-            $return[ "endcomplemento" ]       = trim($item->ENDCOMPLEMENTO) ?? null;
-            $return[ "endbairro" ]            = trim($item->ENDBAIRRO) ?? null;
-            $return[ "endmunicipio" ]         = trim($item->ENDMUNICIPIO) ?? null;
-            $return[ "endcep" ]               = trim($item->ENDCEP) ?? null;
-            $return[ "enduf" ]                = trim($item->ENDUF) ?? null;
-            $return[ "cargo" ]                = trim($item->CARGO) ?? null;
-            $return[ "nomeempresa" ]          = trim($item->NOMEEMPRESA) ?? null;
-            $return[ "descvinculo" ]          = trim($item->DESCVINCULO) ?? null;
+            $return = $this->tratamentoItensApi($item);
 
             // formatados
             $return[ "datanascimento_fmt" ]   = !is_null($return[ "datanascimento" ])
@@ -104,11 +78,9 @@ trait Gets
         }
 
         // busca api
-        $api = microservico()
-            ->get(
-                "v2.dadosPessoais",
-                "{$cpf}"
-            )
+        $api = $this->getApiV2(
+            "dadosPessoais",
+            "{$cpf}")
             ->DadosPessoais;
 
         if (!isset($api)) {
@@ -118,47 +90,7 @@ trait Gets
         // trata os dados
         $return = [];
         foreach ($api->DadoPessoal as $key => $item) {
-
-            $return[ "id_pessoa" ]                             = trim($item->id_pessoa) ?? null;
-            $return[ "nome_civil" ]                            = trim($item->nome_civil) ?? null;
-            $return[ "sexo" ]                                  = trim($item->sexo) ?? null;
-            $return[ "data_nascimento" ]                       = trim($item->data_nascimento) ?? null;
-            $return[ "nome_social" ]                           = trim($item->nome_social) ?? null;
-            $return[ "nome_pai" ]                              = trim($item->nome_pai) ?? null;
-            $return[ "nome_mae" ]                              = trim($item->nome_mae) ?? null;
-            $return[ "email_principal" ]                       = trim($item->email_principal) ?? null;
-            $return[ "pais_code_geonames_nacimento" ]          = trim($item->pais_code_geonames_nacimento) ?? null;
-            $return[ "pais_nome_nacimento" ]                   = trim($item->pais_nome_nacimento) ?? null;
-            $return[ "sub_div_pais_code_geonames_nascimento" ] = trim($item->sub_div_pais_code_geonames_nascimento) ?? null;
-            $return[ "sub_div_pais_nome_nascimento" ]          = trim($item->sub_div_pais_nome_nascimento) ?? null;
-            $return[ "cid_code_geonames_nascimento" ]          = trim($item->cid_code_geonames_nascimento) ?? null;
-            $return[ "cid_nascimento" ]                        = trim($item->cid_nascimento) ?? null;
-            $return[ "estado_civil" ]                          = trim($item->estado_civil) ?? null;
-            $return[ "tel_prof_codigo_arepais" ]               = trim($item->tel_prof_codigo_arepais) ?? null;
-            $return[ "tel_prof_codigo_area_local" ]            = trim($item->tel_prof_codigo_area_local) ?? null;
-            $return[ "tel_prof_numero" ]                       = trim($item->tel_prof_numero) ?? null;
-            $return[ "tel_prof_nome_contato" ]                 = trim($item->tel_prof_nome_contato) ?? null;
-            $return[ "tel_pess_codigo_arepais" ]               = trim($item->tel_pess_codigo_arepais) ?? null;
-            $return[ "tel_pess_codigo_area_local" ]            = trim($item->tel_pess_codigo_area_local) ?? null;
-            $return[ "tel_pess_numero" ]                       = trim($item->tel_pess_numero) ?? null;
-            $return[ "tel_pess_nome_contato" ]                 = trim($item->tel_pess_nome_contato) ?? null;
-            $return[ "cpf" ]                                   = trim($item->cpf) ?? null;
-            $return[ "certificado_usuario" ]                   = trim($item->certificado_usuario) ?? null;
-            $return[ "validado_RF" ]                           = trim($item->validado_RF) ?? null;
-            $return[ "ddo_rg" ]                                = trim($item->ddo_rg) ?? null;
-            $return[ "ddo_dataexpedicao" ]                     = trim($item->ddo_dataexpedicao) ?? null;
-            $return[ "ddo_org_idorgaoexpedidor" ]              = trim($item->ddo_org_idorgaoexpedidor) ?? null;
-            $return[ "ddo_tituloeleitor" ]                     = trim($item->ddo_tituloeleitor) ?? null;
-            $return[ "nome_raca" ]                             = trim($item->nome_raca) ?? null;
-            $return[ "tipo_endereco" ]                         = trim($item->tipo_endereco) ?? null;
-            $return[ "logradouro" ]                            = trim($item->logradouro) ?? null;
-            $return[ "numero_logradouro" ]                     = trim($item->numero_logradouro) ?? null;
-            $return[ "complemento" ]                           = trim($item->complemento) ?? null;
-            $return[ "bairro" ]                                = trim($item->bairro) ?? null;
-            $return[ "codigo_postal" ]                         = trim($item->codigo_postal) ?? null;
-            $return[ "nome_cidade" ]                           = trim($item->nome_cidade) ?? null;
-            $return[ "nome_sudivisao_pais" ]                   = trim($item->nome_sudivisao_pais) ?? null;
-            $return[ "nome_pais" ]                             = trim($item->nome_pais) ?? null;
+            $return = $this->tratamentoItensApi($item);
 
             // formatados
             $return[ "data_nascimento_fmt" ]   = !is_null($return[ "data_nascimento" ])
@@ -170,51 +102,6 @@ trait Gets
 
             $this->return[] = $return;
         }
-
-        /*
-        {
-            id_pessoa: "DEC16905-58D6-4F18-B344-B5EF370CC6EB",
-            nome_civil: "GUILHERME SANT ANNA PINTO FERRO.",
-            sexo: "2",
-            data_nascimento: "1990-02-26-03:00",
-            nome_social: "Não Informado",
-            nome_pai: null,
-            nome_mae: null,
-            email_principal: "guilherme.ferro@fiocruz.br",
-            pais_code_geonames_nacimento: "BRA",
-            pais_nome_nacimento: "Brasil",
-            sub_div_pais_code_geonames_nascimento: "3451189",
-            sub_div_pais_nome_nascimento: "Rio de Janeiro",
-            cid_code_geonames_nascimento: "BR.21.3304557",
-            cid_nascimento: "Rio de Janeiro",
-            estado_civil: "Solteiro(a)",
-            tel_prof_codigo_arepais: null,
-            tel_prof_codigo_area_local: null,
-            tel_prof_numero: null,
-            tel_prof_nome_contato: null,
-            tel_pess_codigo_arepais: "+55",
-            tel_pess_codigo_area_local: "21",
-            tel_pess_numero: "983546851",
-            tel_pess_nome_contato: null,
-            cpf: "11988166780",
-            certificado_usuario: null,
-            validado_RF: null,
-            ddo_rg: "207197427",
-            ddo_dataexpedicao: "2009-06-29-03:00",
-            ddo_org_idorgaoexpedidor: "DETRAN",
-            ddo_tituloeleitor: null,
-            nome_raca: "Branca",
-            tipo_endereco: "Residencial",
-            logradouro: "Travessa Sousa Andrade",
-            numero_logradouro: "97",
-            complemento: "Apt 101",
-            bairro: "Cascadura",
-            codigo_postal: "21311-070",
-            nome_cidade: "Rio de Janeiro",
-            nome_sudivisao_pais: "Rio de Janeiro",
-            nome_pais: "Brasil"
-        }
-        */
 
         return $this->trateReturn();
     }
@@ -247,23 +134,15 @@ trait Gets
     public function getProgramasEspeciais()
     {
         // busca api
-        $api = microservico()->getSecurity(
-            "v2.programasEspeciais",
-            "{$this->tokenWso2Ei()}"
-        );
+        $api = $this->getApiV2("programasEspeciais");
 
         if (isset($api->original) && $api->original["success"] == false) {
             return $this->trateReturn($api->original);
         }
 
         // trata os dados
-        $return = [];
         foreach ($api->progEspeciais->progEspecial as $key => $item) {
-            $return[ "nome" ]     = trim($item->nome) ?? null;
-            $return[ "id" ]       = trim($item->id) ?? null;
-            $return[ "situacao" ] = trim($item->situacao) ?? null;
-
-            $this->return[] = $return;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
@@ -287,12 +166,9 @@ trait Gets
         }
 
         // busca api
-        $api = microservico()
-            ->getSecurity(
-                "v2.dadosModal",
-                "{$this->tokenWso2Ei()}",
-                "{$idEdicao}"
-            )
+        $api = $this->getApiV2(
+            "dadosModal",
+            "{$idEdicao}")
             ->InformacoesModal
         ;
 
@@ -301,32 +177,8 @@ trait Gets
         }
 
         // trata os dados
-        $return = [];
         foreach ($api->InformacaoModal as $key => $item) {
-            $return[ "id" ]                            = trim($item->id) ?? null;
-            $return[ "curso" ]                         = trim($item->curso) ?? null;
-            $return[ "ano" ]                           = trim($item->ano) ?? null;
-            $return[ "modalidade" ]                    = trim($item->modalidade) ?? null;
-            $return[ "nivel" ]                         = trim($item->nivel) ?? null;
-            $return[ "descricao" ]                     = trim($item->descricao) ?? null;
-            $return[ "objetivo" ]                      = trim($item->objetivo) ?? null;
-            $return[ "regime_duracao" ]                = trim($item->regime_duracao) ?? null;
-            $return[ "publico_alvo" ]                  = trim($item->publico_alvo) ?? null;
-            $return[ "inscricao" ]                     = trim($item->inscricao) ?? null;
-            $return[ "processo_seletivo" ]             = trim($item->processo_seletivo) ?? null;
-            $return[ "matricula" ]                     = trim($item->matricula) ?? null;
-            $return[ "disposicoes_gerais" ]            = trim($item->disposicoes_gerais) ?? null;
-            $return[ "coordenadores" ]                 = trim($item->coordenadores) ?? null;
-            $return[ "data_inicio" ]                   = trim($item->data_inicio) ?? null;
-            $return[ "sigla_unidade" ]                 = trim($item->sigla_unidade) ?? null;
-            $return[ "nome_unidade" ]                  = trim($item->nome_unidade) ?? null;
-            $return[ "natureza_curso" ]                = trim($item->natureza_curso) ?? null;
-            $return[ "data_termino" ]                  = trim($item->data_termino) ?? null;
-            $return[ "url_target_return_testes" ]      = trim($item->url_target_return_testes) ?? null;
-            $return[ "url_target_return_homologacao" ] = trim($item->url_target_return_homologacao) ?? null;
-            $return[ "url_target_return_producao" ]    = trim($item->url_target_return_producao) ?? null;
-
-            $this->return[] = $return;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
@@ -350,12 +202,9 @@ trait Gets
         }
 
         // busca api
-        $api = microservico()
-            ->getSecurity(
-                "v2.pessoaInscricoes",
-                "{$this->tokenWso2Ei()}",
-                "{$pessoaId}"
-            )
+        $api = $this->getApiV2(
+            "pessoaInscricoes",
+            "{$pessoaId}")
             ->inscricoes
         ;
 
@@ -364,20 +213,8 @@ trait Gets
         }
 
         // trata os dados
-        $return = [];
         foreach ($api->inscricao as $key => $item) {
-            $return[ "status" ]                    = trim($item->status) ?? null;
-            $return[ "edital_id" ]                 = trim($item->edital_id) ?? null;
-            $return[ "solicitante_id" ]            = trim($item->solicitante_id) ?? null;
-            $return[ "situacao" ]                  = trim($item->situacao) ?? null;
-            $return[ "etapa" ]                     = trim($item->etapa) ?? null;
-            $return[ "tipo_etapa" ]                = trim($item->tipo_etapa) ?? null;
-            $return[ "fase" ]                      = trim($item->fase) ?? null;
-            $return[ "link_meu_SIEFs" ]            = trim($item->link_meu_SIEFs) ?? null;
-            $return[ "link_meu_sief_homologacao" ] = trim($item->link_meu_sief_homologacao) ?? null;
-            $return[ "link_meu_sief_producao" ]    = trim($item->link_meu_sief_producao) ?? null;
-
-            $this->return[] = $return;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
@@ -401,12 +238,9 @@ trait Gets
         }
 
         // busca api
-        $api = microservico()
-            ->getSecurity(
-                "v2.listaProgramasEspeciais",
-                "{$this->tokenWso2Ei()}",
-                "{$idProgramaEspecial}"
-            )
+        $api = $this->getApiV2(
+            "listaProgramasEspeciais",
+            "{$idProgramaEspecial}")
             ->programas
         ;
 
@@ -415,27 +249,8 @@ trait Gets
         }
         
         // trata os dados
-        $return = [];
         foreach ($api->programa as $key => $item) {
-            $return[ "numero" ]                  = trim($item->numero) ?? null;
-            $return[ "titulo" ]                  = trim($item->titulo) ?? null;
-            $return[ "data_hora_inicio" ]        = trim($item->data_hora_inicio) ?? null;
-            $return[ "data_hora_termino" ]       = trim($item->data_hora_termino) ?? null;
-            $return[ "pro_idprograma" ]          = trim($item->pro_idprograma) ?? null;
-            $return[ "edital_id" ]               = trim($item->edital_id) ?? null;
-            $return[ "edicao_curso_id" ]         = trim($item->edicao_curso_id) ?? null;
-            $return[ "edi_modalidade" ]          = trim($item->edi_modalidade) ?? null;
-            $return[ "descricao" ]               = trim($item->descricao) ?? null;
-            $return[ "id_siga_pc" ]              = trim($item->id_siga_pc) ?? null;
-            $return[ "id_siga_edc" ]             = trim($item->id_siga_edc) ?? null;
-            $return[ "nome" ]                    = trim($item->nome) ?? null;
-            $return[ "pro_nome" ]                = trim($item->pro_nome) ?? null;
-            $return[ "unidade" ]                 = trim($item->unidade) ?? null;
-            $return[ "tipo_etapa_atividade_id" ] = trim($item->tipo_etapa_atividade_id) ?? null;
-            $return[ "nivel" ]                   = trim($item->nivel) ?? null;
-            $return[ "idcurso_Sief" ]            = trim($item->idcurso_Sief) ?? null;
-
-            $this->return[] = $return;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
@@ -454,54 +269,19 @@ trait Gets
     public function getListaEditaisAbertos()
     {
         // busca api
-        $api = microservico()
-            ->getSecurity(
-                "v2.listaEditaisAbertos",
-                "{$this->tokenWso2Ei()}"
-            )
-            ->editaisAbertos
-        ;
+        $api = $this->getApiV2("listaEditaisAbertos")->editaisAbertos;
 
         if (empty($api)) {
             return $this->trateReturn();
         }
 
         // trata os dados
-        $return = [];
         foreach ($api->editalAberto as $key => $item) {
-            $return[ "cur_idcurso" ]            = trim($item->cur_idcurso) ?? null;
-            $return[ "und_idunidade" ]          = trim($item->und_idunidade) ?? null;
-            $return[ "numero" ]                 = trim($item->numero) ?? null;
-            $return[ "titulo" ]                 = trim($item->titulo) ?? null;
-            $return[ "data_hora_inicio" ]       = trim($item->data_hora_inicio) ?? null;
-            $return[ "data_hora_termino" ]      = trim($item->data_hora_termino) ?? null;
-            $return[ "pro_idprograma" ]         = trim($item->pro_idprograma) ?? null;
-            $return[ "edital_id" ]              = trim($item->edital_id) ?? null;
-            $return[ "pla_descricao" ]          = trim($item->pla_descricao) ?? null;
-            $return[ "pla_objetivo" ]           = trim($item->pla_objetivo) ?? null;
-            $return[ "pla_regimeeduracao" ]     = trim($item->pla_regimeeduracao) ?? null;
-            $return[ "pla_alvo" ]               = trim($item->pla_alvo) ?? null;
-            $return[ "pla_inscricao" ]          = trim($item->pla_inscricao) ?? null;
-            $return[ "pla_processoseletivo" ]   = trim($item->pla_processoseletivo) ?? null;
-            $return[ "pla_matricula" ]          = trim($item->pla_matricula) ?? null;
-            $return[ "pla_disposicoesgerais" ]  = trim($item->pla_disposicoesgerais) ?? null;
-            $return[ "edicao_curso_id" ]        = trim($item->edicao_curso_id) ?? null;
-            $return[ "edi_modalidade" ]         = trim($item->edi_modalidade) ?? null;
-            $return[ "descricao" ]              = trim($item->descricao) ?? null;
-            $return[ "id_siga_pc" ]             = trim($item->id_siga_pc) ?? null;
-            $return[ "id_siga_edc" ]            = trim($item->id_siga_edc) ?? null;
-            $return[ "id_siga_spc" ]            = trim($item->id_siga_spc) ?? null;
-            $return[ "unidade" ]                = trim($item->unidade) ?? null;
-            $return[ "nivel" ]                  = trim($item->nivel) ?? null;
-            $return[ "data_inicio_inscricao" ]  = trim($item->data_inicio_inscricao) ?? null;
-            $return[ "data_termino_inscricao" ] = trim($item->data_termino_inscricao) ?? null;
-
-            $this->return[] = $return;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
     }
-
 
     /**
      * @author  Guilherme Ferro
@@ -556,6 +336,42 @@ trait Gets
             $return[ "idcurso_Sief" ]            = trim($item->idcurso_Sief) ?? null;
 
             $this->return[] = $return;
+        }
+
+        return $this->trateReturn();
+    }
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
+     * @api     listaCandidatosProgramaEspecial
+     *
+     * @param   int $idProgramaEspecial
+     * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_Sief", )
+     */
+    public function getListaCandidatosProgramaEspecial(int $idProgramaEspecial)
+    {
+        if (blank($idProgramaEspecial)) {
+            return $this->trateReturn();
+        }
+
+        // busca api
+        $api = $this->getApiV2(
+            "listaCandidatosProgramaEspecial",
+            "{$idProgramaEspecial}")
+                ->InscritosProgramaEspecial
+        ;
+
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        // trata os dados
+        foreach ($api->InscritoProgramaEspecial as $item) {
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();

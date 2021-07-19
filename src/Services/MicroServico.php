@@ -350,4 +350,36 @@ class MicroServico
 
         return json_decode(json_encode($return));
     }
+
+    /**
+     * Aplica o tratamento usado em todos os foreachs de return da api
+     *
+     * @param stdClass $dados
+     * @return array
+     */
+    private function tratamentoItensApi(stdClass $item): array
+    {
+        $dado = [];
+        foreach (get_object_vars($item) as $id => $key) {
+            $dado[ strtolower(trim($id)) ] = trim($key) ?? null;
+        }
+
+        return $dado;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV2(string $endpoint, $params = null)
+    {
+        return microservico()
+                ->getSecurity(
+                    "v2.{$endpoint}",
+                    "{$this->tokenWso2Ei()}",
+                    "{$params}"
+                )
+            ;
+    }
 }
