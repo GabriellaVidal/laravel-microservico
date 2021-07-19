@@ -155,11 +155,11 @@ trait Gets
      * @version v2
      * @api     dadosModal
      *
-     * @param   $idEdicao
+     * @param  int $idEdicao
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
      * @return array|json ( "id", "curso", "ano", "modalidade", "nivel", "descricao", "objetivo", "regime_duracao", "publico_alvo", "inscricao", "processo_seletivo", "matricula", "disposicoes_gerais", "coordenadores", "data_inicio", "sigla_unidade", "nome_unidade", "natureza_curso", "data_termino", "url_target_return_testes", "url_target_return_homologacao", "url_target_return_producao", )
     */
-    public function getDadosModal($idEdicao)
+    public function getDadosModal(int $idEdicao)
     {
         if (blank($idEdicao) ) {
             return $this->trateReturn();
@@ -191,20 +191,20 @@ trait Gets
      * @version v2
      * @api     pessoaInscricoes
      *
-     * @param   $pessoaId
+     * @param string $uuidPessoa
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
      * @return array|json ( "status", "edital_id", "solicitante_id", "situacao", "etapa", "tipo_etapa", "fase", "link_meu_SIEFs", "link_meu_sief_homologacao", "link_meu_sief_producao", )
      */
-    public function getPessoaInscricoes($pessoaId)
+    public function getPessoaInscricoes(string $uuidPessoa)
     {
-        if (blank($pessoaId)) {
+        if (blank($uuidPessoa)) {
             return $this->trateReturn();
         }
 
         // busca api
         $api = $this->getApiV2(
             "pessoaInscricoes",
-            "{$pessoaId}")
+            "{$uuidPessoa}")
             ->inscricoes
         ;
 
@@ -371,6 +371,43 @@ trait Gets
 
         // trata os dados
         foreach ($api->InscritoProgramaEspecial as $item) {
+            $this->return[] = $this->tratamentoItensApi($item);
+        }
+
+        return $this->trateReturn();
+    }
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
+     * @api     listaCandidatosEdital
+     *
+     * @param   string $uuidEdital
+     * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_Sief", )
+     */
+    public function getListaCandidatosProgramaEdital(string $uuidEdital)
+    {
+        if (blank($uuidEdital)) {
+            return $this->trateReturn();
+        }
+
+        // busca api
+        $api = $this->getApiV2(
+            "listaCandidatosEdital",
+            "{$uuidEdital}"
+                )
+                ->InscritosEdital
+        ;
+
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        // trata os dados
+        foreach ($api->InscritoEdital as $item) {
             $this->return[] = $this->tratamentoItensApi($item);
         }
 

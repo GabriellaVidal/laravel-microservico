@@ -376,9 +376,16 @@ return [
          */
         "listaCandidatosProgramaEspecial" => "{$serviceV2Acesso}/listaCandidatosProgramaEspecial",
 
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
+         * @param   $id_edital
+         * @api     listaCandidatosEdital
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listaCandidatosEdital" => "{$serviceV2Acesso}/listaCandidatosEdital",
+
         /*
-            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosProgramaEspecial/{id_programaEspecial}
-            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
             https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
         */
 
