@@ -307,6 +307,10 @@ return [
         |
         */
 
+        #############################################
+        #                   ACESSO                  #
+        #############################################
+
         /**
          * @url https://ei.fiocruz.br/v2/basecorporativa/dadosPessoais/{cpf}
          * @api     dadosPessoais
@@ -377,19 +381,23 @@ return [
         "listaCandidatosProgramaEspecial" => "{$serviceV2Acesso}/listaCandidatosProgramaEspecial",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
-         * @param   $id_edital
+         * @url     https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{uuid_edital}
+         * @param   $uuid_edital
          * @api     listaCandidatosEdital
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "listaCandidatosEdital" => "{$serviceV2Acesso}/listaCandidatosEdital",
 
-        /*
-            https://ei.fiocruz.br/services/v2-acesso/listaCandidatosEdital/{id_edital}
-        */
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-acesso/dataDivulgacao/{uuid_edital}
+         * @param   $uuid_edital
+         * @api     dataDivulgacao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "dataDivulgacao" => "{$serviceV2Acesso}/dataDivulgacao",
 
-        //https://ei.fiocruz.br/services/v2-acesso/dataDivulgacao/{idEdital}
     ],
 
     ///////////////////////////////////////////////////////////////////////////

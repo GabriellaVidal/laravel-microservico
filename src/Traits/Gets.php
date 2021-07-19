@@ -413,4 +413,48 @@ trait Gets
 
         return $this->trateReturn();
     }
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
+     * @api     dataDivulgacao
+     *
+     * @param   string $uuidEdital
+     * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+     * @return array|json ( "data_divulgacao", "data_divulgacao_fmt", )
+     */
+    public function getDataDivulgacao(string $uuidEdital)
+    {
+        if (blank($uuidEdital)) {
+            return $this->trateReturn();
+        }
+
+        // busca api
+        $api = $this->getApiV2(
+            "dataDivulgacao",
+            "{$uuidEdital}"
+                )
+                ->Vigencias
+        ;
+
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        // trata os dados
+        foreach ($api->Vigencia as $item) {
+            $return = $this->tratamentoItensApi($item);
+
+            // formatados
+            $return[ "data_divulgacao_fmt" ]   = !is_null($return[ "data_divulgacao" ])
+                ? \Carbon\Carbon::parse($return[ "data_divulgacao" ])->format('d/m/y')
+                : null;
+
+            $this->return[] = $return;
+        }
+
+        return $this->trateReturn();
+    }
 }
