@@ -50,11 +50,24 @@ $hostEiServices = "{$host_ei_https}/services";
 $ambientePrefix    = empty($envAmbiente) ? "" : "/{$envAmbiente}";
 $v2BaseCorporativa = "{$v2HostEi}{$ambientePrefix}/basecorporativa";
 
+/*
+|---------------------------------------------------
+| variavel por Ambiente
+|---------------------------------------------------
+*/
+$ambienteServices  = empty($envAmbiente) ? "" : "{$envAmbiente}-";
+$serviceV2         = "{$hostEiServices}/v2-";
+$serviceV2Ambiente = "{$serviceV2}{$ambienteServices}";
+
 /**
  * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}acesso
 */
-$ambienteServices = empty($envAmbiente) ? "" : "{$envAmbiente}-";
-$serviceV2Acesso  = "{$hostEiServices}/v2-{$ambienteServices}acesso";
+$serviceV2Acesso = "{$serviceV2Ambiente}acesso";
+
+/**
+ * @url https://ei.fiocruz.br/services/v2-bancoCompetencias
+*/
+$serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 
 
 /*TODO*/
@@ -296,21 +309,26 @@ return [
     "v2" => [
         /*
         |---------------------------------------------------
-        | BASE CORPORATIVA
+        | Url e varis por sistemas
         |---------------------------------------------------
         |
+        | # BASE CORPORATIVA
         | url base: https://ei.fiocruz.br/v2/basecorporativa
         | variavel: $v2BaseCorporativa
         |
-        | url base: https://ei.fiocruz.br/services/v2-acesso
+        | # ACESSO
+        | url base: https://ei.fiocruz.br/services/v2-{$ambienteServices|null}acesso
         | variavel: $serviceV2Acesso
+        |
+        | # BANCO COMPETENCIAS
+        | url base: https://ei.fiocruz.br/services/v2-bancoCompetencias
+        | variavel: $serviceV2BancoCompetencia
         |
         */
 
         #############################################
-        #                   ACESSO                  #
+        #              BASE CORPORATIVA             #
         #############################################
-
         /**
          * @url https://ei.fiocruz.br/v2/basecorporativa/dadosPessoais/{cpf}
          * @api     dadosPessoais
@@ -319,6 +337,9 @@ return [
          */
         "dadosPessoais" => "{$v2BaseCorporativa}/dadosPessoais",
 
+        #############################################
+        #                   ACESSO                  #
+        #############################################
         /**
          * @url     https://ei.fiocruz.br/services/v2-acesso/dadosModal/{idEdicao}
          * @param   $idEdicao
@@ -398,6 +419,27 @@ return [
          */
         "dataDivulgacao" => "{$serviceV2Acesso}/dataDivulgacao",
 
+        #############################################
+        #              BANCO COMPETENCIAS           #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-bancoCompetencias/verificaCompetencia/{cpf}
+         * @param   $cpf
+         * @api     verificaCompetencia
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "verificaCompetencia" => "{$serviceV2BancoCompetencia}/verificaCompetencia",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-bancoCompetencias/listarCompetenciasPorCPF/{cpf}
+         * @param   $cpf
+         * @api     listarCompetenciasPorCPF
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarCompetenciasPorCPF" => "{$serviceV2BancoCompetencia}/listarCompetenciasPorCPF",
     ],
 
     ///////////////////////////////////////////////////////////////////////////

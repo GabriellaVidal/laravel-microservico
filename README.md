@@ -207,4 +207,6 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListaProgramasEspeciaisComFuturos(int $idProgramaEspecial)`
         1. `getListaCandidatosProgramaEdital(string $uuidEdital)`
         1. `getDataDivulgacao(string $uuidEdital)`
-        
+    1. BANCO COMPETENCIAS
+        1. `getVerificaCompetencia(string $cpf)`    
+        1. `getListarCompetenciasPorCPF(string $cpf)`    

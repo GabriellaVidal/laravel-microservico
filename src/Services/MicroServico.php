@@ -5,6 +5,7 @@ namespace Gsferro\MicroServico\Services;
 use Gsferro\MicroServico\Traits\Tokens;
 use Ixudra\Curl\Facades\Curl;
 use Gsferro\MicroServico\Traits\Gets;
+use Illuminate\Support\Str;
 
 class MicroServico
 {
@@ -361,7 +362,7 @@ class MicroServico
     {
         $dado = [];
         foreach (get_object_vars($item) as $id => $key) {
-            $dado[ strtolower(trim($id)) ] = trim($key) ?? null;
+            $dado[ Str::snake(trim($id)) ] = trim($key) ?? null;
         }
 
         return $dado;
