@@ -69,6 +69,11 @@ $serviceV2Acesso = "{$serviceV2Ambiente}acesso";
 */
 $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 
+/**
+ * @url https://ei.fiocruz.br/services/v2-sicave
+*/
+$serviceV2Sicave = "{$serviceV2}sicave";
+
 
 /*TODO*/
 $api_vi_service = env('API_V1_SERVICE', 'api-basecorporativa');
@@ -440,6 +445,28 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "listarCompetenciasPorCPF" => "{$serviceV2BancoCompetencia}/listarCompetenciasPorCPF",
+
+        #############################################
+        #                   SICAVE                  #
+        #############################################
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-sicave/sicaveveiculo/{cpf}
+         * @param   $cpf
+         * @api     sicaveveiculo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "sicaveveiculo" => "{$serviceV2Sicave}/sicaveveiculo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-sicave/sicaveadvertencias/{cpf}
+         * @param   $cpf
+         * @api     sicaveadvertencias
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "sicaveadvertencias" => "{$serviceV2Sicave}/sicaveadvertencias",
+
     ],
 
     ///////////////////////////////////////////////////////////////////////////

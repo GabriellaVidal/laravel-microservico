@@ -210,3 +210,6 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
     1. BANCO COMPETENCIAS
         1. `getVerificaCompetencia(string $cpf)`    
         1. `getListarCompetenciasPorCPF(string $cpf)`    
+    1. SICAVE
+        1. `sicaveveiculo(string $cpf)`    
+        1. `sicaveadvertencias(string $cpf)`    
