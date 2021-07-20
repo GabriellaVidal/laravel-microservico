@@ -129,7 +129,7 @@ trait Gets
         , GetSicave
         , GetBancoCompetencia
         , GetServidores
-    ;
+        ;
 
     /*
     |---------------------------------------------------
@@ -187,6 +187,7 @@ trait Gets
      */
     private function getApiV2FromReturnXml(string $endpoint, $params = null)
     {
+        $this->curlSimple = true;
         return $this->returnXml($this->getApiV2("{$endpoint}", "{$params}"));
     }
 
@@ -199,6 +200,7 @@ trait Gets
      */
     private function getApiV3FromReturnXml(string $endpoint, $params = null)
     {
+        $this->curlSimple = true;
         return $this->returnXml($this->getApiV3("{$endpoint}", "{$params}"));
     }
 
@@ -210,11 +212,10 @@ trait Gets
      */
     private function returnXml($xml)
     {
-        $this->curlSimple = true;
         return  json_decode(
                     json_encode(
                         simplexml_load_string(
-                        $xml
+                            $xml
                 )));
     }
 }
