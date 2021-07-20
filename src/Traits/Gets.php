@@ -4,6 +4,7 @@ namespace Gsferro\MicroServico\Traits;
 
 use Gsferro\MicroServico\Traits\Gets\GetAcesso;
 use Gsferro\MicroServico\Traits\Gets\GetBancoCompetencia;
+use Gsferro\MicroServico\Traits\Gets\GetServidores;
 use Gsferro\MicroServico\Traits\Gets\GetSicave;
 
 trait Gets
@@ -127,5 +128,93 @@ trait Gets
     use   GetAcesso
         , GetSicave
         , GetBancoCompetencia
+        , GetServidores
     ;
+
+    /*
+    |---------------------------------------------------
+    | Reuso
+    |---------------------------------------------------
+    */
+    /**
+     * reuso para qualquer versão
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @param string $versao
+     * @return json
+     */
+    private function getApisVersoes(string $endpoint, $params = null, string $versao = "v2")
+    {
+        return $this->getSecurity(
+            "{$versao}.{$endpoint}",
+            "{$this->tokenWso2Ei()}",
+            "{$params}"
+        )
+            ;
+    }
+
+    /**
+     * para as apis v2
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV2(string $endpoint, $params = null)
+    {
+        return $this->getApisVersoes("{$endpoint}", "{$params}");
+    }
+
+    /**
+     * para as apis v3
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV3(string $endpoint, $params = null)
+    {
+        return $this->getApisVersoes("{$endpoint}", "{$params}", "v3");
+    }
+
+    /**
+     * Tratando apis v2 com retorno de XML
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV2FromReturnXml(string $endpoint, $params = null)
+    {
+        return $this->returnXml($this->getApiV2("{$endpoint}", "{$params}"));
+    }
+
+    /**
+     * Tratando apis v3 com retorno de XML
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV3FromReturnXml(string $endpoint, $params = null)
+    {
+        return $this->returnXml($this->getApiV3("{$endpoint}", "{$params}"));
+    }
+
+    /**
+     * Reuso para receber um xml de return do WSO2
+     *
+     * @param $xml
+     * @return mixed
+     */
+    private function returnXml($xml)
+    {
+        $this->curlSimple = true;
+        return  json_decode(
+                    json_encode(
+                        simplexml_load_string(
+                        $xml
+                )));
+    }
 }

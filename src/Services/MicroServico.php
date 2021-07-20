@@ -388,34 +388,4 @@ class MicroServico
 
         return $dado;
     }
-
-    /**
-     * @param string $endpoint
-     * @param null $params
-     * @return json
-     */
-    private function getApiV2(string $endpoint, $params = null)
-    {
-        return $this->getSecurity(
-            "v2.{$endpoint}",
-            "{$this->tokenWso2Ei()}",
-            "{$params}"
-        )
-            ;
-    }
-
-    /**
-     * @param string $endpoint
-     * @param null $params
-     * @return json
-     */
-    private function getApiV2FromReturnXml(string $endpoint, $params = null)
-    {
-        $this->curlSimple = true;
-        return  json_decode(
-            json_encode(
-                simplexml_load_string(
-                    $this->getApiV2("{$endpoint}", "{$params}")
-                )));
-    }
 }
