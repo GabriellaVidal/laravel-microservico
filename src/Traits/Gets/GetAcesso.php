@@ -47,15 +47,15 @@ trait GetAcesso
      */
     public function getDadosModal(int $idEdicao)
     {
-        if (blank($idEdicao) ) {
+        if (empty($idEdicao) || strlen($idEdicao) > 10 ) {
             return $this->trateReturn();
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "dadosModal",
-            "{$idEdicao}")
-            ->InformacoesModal
+            "{$idEdicao}"
+        )
         ;
 
         if (empty($api)) {
@@ -63,7 +63,7 @@ trait GetAcesso
         }
 
         // trata os dados
-        foreach ($api->InformacaoModal as $key => $item) {
+        foreach ($api as $key => $item) {
             $this->return[] = $this->tratamentoItensApi($item);
         }
 
@@ -155,7 +155,7 @@ trait GetAcesso
     public function getListaEditaisAbertos()
     {
         // busca api
-        $api = $this->getApiV2("listaEditaisAbertos")->editaisAbertos;
+        $api = $this->getApiV2FromReturnXml("listaEditaisAbertos");
 
         if (empty($api)) {
             return $this->trateReturn();
@@ -190,7 +190,7 @@ trait GetAcesso
         $api = $this->getApiV2(
             "listaProgramasEspeciaisComFuturos",
             "{$idProgramaEspecial}"
-            )
+        )
             ->progEspeciaisComFuturos;
         ;
 

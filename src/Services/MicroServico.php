@@ -15,6 +15,7 @@ class MicroServico
     private $extraHeader = [];
     private $return      = [];
     private $returnArray = true;
+    private $curlSimple  = false;
 
     /**
      * set returnArray false
@@ -56,13 +57,28 @@ class MicroServico
 
     private function curl($url)
     {
+        if ($this->curlSimple) {
+            return $this->curlSimple($url);
+        }
+
         return Curl::to($url)
             ->withHeaders(array_merge(
                 [
                     "accept"          => "application/json",
                     "accept-language" => "pt-BR,pt;q=0.8",
                 ], $this->extraHeader))
-            ->asJsonResponse();
+            ->asJsonResponse()
+            ;
+    }
+
+    private function curlSimple($url)
+    {
+        return Curl::to($url)
+            ->withHeaders(array_merge(
+                [
+                    "accept-language" => "pt-BR,pt;q=0.8",
+                ], $this->extraHeader))
+            ;
     }
 
     /*private function apiException($message)
@@ -269,7 +285,7 @@ class MicroServico
         }
 
         $url = $link . (!empty($params) ? "/{$params}" : "");
-
+        //        dump($url);
         return $this->curl($url)
             ->withAuthorization("{$authorization} {$token}")
             ->get();
@@ -355,14 +371,14 @@ class MicroServico
     /**
      * Aplica o tratamento usado em todos os foreachs de return da api
      *
-     * @param object $item
+     * @param object $dados
      * @return array
      */
     private function tratamentoItensApi(object $item): array
     {
         $dado = [];
         foreach (get_object_vars($item) as $id => $key) {
-            $dado[ Str::snake(trim($id)) ] = trim($key) ?? null;
+            $dado[ Str::snake(trim($id)) ] = (!is_string($key) || !is_numeric($key) ? null : trim($key));
         }
 
         return $dado;
@@ -375,12 +391,26 @@ class MicroServico
      */
     private function getApiV2(string $endpoint, $params = null)
     {
-        return microservico()
-                ->getSecurity(
-                    "v2.{$endpoint}",
-                    "{$this->tokenWso2Ei()}",
-                    "{$params}"
-                )
+        return $this->getSecurity(
+            "v2.{$endpoint}",
+            "{$this->tokenWso2Ei()}",
+            "{$params}"
+        )
             ;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV2FromReturnXml(string $endpoint, $params = null)
+    {
+        $this->curlSimple = true;
+        return  json_decode(
+                    json_encode(
+                        simplexml_load_string(
+                            $this->getApiV2("{$endpoint}", "{$params}")
+                        )));
     }
 }
