@@ -357,9 +357,9 @@ class MicroServico
     {
         $return = $return ?? $this->return;
 
-        if (count($return) == 1) {
+        /*if (count($return) == 1) {
             $return = current($return);
-        }
+        }*/
 
         if ($this->returnArray) {
             return $return;
