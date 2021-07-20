@@ -31,14 +31,14 @@ trait GetBancoCompetencia
         $api = $this->getApiV2(
             "verificaCompetencia",
             "{$cpf}")
-            ->DadosPessoais;
+            ->Competencias;
 
         if (!isset($api)) {
             return $this->trateReturn();
         }
 
         // trata os dados
-        foreach ($api->Competência as $key => $item) {
+        foreach ($api->Competencia as $key => $item) {
             $return = $this->tratamentoItensApi($item);
 
             // formatados
