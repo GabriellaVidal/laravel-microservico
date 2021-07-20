@@ -371,13 +371,18 @@ class MicroServico
     /**
      * Aplica o tratamento usado em todos os foreachs de return da api
      *
-     * @param object $dados
+     * @param object|array $dados
      * @return array
      */
-    private function tratamentoItensApi(object $item): array
+    private function tratamentoItensApi($item): array
     {
+        $item = (is_object($item)
+            ? get_object_vars($item)
+            : current($item)
+        );
+
         $dado = [];
-        foreach (get_object_vars($item) as $id => $key) {
+        foreach ($item as $id => $key) {
             $dado[ Str::snake(trim($id)) ] = (!is_string($key) || !is_numeric($key) ? null : trim($key));
         }
 
@@ -408,9 +413,9 @@ class MicroServico
     {
         $this->curlSimple = true;
         return  json_decode(
-                    json_encode(
-                        simplexml_load_string(
-                            $this->getApiV2("{$endpoint}", "{$params}")
-                        )));
+            json_encode(
+                simplexml_load_string(
+                    $this->getApiV2("{$endpoint}", "{$params}")
+                )));
     }
 }
