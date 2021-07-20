@@ -83,15 +83,14 @@ trait GetAcesso
      */
     public function getPessoaInscricoes(string $uuidPessoa)
     {
-        if (blank($uuidPessoa)) {
+        if (empty($uuidPessoa) || !isUuidV4($uuidPessoa)) {
             return $this->trateReturn();
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "pessoaInscricoes",
             "{$uuidPessoa}")
-            ->inscricoes
         ;
 
         if (empty($api)) {
@@ -99,7 +98,7 @@ trait GetAcesso
         }
 
         // trata os dados
-        foreach ($api->inscricao as $key => $item) {
+        foreach ($api as $key => $item) {
             $this->return[] = $this->tratamentoItensApi($item);
         }
 
@@ -255,7 +254,7 @@ trait GetAcesso
      */
     public function getListaCandidatosProgramaEdital(string $uuidEdital)
     {
-        if (blank($uuidEdital)) {
+        if (empty($uuidEdital) || !isUuidV4($uuidEdital)) {
             return $this->trateReturn();
         }
 
@@ -292,7 +291,7 @@ trait GetAcesso
      */
     public function getDataDivulgacao(string $uuidEdital)
     {
-        if (blank($uuidEdital)) {
+        if (empty($uuidEdital) || !isUuidV4($uuidEdital)) {
             return $this->trateReturn();
         }
 

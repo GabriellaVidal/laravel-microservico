@@ -72,3 +72,17 @@ if (!function_exists('maskCpf')) {
         return $cpf;
     }
 }
+
+if (!function_exists('isUuidV4')) {
+    /**
+     * Adiciona a mascara de cpf no $str
+     *
+     * @param string $uuid
+     * @return bool
+     */
+    function isUuidV4($uuid): bool
+    {
+        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
+        return (bool) preg_match($UUIDv4, $uuid);
+    }
+}
