@@ -31,7 +31,7 @@ trait GetBancoCompetencia
         $api = $this->getApiV2(
             "verificaCompetencia",
             "{$cpf}")
-            ->Competencias;
+            ->Competencias ;
 
         if (!isset($api)) {
             return $this->trateReturn();
@@ -72,18 +72,19 @@ trait GetBancoCompetencia
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "listarCompetenciasPorCPF",
             "{$cpf}")
-            ->CompetenciasPorCPF;
+        ;
 
         if (!isset($api)) {
             return $this->trateReturn();
         }
 
         // trata os dados
-        foreach ($api->CompetenciaPorCPF as $key => $item) {
+        foreach ($api as $key => $item) {
             $return = $this->tratamentoItensApi($item);
+            //            dump($return);
 
             // formatados
             $return[ "cpf_fmt" ] = !is_null($return[ "cpf" ])
