@@ -355,10 +355,10 @@ class MicroServico
     /**
      * Aplica o tratamento usado em todos os foreachs de return da api
      *
-     * @param stdClass $dados
+     * @param object $item
      * @return array
      */
-    private function tratamentoItensApi(stdClass $item): array
+    private function tratamentoItensApi(object $item): array
     {
         $dado = [];
         foreach (get_object_vars($item) as $id => $key) {
