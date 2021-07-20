@@ -388,4 +388,24 @@ class MicroServico
 
         return $dado;
     }
+
+    /**
+     * Ação basica nos metodos que somente pega a resposta e repassa ao usuário
+     *
+     * @param $api
+     * @param null $fore para receber um atributo interno do retorno da api
+     * @return array|json
+     */
+    private function feedbackBasic($api, $fore = null)
+    {
+        if (empty($api)) {
+            return $this->trateReturn();
+        }
+
+        foreach ($fore ?? $api as $item) {
+            $this->return[] = $this->tratamentoItensApi($item);
+        }
+
+        return $this->trateReturn();
+    }
 }

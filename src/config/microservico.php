@@ -489,12 +489,12 @@ return [
         "contarTotalColaboradores" => "{$serviceV3Sevidores}/contarTotalColaboradores",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v3-servidores/buscar_Cargos_servidores_fiocruz
-         * @api     buscar_Cargos_servidores_fiocruz
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarCargosServidoresFiocruz
+         * @api     buscarCargosServidoresFiocruz
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
-        "buscar_Cargos_servidores_fiocruz" => "{$serviceV3Sevidores}/buscar_Cargos_servidores_fiocruz",
+        "buscarCargosServidoresFiocruz" => "{$serviceV3Sevidores}/buscarCargosServidoresFiocruz",
 
         /**
          * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorPorCpf/{cpf}

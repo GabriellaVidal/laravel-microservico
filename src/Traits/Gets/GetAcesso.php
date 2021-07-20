@@ -58,16 +58,7 @@ trait GetAcesso
         )
         ;
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api);
     }
 
     /**
@@ -93,17 +84,7 @@ trait GetAcesso
             "{$uuidPessoa}")
         ;
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api as $key => $item) {
-
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api);
     }
 
     /**
@@ -130,16 +111,7 @@ trait GetAcesso
             ->programas
         ;
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->programa as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api, $api->programa);
     }
 
     /**
@@ -157,16 +129,7 @@ trait GetAcesso
         // busca api
         $api = $this->getApiV2FromReturnXml("listaEditaisAbertos");
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->editalAberto as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api, $api->editalAberto);
     }
 
     /**
@@ -194,16 +157,7 @@ trait GetAcesso
             ->progEspeciaisComFuturos;
         ;
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->progEspecialComFuturo as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api, $api->progEspecialComFuturo);
     }
 
     /**
@@ -231,16 +185,7 @@ trait GetAcesso
         ;
         //        dd($api);
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->InscritoProgramaEspecial as $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api, $api->InscritoProgramaEspecial);
     }
 
     /**
@@ -267,16 +212,7 @@ trait GetAcesso
         )
         ;
 
-        if (empty($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api as $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api);
     }
 
     /**

@@ -25,17 +25,12 @@ trait GetServidores
             return $this->trateReturn();
         }
 
-        // trata os dados
-        foreach ($api as $key => $item) {
-            $return = $this->tratamentoItensApi($item);
+        $return[ "total" ]     = $api->total;
+        $return[ "total_fmt" ] = !is_null($return[ "total" ])
+            ? number_format($return[ "total" ], '0', ',', '.')
+            : null;
 
-            // formatados
-            $return[ "total_fmt" ]   = !is_null($return[ "total" ])
-                ? number_format($return[ "total" ], '0', ',','.')
-                : null;
-
-            $this->return[] = $return;
-        }
+        $this->return[] = $return;
 
         return $this->trateReturn();
     }
