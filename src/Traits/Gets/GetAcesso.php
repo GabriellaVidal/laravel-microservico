@@ -96,7 +96,6 @@ trait GetAcesso
         if (empty($api)) {
             return $this->trateReturn();
         }
-        //        dd($api);
 
         // trata os dados
         foreach ($api as $key => $item) {
