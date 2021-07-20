@@ -40,6 +40,23 @@ trait GetServidores
      * @method  get
      * @package Gsferro\MicroServico
      * @version v2
+     * @api     buscarCargosServidoresFiocruz
+     *
+     * @return  array|json ( "grupo", "codigo_cargo", "classe", "padrao", "descricao" )
+     */
+    public function getBuscarCargosServidoresFiocruz()
+    {
+        // busca api
+        $api = $this->getApiV3FromReturnXml("buscarCargosServidoresFiocruz");
+
+        return $this->feedbackBasic($api);
+    }
+
+    /**
+     * @author  Guilherme Ferro
+     * @method  get
+     * @package Gsferro\MicroServico
+     * @version v2
      * @api     sicaveveiculo
      *
      * @param   string $cpf
