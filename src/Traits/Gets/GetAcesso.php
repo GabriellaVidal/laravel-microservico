@@ -79,7 +79,7 @@ trait GetAcesso
      *
      * @param string $uuidPessoa
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "status", "edital_id", "solicitante_id", "situacao", "etapa", "tipo_etapa", "fase", "link_meu_SIEFs", "link_meu_sief_homologacao", "link_meu_sief_producao", )
+     * @return array|json ( "status", "edital_id", "solicitante_id", "situacao", "etapa", "tipo_etapa", "fase", "link_meu_sief", "link_meu_sief_homologacao", "link_meu_sief_producao", )
      */
     public function getPessoaInscricoes(string $uuidPessoa)
     {
@@ -114,7 +114,7 @@ trait GetAcesso
      *
      * @param   int $idProgramaEspecial
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_Sief", )
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_sief", )
      */
     public function getListaProgramasEspeciais(int $idProgramaEspecial)
     {
@@ -181,7 +181,7 @@ trait GetAcesso
      */
     public function getListaProgramasEspeciaisComFuturos(int $idProgramaEspecial)
     {
-        if (blank($idProgramaEspecial)) {
+        if (empty($idProgramaEspecial) || strlen($idProgramaEspecial) > 10 ) {
             return $this->trateReturn();
         }
 
@@ -214,20 +214,21 @@ trait GetAcesso
      *
      * @param   int $idProgramaEspecial
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "idcurso_Sief", )
+     * @return array|json ( "id", "solicitante_id", "dba_nome", "dba_pais", "und_nome", "pro_nome", "edi_nome", "dba_emailprincipal", "dba_datanascimento", "dba_sexo", "dba_cpf", "ddo_rg", "ddo_org_idorgaoexpedidor", "sub_div_pais_nome_nascimento", "ddo_dataexpedicao", "nome_nacionalidade", "pais_nome_nacimento", "est_civil_descricao", "nome_mae", "nome_pai", "logradouro", "numero_logradouro", "complemento", "bairro", "nome_cidade", "est_descricao", "nome_pais", "codigo_postal", "codigo_arepais", "codigo_area_local", "numero_telefone", "formacoes_academicas", "dados_profissionais", "necessidade_especial", "documentos_pedentes", "formularios_pendentes", "documentos_enviados", "formularios_enviados", "possui_cota", "tipo_cota_id", "data_inscricao", )
      */
     public function getListaCandidatosProgramaEspecial(int $idProgramaEspecial)
     {
-        if (blank($idProgramaEspecial)) {
+        if (empty($idProgramaEspecial) || strlen($idProgramaEspecial) > 10 ) {
             return $this->trateReturn();
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "listaCandidatosProgramaEspecial",
             "{$idProgramaEspecial}")
-            ->InscritosProgramaEspecial
+            //            ->InscritosProgramaEspecial
         ;
+        //        dd($api);
 
         if (empty($api)) {
             return $this->trateReturn();
