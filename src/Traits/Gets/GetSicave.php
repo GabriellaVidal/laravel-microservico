@@ -35,7 +35,7 @@ trait GetSicave
 
         // trata os dados
         foreach ($api->Veiculo as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);;
+            $this->return[] = $this->tratamentoItensApi($item);
         }
 
         return $this->trateReturn();
