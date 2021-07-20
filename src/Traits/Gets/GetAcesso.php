@@ -79,7 +79,7 @@ trait GetAcesso
      *
      * @param string $uuidPessoa
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "status", "edital_id", "solicitante_id", "situacao", "etapa", "tipo_etapa", "fase", "link_meu_sief", "link_meu_sief_homologacao", "link_meu_sief_producao", )
+     * @return array|json ( "status", "edital_id", "solicitante_id", "situacao", "etapa", "tipo_etapa", "fase", "link_meu_sief_testes", "link_meu_sief_homologacao", "link_meu_sief_producao", )
      */
     public function getPessoaInscricoes(string $uuidPessoa)
     {
