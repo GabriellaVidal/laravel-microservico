@@ -118,7 +118,7 @@ trait GetAcesso
      */
     public function getListaProgramasEspeciais(int $idProgramaEspecial)
     {
-        if (blank($idProgramaEspecial)) {
+        if (empty($idProgramaEspecial) || strlen($idProgramaEspecial) > 10 ) {
             return $this->trateReturn();
         }
 
