@@ -57,6 +57,7 @@ $v2BaseCorporativa = "{$v2HostEi}{$ambientePrefix}/basecorporativa";
 */
 $ambienteServices  = empty($envAmbiente) ? "" : "{$envAmbiente}-";
 $serviceV2         = "{$hostEiServices}/v2-";
+$serviceV3         = "{$hostEiServices}/v3-";
 $serviceV2Ambiente = "{$serviceV2}{$ambienteServices}";
 
 /**
@@ -73,6 +74,11 @@ $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
  * @url https://ei.fiocruz.br/services/v2-sicave
 */
 $serviceV2Sicave = "{$serviceV2}sicave";
+
+/**
+ * @url https://ei.fiocruz.br/services/v3-servidores
+*/
+$serviceV3Sevidores = "{$serviceV3}servidores";
 
 
 /*TODO*/
@@ -467,6 +473,141 @@ return [
          */
         "sicaveadvertencias" => "{$serviceV2Sicave}/sicaveadvertencias",
 
+    ],
+
+    "v3" => [
+        #############################################
+        #                 SERVIDORES                #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/contarTotalColaboradores
+         * @api     contarTotalColaboradores
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "contarTotalColaboradores" => "{$serviceV3Sevidores}/contarTotalColaboradores",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscar_Cargos_servidores_fiocruz
+         * @api     buscar_Cargos_servidores_fiocruz
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscar_Cargos_servidores_fiocruz" => "{$serviceV3Sevidores}/buscar_Cargos_servidores_fiocruz",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorPorCpf/{cpf}
+         * @param   $cpf
+         * @api     buscarColaboradorPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradorPorCpf" => "{$serviceV3Sevidores}/buscarColaboradorPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorAtivoPorCpf/{cpf}/{situacao}
+         * @param   $cpf
+         * @param   $situacao
+         * @api     buscarColaboradorAtivoPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradorAtivoPorCpf" => "{$serviceV3Sevidores}/buscarColaboradorAtivoPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorPorNome/{nome}
+         * @param   $nome
+         * @api     buscarColaboradorPorNome
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradorPorNome" => "{$serviceV3Sevidores}/buscarColaboradorPorNome",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorPorMatriculaSiape/{matricula}
+         * @param   $matricula
+         * @api     buscarColaboradorPorMatriculaSiape
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradorPorMatriculaSiape" => "{$serviceV3Sevidores}/buscarColaboradorPorMatriculaSiape",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradoresPorVinculo/{vinculo}
+         * @param   $vinculo
+         * @api     buscarColaboradoresPorVinculo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradoresPorVinculo" => "{$serviceV3Sevidores}/buscarColaboradoresPorVinculo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradoresPorCodigoLocalizacao/{codigolocalizacao}
+         * @param   $codigolocalizacao
+         * @api     buscarColaboradoresPorCodigoLocalizacao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradoresPorCodigoLocalizacao" => "{$serviceV3Sevidores}/buscarColaboradoresPorCodigoLocalizacao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradoresPorCodigoLotacao/{codigolotacao}
+         * @param   $codigolotacao
+         * @api     buscarColaboradoresPorCodigoLotacao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradoresPorCodigoLotacao" => "{$serviceV3Sevidores}/buscarColaboradoresPorCodigoLotacao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradorAtivoPorEmail/{email}
+         * @param   $email
+         * @api     buscarColaboradorAtivoPorEmail
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradorAtivoPorEmail" => "{$serviceV3Sevidores}/buscarColaboradorAtivoPorEmail",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/todohistoricoLotacaoLocalizacaopormatricula/{matriculaSiape}
+         * @param   $matriculaSiape
+         * @api     todohistoricoLotacaoLocalizacaopormatricula
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "todohistoricoLotacaoLocalizacaopormatricula" => "{$serviceV3Sevidores}/todohistoricoLotacaoLocalizacaopormatricula",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/contarTotalColaboradoresPorVinculo/{codigovinculo}
+         * @param   $codigolotacao
+         * @api     contarTotalColaboradoresPorVinculo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "contarTotalColaboradoresPorVinculo" => "{$serviceV3Sevidores}/contarTotalColaboradoresPorVinculo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradoresPorVinculoPaginando/{codigovinculo}/{limin}/{limax}
+         * @param   $codigolotacao
+         * @param   $limin
+         * @param   $limax
+         * @api     buscarColaboradoresPorVinculoPaginando
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradoresPorVinculoPaginando" => "{$serviceV3Sevidores}/buscarColaboradoresPorVinculoPaginando",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v3-servidores/buscarColaboradoresPorCodigoLotacaoPaginando/{codigolotacao}/{limin}/{limax}
+         * @param   $codigolotacao
+         * @param   $limin
+         * @param   $limax
+         * @api     buscarColaboradoresPorCodigoLotacaoPaginando
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarColaboradoresPorCodigoLotacaoPaginando" => "{$serviceV3Sevidores}/buscarColaboradoresPorCodigoLotacaoPaginando",
     ],
 
     ///////////////////////////////////////////////////////////////////////////
