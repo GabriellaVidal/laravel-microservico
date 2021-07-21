@@ -163,7 +163,7 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 - Necessário para implementação de segurança, além das que já existe no integrator, nas apis internas seguindo o exigido pela nova lei da LGPD. 
 - O verbo http é o prefixo do metodo, seguindo com o devido endpoint configurado no `config.microservico`.
 - PHPDoc implementado em cada novo metodo com retornos e parametros
-
+- Tests Units testando todos os endpoints quanto ao retorno de estrutura, array e json, apontando para os ambients de produção, foram implementados no projeto ACESSO.
 ### Retorno customizado
 
 - Para setar como deseja receber o retorno: array ou json (default array)
@@ -205,11 +205,49 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListaProgramasEspeciais(int $idProgramaEspecial)`
         1. `getListaEditaisAbertos()`
         1. `getListaProgramasEspeciaisComFuturos(int $idProgramaEspecial)`
+        1. `getListaCandidatosProgramaEspecial(int $idProgramaEspecial)`
         1. `getListaCandidatosProgramaEdital(string $uuidEdital)`
         1. `getDataDivulgacao(string $uuidEdital)`
-    1. BANCO COMPETENCIAS
-        1. `getVerificaCompetencia(string $cpf)`    
-        1. `getListarCompetenciasPorCPF(string $cpf)`    
     1. SICAVE
         1. `sicaveveiculo(string $cpf)`    
         1. `sicaveadvertencias(string $cpf)`    
+    1. BANCO COMPETENCIAS
+        1. `getVerificaCompetencia(string $cpf)`    
+        1. `getListarCompetenciasPorCPF(string $cpf)`    
+    1. SERVIDORES (v3)
+        1. `getContarTotalColaboradores()`    
+        1. `getBuscarCargosServidoresFiocruz()`    
+        1. `getBuscarColaboradorPorCpf(string $cpf, bool $somenteSituacaoAtivo = true)`    
+        1. `getBuscarColaboradorPorNome(string $nome, $somenteSituacaoAtivo = true)`    
+        1. `getBuscarColaboradorPorMatriculaSiape(int $matricula)`    
+        1. `getBuscarColaboradoresPorVinculo(string $vinculo)`    
+        1. `getBuscarColaboradoresPorCodigoLocalizacao(string $codigolocalizacao)`    
+        1. `getBuscarColaboradoresPorCodigoLotacao(string $codigolotacao)`    
+        1. `getBuscarColaboradorAtivoPorEmail(string $email)`    
+        1. `getTodoHistoricoLotacaoLocalizacaoPorMatricula(string $matriculaSiape)`    
+        1. `getBuscarColaboradoresPorVinculoPaginando($codigoVinculo = "02", int $limin = 1, int $limax = 10)`    
+        1. `getBuscarColaboradoresPorCodigoLotacaoPaginando($codigoLotacao, int $limin = 1, int $limax = 10)`    
+    1. TRANSPORTE
+        1. `getListarUsuariosPorLinha($usuLinha)`    
+        1. `getLinhasusuario(string $cpf)`    
+    1. SIEF
+        1. `getContarEdicoes()`    
+        1. `getIndiceProgramas()`    
+        1. `getListarEditaisPrevistos()`    
+        1. `getListarProcessosSeletivosAbertos()`    
+        1. `getBuscarCurso($idCurso)`    
+        1. `getListarCoordenadoresCurso($idCurso)`    
+        1. `getListarLinhasDePesquisa($idCurso)`    
+        1. `getListarDocumentosPorEdital($idEdital)`    
+        1. `getInscritosProcessoSeletivo($idEdital)`    
+        1. `getListarCandidatosDesistentesEdital($idEdital)`    
+        1. `getBuscarNatureza($idNatureza)`    
+        1. `getListarAreasDeConcentracao($idNatureza)`    
+        1. `getBuscarPrograma($idPrograma)`    
+        1. `getBuscarUnidade($idUnidade)`    
+        1. `getBuscarNaturezaTipo($idNatTipo)`    
+        1. `getBuscarTipoNatureza($idTipo)`    
+        1. `getListarEdicoesCursos($limim,$limax)`    
+        1. `getBuscarPais($idpais)`    
+        1. `getBuscarCidade($idCidade)`    
+        1. `getBuscarUF($idUf)`    

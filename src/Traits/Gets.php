@@ -6,6 +6,8 @@ use Gsferro\MicroServico\Traits\Gets\GetAcesso;
 use Gsferro\MicroServico\Traits\Gets\GetBancoCompetencia;
 use Gsferro\MicroServico\Traits\Gets\GetServidores;
 use Gsferro\MicroServico\Traits\Gets\GetSicave;
+use Gsferro\MicroServico\Traits\Gets\GetSief;
+use Gsferro\MicroServico\Traits\Gets\GetTransporte;
 
 trait Gets
 {
@@ -75,7 +77,9 @@ trait Gets
         , GetSicave
         , GetBancoCompetencia
         , GetServidores
-        ;
+        , GetTransporte
+        , GetSief
+    ;
 
     /*
     |---------------------------------------------------
@@ -159,9 +163,9 @@ trait Gets
     private function returnXml($xml)
     {
         return  json_decode(
-            json_encode(
-                simplexml_load_string(
-                    $xml
+                    json_encode(
+                        simplexml_load_string(
+                            $xml
                 )) , true);
     }
 
@@ -174,5 +178,27 @@ trait Gets
     private function preperNome(string $nome)
     {
         return str_replace(" ", "%20", $nome);
+    }
+
+    /**
+     * Reuso basico completo para todos os metodos v2
+     *
+     * @param   $endpoint
+     * @param   $param
+     * @return  array|json
+     */
+    private function proxyV2XmlBasic($endpoint, $param)
+    {
+        if (empty($param)) {
+            return $this->trateReturn();
+        }
+
+        // busca api
+        $api = $this->getApiV2FromReturnXml(
+            "{$endpoint}",
+            "{$param}"
+        );
+
+        return $this->feedbackBasic($api);
     }
 }
