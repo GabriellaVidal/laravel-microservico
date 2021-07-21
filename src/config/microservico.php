@@ -127,7 +127,7 @@ return [
     */
     //    https://ei.fiocruz.br/services/acesso/dadosModal/{idEdicao}
     //    https://ei.fiocruz.br/services/acesso/minhasInscricoes/{cpf}
-    //    https://ei.fiocruz.br/services/acesso/dataDivulgacao/{idEdital}
+    //    https://ei.fiocruz.br/services/acesso/dataDivulgacao/{uuidEdital}
 
     'dadosModal'          => "{$host_ei_https}/services/acesso/dadosModal",
     'minhasInscricoes'    => "{$host_ei_https}/services/acesso/minhasInscricoes",
@@ -546,8 +546,8 @@ return [
         "listarLinhasDePesquisa" => "{$serviceV2Sief}/listarLinhasDePesquisa",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarDocumentosPorEdital/{idEdital}
-         * @param   $idEdital
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarDocumentosPorEdital/{uuidEdital}
+         * @param   $uuidEdital
          * @api     listarDocumentosPorEdital
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -555,8 +555,8 @@ return [
         "listarDocumentosPorEdital" => "{$serviceV2Sief}/listarDocumentosPorEdital",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/inscritosProcessoSeletivo/{idEdital}
-         * @param   $idEdital
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/inscritosProcessoSeletivo/{uuidEdital}
+         * @param   $uuidEdital
          * @api     inscritosProcessoSeletivo
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -564,8 +564,8 @@ return [
         "inscritosProcessoSeletivo" => "{$serviceV2Sief}/inscritosProcessoSeletivo",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCandidatosDesistentesEdital/{idEdital}
-         * @param   $idEdital
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCandidatosDesistentesEdital/{uuidEdital}
+         * @param   $uuidEdital
          * @api     listarCandidatosDesistentesEdital
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
