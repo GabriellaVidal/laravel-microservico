@@ -76,6 +76,16 @@ $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 $serviceV2Sicave = "{$serviceV2}sicave";
 
 /**
+ * @url https://ei.fiocruz.br/services/v2-SiefCursos
+*/
+$serviceV2Sief = "{$serviceV2}SiefCursos";
+
+/**
+ * @url https://ei.fiocruz.br/services/v2-transporte
+*/
+$serviceV2Transporte = "{$serviceV2}transporte";
+
+/**
  * @url https://ei.fiocruz.br/services/v3-servidores
 */
 $serviceV3Sevidores = "{$serviceV3}servidores";
@@ -472,6 +482,210 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "sicaveadvertencias" => "{$serviceV2Sicave}/sicaveadvertencias",
+
+        #############################################
+        #                    SIEF                   #
+        #############################################
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/contarEdicoes
+         * @api     contarEdicoes
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "contarEdicoes" => "{$serviceV2Sief}/contarEdicoes",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/indiceProgramas
+         * @api     indiceProgramas
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "indiceProgramas" => "{$serviceV2Sief}/indiceProgramas",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarEditaisPrevistos
+         * @api     listarEditaisPrevistos
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarEditaisPrevistos" => "{$serviceV2Sief}/listarEditaisPrevistos",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarProcessosSeletivosAbertos
+         * @api     listarProcessosSeletivosAbertos
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarProcessosSeletivosAbertos" => "{$serviceV2Sief}/listarProcessosSeletivosAbertos",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarCurso/{idCurso}
+         * @param   $idCurso
+         * @api     buscarCurso
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarCurso" => "{$serviceV2Sief}/buscarCurso",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCoordenadoresCurso/{idCurso}
+         * @param   $idCurso
+         * @api     listarCoordenadoresCurso
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarCoordenadoresCurso" => "{$serviceV2Sief}/listarCoordenadoresCurso",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarLinhasDePesquisa/{idCurso}
+         * @param   $idCurso
+         * @api     listarLinhasDePesquisa
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarLinhasDePesquisa" => "{$serviceV2Sief}/listarLinhasDePesquisa",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarDocumentosPorEdital/{idEdital}
+         * @param   $idEdital
+         * @api     listarDocumentosPorEdital
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarDocumentosPorEdital" => "{$serviceV2Sief}/listarDocumentosPorEdital",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/inscritosProcessoSeletivo/{idEdital}
+         * @param   $idEdital
+         * @api     inscritosProcessoSeletivo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "inscritosProcessoSeletivo" => "{$serviceV2Sief}/inscritosProcessoSeletivo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCandidatosDesistentesEdital/{idEdital}
+         * @param   $idEdital
+         * @api     listarCandidatosDesistentesEdital
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarCandidatosDesistentesEdital" => "{$serviceV2Sief}/listarCandidatosDesistentesEdital",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarNatureza/{idNatureza}
+         * @param   $idNatureza
+         * @api     buscarNatureza
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarNatureza" => "{$serviceV2Sief}/buscarNatureza",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarAreasDeConcentracao/{idNatureza}
+         * @param   $idNatureza
+         * @api     listarAreasDeConcentracao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarAreasDeConcentracao" => "{$serviceV2Sief}/listarAreasDeConcentracao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarPrograma/{idPrograma}
+         * @param   $idPrograma
+         * @api     buscarPrograma
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarPrograma" => "{$serviceV2Sief}/buscarPrograma",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarUnidade/{idUnidade}
+         * @param   $idUnidade
+         * @api     buscarUnidade
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarUnidade" => "{$serviceV2Sief}/buscarUnidade",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarNaturezaTipo/{idNatTipo}
+         * @param   $idNatTipo
+         * @api     buscarNaturezaTipo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarNaturezaTipo" => "{$serviceV2Sief}/buscarNaturezaTipo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarTipoNatureza/{idTipo}
+         * @param   $idTipo
+         * @api     buscarTipoNatureza
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarTipoNatureza" => "{$serviceV2Sief}/buscarTipoNatureza",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarEdicoesCursos/{limim}/{limax}
+         * @param   $limim
+         * @param   $limax
+         * @api     listarEdicoesCursos
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarEdicoesCursos" => "{$serviceV2Sief}/listarEdicoesCursos",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarPais/{idpais}
+         * @param   $idpais
+         * @api     buscarPais
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarPais" => "{$serviceV2Sief}/buscarPais",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarCidade/{idCidade}
+         * @param   $idCidade
+         * @api     buscarCidade
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarCidade" => "{$serviceV2Sief}/buscarCidade",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarUF/{idUf}
+         * @param   $idUf
+         * @api     buscarUF
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "buscarUF" => "{$serviceV2Sief}/buscarUF",
+
+
+        #############################################
+        #                 TRANSPORTE                #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-transporte/listarUsuariosPorLinha/{usuLinha}
+         * @param   $usuLinha
+         * @api     listarUsuariosPorLinha
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarUsuariosPorLinha" => "{$serviceV2Transporte}/listarUsuariosPorLinha",
+
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-transporte/linhasusuario/{cpf}
+         * @param   $cpf
+         * @api     linhasusuario
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "linhasusuario" => "{$serviceV2Transporte}/linhasusuario",
 
     ],
 
