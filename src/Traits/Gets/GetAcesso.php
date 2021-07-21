@@ -121,7 +121,7 @@ trait GetAcesso
      * @api     listaEditaisAbertos
      *
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "cur_idcurso", "und_idunidade", "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "pla_descricao", "pla_objetivo", "pla_regimeeduracao", "pla_alvo", "pla_inscricao", "pla_processoseletivo", "pla_matricula", "pla_disposicoesgerais", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "id_siga_spc", "unidade", "nivel", "data_inicio_inscricao", "data_termino_inscricao",)
+     * @return array|json ( "cur_id_curso", "und_id_unidade", "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_id_programa", "edital_id", "pla_descricao", "pla_objetivo", "pla_regime_eduracao", "pla_alvo", "pla_inscricao", "pla_processo_seletivo", "pla_matricula", "pla_disposicoes_gerais", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "id_siga_spc", "unidade", "nivel", "data_inicio_inscricao", "data_termino_inscricao",)
      */
     public function getListaEditaisAbertos()
     {
