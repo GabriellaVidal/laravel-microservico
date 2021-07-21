@@ -255,23 +255,23 @@ trait GetServidores
      * @method  get
      * @package Gsferro\MicroServico
      * @version v3
-     * @api     contarTotalColaboradoresPorVinculo
+     * @api     buscarColaboradoresPorVinculoPaginando
      *
-     * @param   string $codigoLotacao
-     * @param   $limin
-     * @param   $limax
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @param   int $codigoVinculo default 02 | [02 => "servidores", 11 => "tercerizados"]
+     * @param   int|string $limin default 1
+     * @param   int $limax default 10
+     * @return  array|json ( "r_n", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo",        )
      */
-    public function getBuscarColaboradoresPorVinculoPaginando(string $codigoLotacao, $limin , $limax)
+    public function getBuscarColaboradoresPorVinculoPaginando($codigoVinculo = "02", int $limin = 1, int $limax = 10)
     {
-        if (empty($codigoLotacao)) {
+        if (empty($codigoVinculo) || empty($limin) || empty($limax)) {
             return $this->trateReturn();
         }
 
         // busca api
         $api = $this->getApiV3FromReturnXml(
             "buscarColaboradoresPorVinculoPaginando",
-            "{$codigoLotacao}"
+            "{$codigoVinculo}/{$limin}/{$limax}"
         );
 
         return $this->feedbackBasic($api);
@@ -285,20 +285,20 @@ trait GetServidores
      * @api     buscarColaboradoresPorCodigoLotacaoPaginando
      *
      * @param   string $codigoLotacao
-     * @param   $limin
-     * @param   $limax
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @param   int $limin default 1
+     * @param   int $limax default 10
+     * @return  array|json ( "r_n", "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo", )
      */
-    public function getBuscarColaboradoresPorCodigoLotacaoPaginando(string $codigoLotacao, $limin , $limax)
+    public function getBuscarColaboradoresPorCodigoLotacaoPaginando($codigoLotacao, int $limin = 1, int $limax = 10)
     {
-        if (empty($codigoLotacao)) {
+        if (empty($codigoLotacao) || empty($limin) || empty($limax)) {
             return $this->trateReturn();
         }
 
         // busca api
         $api = $this->getApiV3FromReturnXml(
             "buscarColaboradoresPorCodigoLotacaoPaginando",
-            "{$codigoLotacao}"
+            "{$codigoLotacao}/{$limin}/{$limax}"
         );
 
         return $this->feedbackBasic($api);
