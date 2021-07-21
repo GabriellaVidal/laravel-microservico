@@ -570,13 +570,13 @@ return [
         "buscarColaboradorAtivoPorEmail" => "{$serviceV3Sevidores}/buscarColaboradorAtivoPorEmail",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v3-servidores/todohistoricoLotacaoLocalizacaopormatricula/{matriculaSiape}
+         * @url     https://ei.fiocruz.br/services/v3-servidores/todoHistoricoLotacaoLocalizacaoPorMatricula/{matriculaSiape}
          * @param   $matriculaSiape
-         * @api     todohistoricoLotacaoLocalizacaopormatricula
+         * @api     todoHistoricoLotacaoLocalizacaoPorMatricula
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
-        "todohistoricoLotacaoLocalizacaopormatricula" => "{$serviceV3Sevidores}/todohistoricoLotacaoLocalizacaopormatricula",
+        "todoHistoricoLotacaoLocalizacaoPorMatricula" => "{$serviceV3Sevidores}/todoHistoricoLotacaoLocalizacaoPorMatricula",
 
         /**
          * @url     https://ei.fiocruz.br/services/v3-servidores/contarTotalColaboradoresPorVinculo/{codigovinculo}
