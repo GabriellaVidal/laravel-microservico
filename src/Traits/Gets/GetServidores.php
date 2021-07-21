@@ -133,7 +133,7 @@ trait GetServidores
      * @api     buscarColaboradoresPorVinculo
      *
      * @param   string $vinculo
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo", )
      */
     public function getBuscarColaboradoresPorVinculo(string $vinculo)
     {
@@ -158,7 +158,7 @@ trait GetServidores
      * @api     buscarColaboradoresPorCodigoLocalizacao
      *
      * @param   string $codigolocalizacao
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo", )
      */
     public function getBuscarColaboradoresPorCodigoLocalizacao(string $codigolocalizacao)
     {
@@ -183,7 +183,7 @@ trait GetServidores
      * @api     buscarColaboradoresPorCodigoLotacao
      *
      * @param   string $codigolotacao
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo", )
      */
     public function getBuscarColaboradoresPorCodigoLotacao(string $codigolotacao)
     {
@@ -208,11 +208,11 @@ trait GetServidores
      * @api     buscarColaboradorAtivoPorEmail
      *
      * @param   string $email
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "cpf", "uni_codigo", "uni_sigla", "localizacao", "loca_sigla", "situacao", "data_efetivo_exercicio", "matricula", "cargo", "empresa", "nome_empresa", "cod_vinculo", "desc_vinculo", )
      */
     public function getBuscarColaboradorAtivoPorEmail(string $email)
     {
-        if (empty($email)) {
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->trateReturn();
         }
 
@@ -233,7 +233,7 @@ trait GetServidores
      * @api     todoHistoricoLotacaoLocalizacaoPorMatricula
      *
      * @param   string $matriculaSiape
-     * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
+     * @return  array|json ( "data_alteracao", "codigo_lotacao", "descricao_lotacao", "codigo_localizacao", "descricao_localizacao", )
      */
     public function getTodoHistoricoLotacaoLocalizacaoPorMatricula(string $matriculaSiape)
     {
@@ -257,21 +257,21 @@ trait GetServidores
      * @version v3
      * @api     contarTotalColaboradoresPorVinculo
      *
-     * @param   string $codigolotacao
+     * @param   string $codigoLotacao
      * @param   $limin
      * @param   $limax
      * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
      */
-    public function getBuscarColaboradoresPorVinculoPaginando(string $codigolotacao, $limin , $limax)
+    public function getBuscarColaboradoresPorVinculoPaginando(string $codigoLotacao, $limin , $limax)
     {
-        if (empty($codigolotacao)) {
+        if (empty($codigoLotacao)) {
             return $this->trateReturn();
         }
 
         // busca api
         $api = $this->getApiV3FromReturnXml(
             "buscarColaboradoresPorVinculoPaginando",
-            "{$codigolotacao}"
+            "{$codigoLotacao}"
         );
 
         return $this->feedbackBasic($api);
@@ -284,21 +284,21 @@ trait GetServidores
      * @version v3
      * @api     buscarColaboradoresPorCodigoLotacaoPaginando
      *
-     * @param   string $codigolotacao
+     * @param   string $codigoLotacao
      * @param   $limin
      * @param   $limax
      * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
      */
-    public function getBuscarColaboradoresPorCodigoLotacaoPaginando(string $codigolotacao, $limin , $limax)
+    public function getBuscarColaboradoresPorCodigoLotacaoPaginando(string $codigoLotacao, $limin , $limax)
     {
-        if (empty($codigolotacao)) {
+        if (empty($codigoLotacao)) {
             return $this->trateReturn();
         }
 
         // busca api
         $api = $this->getApiV3FromReturnXml(
             "buscarColaboradoresPorCodigoLotacaoPaginando",
-            "{$codigolotacao}"
+            "{$codigoLotacao}"
         );
 
         return $this->feedbackBasic($api);
