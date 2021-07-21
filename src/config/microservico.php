@@ -678,13 +678,13 @@ return [
         "listarUsuariosPorLinha" => "{$serviceV2Transporte}/listarUsuariosPorLinha",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-transporte/linhasusuario/{cpf}
+         * @url     https://ei.fiocruz.br/services/v2-transporte/linhasUsuario/{cpf}
          * @param   $cpf
-         * @api     linhasusuario
+         * @api     linhasUsuario
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
-        "linhasusuario" => "{$serviceV2Transporte}/linhasusuario",
+        "linhasUsuario" => "{$serviceV2Transporte}/linhasUsuario",
     ],
 
     "v3" => [

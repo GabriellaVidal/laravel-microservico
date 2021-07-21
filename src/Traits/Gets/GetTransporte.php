@@ -24,12 +24,12 @@ trait GetTransporte
      * @method  get
      * @package Gsferro\MicroServico
      * @version v2
-     * @api     linhasusuario
+     * @api     linhasUsuario
      *
      * @param   string $cpf
      * @return  array|json ( "cpf", "sigla", "nome", "cartao", "data_inicio", "data_fim", "link", "status", )
      */
-    public function getLinhasusuario(string $cpf)
+    public function getLinhasUsuario(string $cpf)
     {
         // pega somente numeros
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
@@ -38,6 +38,6 @@ trait GetTransporte
             return $this->trateReturn();
         }
 
-        return $this->proxyV2XmlBasic("linhasusuario", "{$cpf}");
+        return $this->proxyV2XmlBasic("linhasUsuario", "{$cpf}");
     }
 }
