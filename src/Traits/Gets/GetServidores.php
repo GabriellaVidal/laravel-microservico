@@ -257,10 +257,10 @@ trait GetServidores
      * @version v3
      * @api     buscarColaboradoresPorVinculoPaginando
      *
-     * @param   int $codigoVinculo default 02 | [02 => "servidores", 11 => "tercerizados"]
-     * @param   int|string $limin default 1
-     * @param   int $limax default 10
-     * @return  array|json ( "r_n", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo",        )
+     * @param   $codigoVinculo 02 | [02 => "servidores", 11 => "tercerizados"]
+     * @param   int|string $limin 1
+     * @param   int $limax 10
+     * @return  array|json ( "rn", "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo",        )
      */
     public function getBuscarColaboradoresPorVinculoPaginando($codigoVinculo = "02", int $limin = 1, int $limax = 10)
     {

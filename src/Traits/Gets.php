@@ -79,7 +79,7 @@ trait Gets
         , GetServidores
         , GetTransporte
         , GetSief
-    ;
+        ;
 
     /*
     |---------------------------------------------------
@@ -163,9 +163,9 @@ trait Gets
     private function returnXml($xml)
     {
         return  json_decode(
-                    json_encode(
-                        simplexml_load_string(
-                            $xml
+            json_encode(
+                simplexml_load_string(
+                    $xml
                 )) , true);
     }
 
@@ -183,11 +183,12 @@ trait Gets
     /**
      * Reuso basico completo para todos os metodos v2
      *
-     * @param   $endpoint
+     * @param   string $endpoint
      * @param   $param
+     * @param   bool $encapsulaApiComArray
      * @return  array|json
      */
-    private function proxyV2XmlBasic($endpoint, $param)
+    private function proxyV2XmlBasic(string $endpoint, $param, bool $encapsulaApiComArray = false)
     {
         if (empty($param)) {
             return $this->trateReturn();
@@ -199,6 +200,6 @@ trait Gets
             "{$param}"
         );
 
-        return $this->feedbackBasic($api);
+        return $this->feedbackBasic( !$encapsulaApiComArray ? $api : [$api]);
     }
 }
