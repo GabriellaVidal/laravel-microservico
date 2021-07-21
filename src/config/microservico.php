@@ -42,11 +42,11 @@ $hostEiServices = "{$host_ei_https}/services";
  * URL com prefixo do ambiente:
  * obs: para produção não te prefix
  * @url https://ei.fiocruz.br/v2 {
-        /desenv
-        /teste
-        /homol
-    }
-*/
+/desenv
+/teste
+/homol
+}
+ */
 $ambientePrefix    = empty($envAmbiente) ? "" : "/{$envAmbiente}";
 $v2BaseCorporativa = "{$v2HostEi}{$ambientePrefix}/basecorporativa";
 
@@ -62,32 +62,32 @@ $serviceV2Ambiente = "{$serviceV2}{$ambienteServices}";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}acesso
-*/
+ */
 $serviceV2Acesso = "{$serviceV2Ambiente}acesso";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-bancoCompetencias
-*/
+ */
 $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-sicave
-*/
+ */
 $serviceV2Sicave = "{$serviceV2}sicave";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-SiefCursos
-*/
+ */
 $serviceV2Sief = "{$serviceV2}SiefCursos";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-transporte
-*/
+ */
 $serviceV2Transporte = "{$serviceV2}transporte";
 
 /**
  * @url https://ei.fiocruz.br/services/v3-servidores
-*/
+ */
 $serviceV3Sevidores = "{$serviceV3}servidores";
 
 
@@ -580,15 +580,6 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "buscarNatureza" => "{$serviceV2Sief}/buscarNatureza",
-
-        /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarAreasDeConcentracao/{idNatureza}
-         * @param   $idNatureza
-         * @api     listarAreasDeConcentracao
-         * @methods get
-         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-         */
-        "listarAreasDeConcentracao" => "{$serviceV2Sief}/listarAreasDeConcentracao",
 
         /**
          * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarPrograma/{idPrograma}
