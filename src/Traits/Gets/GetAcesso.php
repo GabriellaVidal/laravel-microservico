@@ -96,7 +96,7 @@ trait GetAcesso
      *
      * @param   int $idProgramaEspecial
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "id_curso_sief", )
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_id_programa", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "id_curso_sief", )
      */
     public function getListaProgramasEspeciais(int $idProgramaEspecial)
     {
@@ -140,7 +140,7 @@ trait GetAcesso
      *
      * @param   int $idProgramaEspecial
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_idprograma", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "id_curso_sief", )
+     * @return array|json ( "numero", "titulo", "data_hora_inicio", "data_hora_termino", "pro_id_programa", "edital_id", "edicao_curso_id", "edi_modalidade", "descricao", "id_siga_pc", "id_siga_edc", "nome", "pro_nome", "unidade", "tipo_etapa_atividade_id", "nivel", "id_curso_sief", )
      */
     public function getListaProgramasEspeciaisComFuturos(int $idProgramaEspecial)
     {
