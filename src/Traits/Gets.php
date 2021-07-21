@@ -159,9 +159,20 @@ trait Gets
     private function returnXml($xml)
     {
         return  json_decode(
-                    json_encode(
-                        simplexml_load_string(
-                            $xml
-                )));
+            json_encode(
+                simplexml_load_string(
+                    $xml
+                )) , true);
+    }
+
+    /**
+     * prepara o nome para ser usado em busca via get uri
+     *
+     * @param string $nome
+     * @return string|string[]
+     */
+    private function preperNome(string $nome)
+    {
+        return str_replace(" ", "%20", $nome);
     }
 }

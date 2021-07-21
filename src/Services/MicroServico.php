@@ -10,12 +10,13 @@ use Illuminate\Support\Str;
 class MicroServico
 {
     Use Gets, Tokens;
-
     private $link;
-    private $extraHeader = [];
-    private $return      = [];
-    private $returnArray = true;
-    private $curlSimple  = false;
+    private $extraHeader   = [];
+    private $return        = [];
+    private $returnArray   = true;
+    private $curlSimple    = false;
+    private $somenteAtivo  = false;
+    private $campoSituacao = "situacao";
 
     /**
      * set returnArray false
@@ -357,9 +358,14 @@ class MicroServico
     {
         $return = $return ?? $this->return;
 
-        /*if (count($return) == 1) {
-            $return = current($return);
-        }*/
+        // tratamento para não ser enviado caso o cadastro esteja inativo
+        if ($this->somenteAtivo) {
+            foreach ($return as $key => $item) {
+                if ($item[ $this->campoSituacao ] == "INATIVO") {
+                    unset($return[$key]);
+                }
+            }
+        }
 
         if ($this->returnArray) {
             return $return;
@@ -376,15 +382,23 @@ class MicroServico
      */
     private function tratamentoItensApi($item): array
     {
+        //        dd("tratamentoItensApi", $item);
         $item = (is_object($item)
             ? get_object_vars($item)
-            : current($item)
+            : $item
         );
-
+        //        dd("tratamentoItensApi", $item);
         $dado = [];
         foreach ($item as $id => $key) {
-            $dado[ Str::snake(trim($id)) ] = (!is_string($key) || !is_numeric($key) ? null : trim($key));
+
+            //            dump($id, $key);
+
+            $dado[ Str::snake(trim($id)) ] = (!is_string($key) ? null : trim($key));
         }
+
+        //        if (true && isset( $dado["situacao"]) &&  $dado["situacao"] == "INATIVO") {
+        //            return [];
+        //        }
 
         return $dado;
     }
@@ -393,16 +407,23 @@ class MicroServico
      * Ação basica nos metodos que somente pega a resposta e repassa ao usuário
      *
      * @param $api
-     * @param null $fore para receber um atributo interno do retorno da api
      * @return array|json
      */
-    private function feedbackBasic($api, $fore = null)
+    private function feedbackBasic($api)
     {
         if (empty($api)) {
             return $this->trateReturn();
         }
 
-        foreach ($fore ?? $api as $item) {
+        foreach ($api as $item) {
+            // quando vier +1 resposta
+            if (array_key_exists(0, $item)) {
+                foreach ($item as $it) {
+                    $this->return[] = $this->tratamentoItensApi($it);
+                }
+                continue;
+            }
+
             $this->return[] = $this->tratamentoItensApi($item);
         }
 

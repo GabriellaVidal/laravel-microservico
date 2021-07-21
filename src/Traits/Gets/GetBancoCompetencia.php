@@ -60,7 +60,7 @@ trait GetBancoCompetencia
      * @api     listarCompetenciasPorCPF
      *
      * @param   string $cpf
-     * @return  array|json ( "justificativa", "anexos", "cpf", "descricao", "cpf_fmt" )
+     * @return  array|json ( "justificativa", "anexos", "cpf", "descricao" )
      */
     public function getListarCompetenciasPorCPF(string $cpf)
     {
@@ -77,23 +77,6 @@ trait GetBancoCompetencia
             "{$cpf}")
         ;
 
-        if (!isset($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api as $key => $item) {
-            $return = $this->tratamentoItensApi($item);
-            //            dump($return);
-
-            // formatados
-            $return[ "cpf_fmt" ] = !is_null($return[ "cpf" ])
-                ? maskCpf($return[ "cpf" ])
-                : null;
-
-            $this->return[] = $return;
-        }
-
-        return $this->trateReturn();
+        return $this->feedbackBasic($api);
     }
 }

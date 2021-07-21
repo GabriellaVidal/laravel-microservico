@@ -105,13 +105,12 @@ trait GetAcesso
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "listaProgramasEspeciais",
-            "{$idProgramaEspecial}")
-            ->programas
-        ;
+            "{$idProgramaEspecial}"
+        );
 
-        return $this->feedbackBasic($api, $api->programa);
+        return $this->feedbackBasic($api);
     }
 
     /**
@@ -129,7 +128,7 @@ trait GetAcesso
         // busca api
         $api = $this->getApiV2FromReturnXml("listaEditaisAbertos");
 
-        return $this->feedbackBasic($api, $api->editalAberto);
+        return $this->feedbackBasic($api);
     }
 
     /**
@@ -150,14 +149,12 @@ trait GetAcesso
         }
 
         // busca api
-        $api = $this->getApiV2(
+        $api = $this->getApiV2FromReturnXml(
             "listaProgramasEspeciaisComFuturos",
             "{$idProgramaEspecial}"
-        )
-            ->progEspeciaisComFuturos;
-        ;
+        );
 
-        return $this->feedbackBasic($api, $api->progEspecialComFuturo);
+        return $this->feedbackBasic($api);
     }
 
     /**
@@ -180,12 +177,10 @@ trait GetAcesso
         // busca api
         $api = $this->getApiV2FromReturnXml(
             "listaCandidatosProgramaEspecial",
-            "{$idProgramaEspecial}")
-            //            ->InscritosProgramaEspecial
-        ;
-        //        dd($api);
+            "{$idProgramaEspecial}"
+        );
 
-        return $this->feedbackBasic($api, $api->InscritoProgramaEspecial);
+        return $this->feedbackBasic($api);
     }
 
     /**
