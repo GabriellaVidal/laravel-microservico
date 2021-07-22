@@ -14,7 +14,7 @@ trait GetServidores
      * @version v3
      * @api     contarTotalColaboradores
      *
-     * @return  array|json ( "total", "total_fmt"  )
+     * @return  array|json ( "cargo"  )
      */
     public function getContarTotalColaboradores()
     {
