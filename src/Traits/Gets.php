@@ -186,13 +186,13 @@ trait Gets
      * Reuso basico completo para todos os metodos v2
      *
      * @param   string $endpoint
-     * @param   $param
+     * @param   $param pode ser null, mas se for enviado, não poder empty
      * @param   bool $encapsulaApiComArray
      * @return  array|json
      */
     private function proxyV2XmlBasic(string $endpoint, $param = null, bool $encapsulaApiComArray = false)
     {
-        if (empty($param)) {
+        if (!is_null($param) && empty($param)) {
             return $this->trateReturn();
         }
 

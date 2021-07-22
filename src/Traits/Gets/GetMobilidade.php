@@ -11,8 +11,7 @@ trait GetMobilidade
      * @version v2
      * @api     obterEditaisPublicados
      *
-     * @param
-     * @return  array|json (  )
+     * @return  array|json ( "id", "titulo", "ano", "codigo_edital", "tipo_mobilidade_id", "link_edital", "versao", "data_publicacao", "situacao_edital_id", "tipo_mobilidade", "unidade_sigla",  )
      */
     public function getObterEditaisPublicados()
     {
@@ -27,7 +26,7 @@ trait GetMobilidade
      * @api     obterAnexosEdital
      *
      * @param   int $idEdital
-     * @return  array|json (  )
+     * @return  array|json ( "anexos" )
      */
     public function getObterAnexosEdital(int $idEdital)
     {
@@ -42,7 +41,7 @@ trait GetMobilidade
      * @api     listarDadosPorMatricula
      *
      * @param   int $codigo
-     * @return  array|json (  )
+     * @return  array|json ( "cpf", "nome", "email", "unidade", "lotacao", "localizacao", "login", )
      */
     public function getListarDadosPorMatricula(int $codigo)
     {
@@ -57,7 +56,7 @@ trait GetMobilidade
      * @api     listarSituacaoFuncionalPorCodigo
      *
      * @param   string $codigo
-     * @return  array|json (  )
+     * @return  array|json ( "situacao_funcional", )
      */
     public function getListarSituacaoFuncionalPorCodigo(string $codigo)
     {
@@ -72,7 +71,7 @@ trait GetMobilidade
      * @api     listarTipoAfastamentoPorCodigo
      *
      * @param   string $codigo
-     * @return  array|json (  )
+     * @return  array|json (  "descricao", )
      */
     public function getListarTipoAfastamentoPorCodigo(string $codigo)
     {
@@ -87,7 +86,7 @@ trait GetMobilidade
      * @api     listarMatriculaCargoPorCpf
      *
      * @param   string $cpf
-     * @return  array|json (  )
+     * @return  array|json ( "matricula", "descricao", )
      */
     public function getListarMatriculaCargoPorCpf(string $cpf)
     {
@@ -111,7 +110,7 @@ trait GetMobilidade
      * @param    int $matriculaSiape
      * @param    int $anoInicial
      * @param    int $anoFinal
-     * @return  array|json (  )
+     * @return  array|json ( "matricula_siape", "ano_avaliacao", "mes_avaliacao", "descricao", "data_ciclo", )
      */
     public function getListarAvaliacaoDesempenhoPorSiape(
         int $matriculaSiape,
@@ -120,7 +119,7 @@ trait GetMobilidade
     ) {
         if (empty($matriculaSiape)
             || (empty($anoInicial) || strlen($anoInicial) != 4)
-            || (empty($anoFinal) || strlen($anoInicial) != 4)
+            || (empty($anoFinal) || strlen($anoFinal) != 4)
         ) {
             return $this->trateReturn();
         }
@@ -138,7 +137,7 @@ trait GetMobilidade
      * @param    int $matriculaSiape
      * @param    string $dtInicio
      * @param    string $dtFim
-     * @return  array|json (  )
+     * @return  array|json ( "cod_afastamento", "dt_inicio", "dt_fim", )
      */
     public function getListarAfastamentoServidorSiapeDataInicio(
         int $matriculaSiape,
@@ -146,8 +145,8 @@ trait GetMobilidade
         string $dtFim
     ) {
         if (empty($matriculaSiape)
-            || (empty($anoInicial) || strlen($anoInicial) != 10)
-            || (empty($anoFinal) || strlen($anoInicial) != 10)
+            || (empty($dtInicio) || strlen($dtInicio) != 10)
+            || (empty($dtFim)    || strlen($dtFim) != 10)
         ) {
             return $this->trateReturn();
         }
@@ -167,7 +166,7 @@ trait GetMobilidade
      * @param   int $matriculaSiape
      * @param   string $dtInicio
      * @param   string $dtFim
-     * @return  array|json (  )
+     * @return  array|json ( "cod_afastamento", "dt_inicio", "dt_fim", )
      */
     public function getListarAfastamentoServidorSiapeDataFim(
         int $matriculaSiape,
@@ -175,8 +174,8 @@ trait GetMobilidade
         string $dtFim
     ) {
         if (empty($matriculaSiape)
-            || (empty($anoInicial) || strlen($anoInicial) != 10)
-            || (empty($anoFinal) || strlen($anoInicial) != 10)
+            || (empty($dtInicio) || strlen($dtInicio) != 10)
+            || (empty($dtFim)    || strlen($dtFim) != 10)
         ) {
             return $this->trateReturn();
         }
@@ -196,7 +195,7 @@ trait GetMobilidade
      * @param   int $matriculaSiape
      * @param   string $dtInicio
      * @param   string $dtFim
-     * @return  array|json (  )
+     * @return  array|json ( "data_alteracao", "codigo_lotacao", "descricao_lotacao", "codigo_localizacao", "descricao_localizacao", )
      */
     public function getListarHistoricoLotacaoLocalizacao(
         int $matriculaSiape,
@@ -205,8 +204,8 @@ trait GetMobilidade
     ) {
 
         if (empty($matriculaSiape)
-            || (empty($anoInicial) || strlen($anoInicial) != 10)
-            || (empty($anoFinal) || strlen($anoInicial) != 10)
+            || (empty($dtInicio) || strlen($dtInicio) != 10)
+            || (empty($dtFim)    || strlen($dtFim) != 10)
         ) {
             return $this->trateReturn();
         }

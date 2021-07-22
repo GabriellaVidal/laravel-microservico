@@ -15,10 +15,7 @@ trait GetSief
      */
     public function getContarEdicoes()
     {
-        // busca api
-        $api = $this->getApiV2FromReturnXml("contarEdicoes");
-
-        return $this->feedbackBasic([$api]);
+        return $this->proxyV2XmlBasic("contarEdicoes", null, true);
     }
 
     /**
@@ -32,10 +29,7 @@ trait GetSief
      */
     public function getIndiceProgramas()
     {
-        // busca api
-        $api = $this->getApiV2FromReturnXml("indiceProgramas");
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV2XmlBasic("indiceProgramas", null);
     }
 
     /**
@@ -49,10 +43,7 @@ trait GetSief
      */
     public function getListarEditaisPrevistos()
     {
-        // busca api
-        $api = $this->getApiV2FromReturnXml("listarEditaisPrevistos");
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV2XmlBasic("listarEditaisPrevistos", null);
     }
 
     /**
@@ -66,10 +57,7 @@ trait GetSief
      */
     public function getListarProcessosSeletivosAbertos()
     {
-        // busca api
-        $api = $this->getApiV2FromReturnXml("listarProcessosSeletivosAbertos");
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV2XmlBasic("listarProcessosSeletivosAbertos", null);
     }
 
     /**

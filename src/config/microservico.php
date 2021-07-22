@@ -76,9 +76,9 @@ $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 $serviceV2Sicave = "{$serviceV2}sicave";
 
 /**
- * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}SiefCursos
+ * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}sief
  */
-$serviceV2Sief = "{$serviceV2Ambiente}SiefCursos";
+$serviceV2Sief = "{$serviceV2Ambiente}sief";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-transporte
@@ -303,7 +303,7 @@ return [
     'servidoresV2'                => "{$host_ei}/services/ServidoresV2",
     'buscarColaboradorPorCpf'     => "{$host_ei}/services/ServidoresV2/buscarColaboradorPorCpf",
     'sief_apoio'                  => "{$host_ei}/services/SiefApoio",
-    'sief_cursos'                 => "{$host_ei}/services/SiefCursos",
+    'sief_cursos'                 => "{$host_ei}/services/sief",
     'transporte'                  => "{$host_ei}/services/transporte",
     'service_unidades'            => "{$host_ei}/services/Unidades",
     'https_armazenagem'           => "{$host_ei_https}/services/api-armazenagem",
@@ -317,7 +317,7 @@ return [
     'https_projeto_sief_homol_ds' => "{$host_ei_https}/services/ProjetoSiefHomolDS",
     'https_servidores'            => "{$host_ei_https}/services/Servidores",
     'https_sief_apoio'            => "{$host_ei_https}/services/SiefApoio",
-    'https_sief_cursos'           => "{$host_ei_https}/services/SiefCursos",
+    'https_sief_cursos'           => "{$host_ei_https}/services/sief",
     'https_transporte'            => "{$host_ei_https}/services/transporte",
     'https_service_unidades'      => "{$host_ei_https}/services/Unidades",
     ///////////////////////////////////////////////////////////////////////////
@@ -492,7 +492,7 @@ return [
         #                    SIEF                   #
         #############################################
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/contarEdicoes
+         * @url     https://ei.fiocruz.br/services/v2-sief/contarEdicoes
          * @api     contarEdicoes
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -500,7 +500,7 @@ return [
         "contarEdicoes" => "{$serviceV2Sief}/contarEdicoes",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/indiceProgramas
+         * @url     https://ei.fiocruz.br/services/v2-sief/indiceProgramas
          * @api     indiceProgramas
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -508,7 +508,7 @@ return [
         "indiceProgramas" => "{$serviceV2Sief}/indiceProgramas",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarEditaisPrevistos
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarEditaisPrevistos
          * @api     listarEditaisPrevistos
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -516,7 +516,7 @@ return [
         "listarEditaisPrevistos" => "{$serviceV2Sief}/listarEditaisPrevistos",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarProcessosSeletivosAbertos
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarProcessosSeletivosAbertos
          * @api     listarProcessosSeletivosAbertos
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
@@ -524,7 +524,7 @@ return [
         "listarProcessosSeletivosAbertos" => "{$serviceV2Sief}/listarProcessosSeletivosAbertos",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarCurso/{idCurso}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarCurso/{idCurso}
          * @param   $idCurso
          * @api     buscarCurso
          * @methods get
@@ -533,7 +533,7 @@ return [
         "buscarCurso" => "{$serviceV2Sief}/buscarCurso",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCoordenadoresCurso/{idCurso}
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarCoordenadoresCurso/{idCurso}
          * @param   $idCurso
          * @api     listarCoordenadoresCurso
          * @methods get
@@ -542,7 +542,7 @@ return [
         "listarCoordenadoresCurso" => "{$serviceV2Sief}/listarCoordenadoresCurso",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarLinhasDePesquisa/{idCurso}
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarLinhasDePesquisa/{idCurso}
          * @param   $idCurso
          * @api     listarLinhasDePesquisa
          * @methods get
@@ -551,7 +551,7 @@ return [
         "listarLinhasDePesquisa" => "{$serviceV2Sief}/listarLinhasDePesquisa",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarDocumentosPorEdital/{uuidEdital}
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarDocumentosPorEdital/{uuidEdital}
          * @param   $uuidEdital
          * @api     listarDocumentosPorEdital
          * @methods get
@@ -560,7 +560,7 @@ return [
         "listarDocumentosPorEdital" => "{$serviceV2Sief}/listarDocumentosPorEdital",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/inscritosProcessoSeletivo/{uuidEdital}
+         * @url     https://ei.fiocruz.br/services/v2-sief/inscritosProcessoSeletivo/{uuidEdital}
          * @param   $uuidEdital
          * @api     inscritosProcessoSeletivo
          * @methods get
@@ -569,7 +569,7 @@ return [
         "inscritosProcessoSeletivo" => "{$serviceV2Sief}/inscritosProcessoSeletivo",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarCandidatosDesistentesEdital/{uuidEdital}
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarCandidatosDesistentesEdital/{uuidEdital}
          * @param   $uuidEdital
          * @api     listarCandidatosDesistentesEdital
          * @methods get
@@ -578,7 +578,7 @@ return [
         "listarCandidatosDesistentesEdital" => "{$serviceV2Sief}/listarCandidatosDesistentesEdital",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarNatureza/{idNatureza}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarNatureza/{idNatureza}
          * @param   $idNatureza
          * @api     buscarNatureza
          * @methods get
@@ -587,7 +587,7 @@ return [
         "buscarNatureza" => "{$serviceV2Sief}/buscarNatureza",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarPrograma/{idPrograma}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarPrograma/{idPrograma}
          * @param   $idPrograma
          * @api     buscarPrograma
          * @methods get
@@ -596,7 +596,7 @@ return [
         "buscarPrograma" => "{$serviceV2Sief}/buscarPrograma",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarUnidade/{idUnidade}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarUnidade/{idUnidade}
          * @param   $idUnidade
          * @api     buscarUnidade
          * @methods get
@@ -605,7 +605,7 @@ return [
         "buscarUnidade" => "{$serviceV2Sief}/buscarUnidade",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarNaturezaTipo/{idNatTipo}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarNaturezaTipo/{idNatTipo}
          * @param   $idNatTipo
          * @api     buscarNaturezaTipo
          * @methods get
@@ -614,7 +614,7 @@ return [
         "buscarNaturezaTipo" => "{$serviceV2Sief}/buscarNaturezaTipo",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarTipoNatureza/{idTipo}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarTipoNatureza/{idTipo}
          * @param   $idTipo
          * @api     buscarTipoNatureza
          * @methods get
@@ -623,7 +623,7 @@ return [
         "buscarTipoNatureza" => "{$serviceV2Sief}/buscarTipoNatureza",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/listarEdicoesCursos/{limim}/{limax}
+         * @url     https://ei.fiocruz.br/services/v2-sief/listarEdicoesCursos/{limim}/{limax}
          * @param   $limim
          * @param   $limax
          * @api     listarEdicoesCursos
@@ -633,7 +633,7 @@ return [
         "listarEdicoesCursos" => "{$serviceV2Sief}/listarEdicoesCursos",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarPais/{idpais}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarPais/{idpais}
          * @param   $idpais
          * @api     buscarPais
          * @methods get
@@ -642,7 +642,7 @@ return [
         "buscarPais" => "{$serviceV2Sief}/buscarPais",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarCidade/{idCidade}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarCidade/{idCidade}
          * @param   $idCidade
          * @api     buscarCidade
          * @methods get
@@ -651,7 +651,7 @@ return [
         "buscarCidade" => "{$serviceV2Sief}/buscarCidade",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-SiefCursos/buscarUF/{idUf}
+         * @url     https://ei.fiocruz.br/services/v2-sief/buscarUF/{idUf}
          * @param   $idUf
          * @api     buscarUF
          * @methods get
