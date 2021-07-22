@@ -23,22 +23,7 @@ trait GetSicave
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV2(
-            "sicaveveiculo",
-            "{$cpf}")
-            ->Veiculos ;
-
-        if (!isset($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->Veiculo as $key => $item) {
-            $this->return[] = $this->tratamentoItensApi($item);
-        }
-
-        return $this->trateReturn();
+        return $this->proxyV2XmlBasic("sicaveveiculo", "{$cpf}");
     }
 
     /**
@@ -49,7 +34,7 @@ trait GetSicave
      * @api     sicaveadvertencias
      *
      * @param   string $cpf
-     * @return  array|json ( "advertencia_descricao", "advertencia_data", "advertencia_hora", "advertencia_local", "advertencia_motivo_descricao", "selo_numero", "advertencia_data_fmt", "advertencia_hora_fmt" )
+     * @return  array|json ( "advertencia_descricao", "advertencia_data", "advertencia_hora", "advertencia_local", "advertencia_motivo_descricao", "selo_numero" )
      */
     public function getSicaveAdvertencias(string $cpf)
     {
@@ -60,31 +45,6 @@ trait GetSicave
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV2(
-            "sicaveadvertencias",
-            "{$cpf}")
-            ->Advertencias ;
-
-        if (!isset($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->Advertencia as $key => $item) {
-            $return = $this->tratamentoItensApi($item);
-
-            // formatados
-            $return[ "advertencia_data_fmt" ] = !is_null($return[ "advertencia_data" ])
-                ? \Carbon\Carbon::parse($return[ "advertencia_data" ])->format('d/m/y')
-                : null;
-            $return[ "advertencia_hora_fmt" ] = !is_null($return[ "advertencia_hora" ])
-                ? \Carbon\Carbon::parse($return[ "advertencia_hora" ])->format('H:i:s')
-                : null;
-
-            $this->return[] = $return;
-        }
-
-        return $this->trateReturn();
+        return $this->proxyV2XmlBasic("sicaveadvertencias", "{$cpf}");
     }
 }

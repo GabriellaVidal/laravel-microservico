@@ -55,11 +55,21 @@ $v2BaseCorporativa = "{$v2HostEi}{$ambientePrefix}/basecorporativa";
 | variavel por Ambiente
 |---------------------------------------------------
 */
+# sem dss
 $ambienteServices  = empty($envAmbiente) ? "" : "{$envAmbiente}-";
 $serviceV2         = "{$hostEiServices}/v2-";
 $serviceV3         = "{$hostEiServices}/v3-";
 $serviceV2Ambiente = "{$serviceV2}{$ambienteServices}";
+$serviceV3Ambiente = "{$serviceV3}{$ambienteServices}";
 
+# com dss
+$serviceV2Dss         = "{$hostEiServices}/dss-v2-";
+$serviceV3Dss         = "{$hostEiServices}/dss-v3-";
+$serviceV2DssAmbiente = "{$serviceV2Dss}{$ambienteServices}";
+$serviceV3DssAmbiente = "{$serviceV3Dss}{$ambienteServices}";
+
+############################################################################################
+####################### V2
 /**
  * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}acesso
  */
@@ -91,10 +101,21 @@ $serviceV2Transporte = "{$serviceV2}transporte";
 $serviceV2Mobilidade = "{$serviceV2}mobilidade";
 
 /**
+ * @url https://ei.fiocruz.br/services/v2-rsi
+ */
+$serviceV2Rsi = "{$serviceV2}rsi";
+
+####################### V3
+/**
  * @url https://ei.fiocruz.br/services/v3-servidores
  */
 $serviceV3Sevidores = "{$serviceV3}servidores";
 
+/**
+ * @url https://ei.fiocruz.br/services/dss-v3-{$ambienteServices|null}basecorporativa
+ */
+$serviceV3BaseCorporativa = "{$serviceV3DssAmbiente}basecorporativa";
+############################################################################################
 
 /*TODO*/
 $api_vi_service = env('API_V1_SERVICE', 'api-basecorporativa');
@@ -784,6 +805,78 @@ return [
          */
         "listarHistoricoLotacaoLocalizacao" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacao",
 
+
+        #############################################
+        #                    RSI                    #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarHistoricoChamadosPorCpf/{cpf}
+         * @param   $cpf
+         * @api     listarHistoricoChamadosPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarHistoricoChamadosPorCpf" => "{$serviceV2Rsi}/listarHistoricoChamadosPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarChamadosAbertosPorCpf/{cpf}
+         * @param   $cpf
+         * @api     listarChamadosAbertosPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarChamadosAbertosPorCpf" => "{$serviceV2Rsi}/listarChamadosAbertosPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarChamadosNaoFinalizadosPorCpf/{cpf}
+         * @param   $cpf
+         * @api     listarChamadosNaoFinalizadosPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarChamadosNaoFinalizadosPorCpf" => "{$serviceV2Rsi}/listarChamadosNaoFinalizadosPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarServicos/{limin}/{limax}
+         * @param   $limin
+         * @param   $limax
+         * @api     listarServicos
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarServicos" => "{$serviceV2Rsi}/listarServicos",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarTecnicosPorEquipe/{limin}/{limax}
+         * @param   $limin
+         * @param   $limax
+         * @api     listarTecnicosPorEquipe
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarTecnicosPorEquipe" => "{$serviceV2Rsi}/listarTecnicosPorEquipe",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarDadosRequisicao/{limin}/{limax}
+         * @param   $limin
+         * @param   $limax
+         * @api     listarDadosRequisicao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarDadosRequisicao" => "{$serviceV2Rsi}/listarDadosRequisicao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-rsi/listarChamadosEncerrados/{limin}/{limax}
+         * @param   $limin
+         * @param   $limax
+         * @api     listarChamadosEncerrados
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarChamadosEncerrados" => "{$serviceV2Rsi}/listarChamadosEncerrados",
+
     ],
 
     "v3" => [
@@ -919,6 +1012,29 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "buscarColaboradoresPorCodigoLotacaoPaginando" => "{$serviceV3Sevidores}/buscarColaboradoresPorCodigoLotacaoPaginando",
+
+        #############################################
+        #              BASE CORPORATIVA             #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/dss-v3-basecorporativa/dadosPessoais/{cpf}
+         * @api     dadosPessoais
+         * @param   $cpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "dadosPessoais" => "{$serviceV3BaseCorporativa}/dadosPessoais",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/dss-v3-basecorporativa/dadosPessoaisPorEmail/{email}
+         * @api     dadosPessoaisPorEmail
+         * @param   $email
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "dadosPessoaisPorEmail" => "{$serviceV3BaseCorporativa}/dadosPessoaisPorEmail",
+
     ],
 
     ///////////////////////////////////////////////////////////////////////////

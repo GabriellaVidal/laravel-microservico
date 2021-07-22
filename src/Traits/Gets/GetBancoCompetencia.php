@@ -16,7 +16,7 @@ trait GetBancoCompetencia
      * @api     verificaCompetencia
      *
      * @param   string $cpf
-     * @return  array|json ( "id_lattes", "data_atualizacao", "data_atualização_fmt" )
+     * @return  array|json ( "id_lattes", "data_atualizacao" )
      */
     public function getVerificaCompetencia(string $cpf)
     {
@@ -27,29 +27,7 @@ trait GetBancoCompetencia
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV2(
-            "verificaCompetencia",
-            "{$cpf}")
-            ->Competencias ;
-
-        if (!isset($api)) {
-            return $this->trateReturn();
-        }
-
-        // trata os dados
-        foreach ($api->Competencia as $key => $item) {
-            $return = $this->tratamentoItensApi($item);
-
-            // formatados
-            $return[ "data_atualizacao_fmt" ]   = !is_null($return[ "data_atualizacao" ])
-                ? \Carbon\Carbon::parse($return[ "data_atualizacao" ])->format('d/m/y')
-                : null;
-
-            $this->return[] = $return;
-        }
-
-        return $this->trateReturn();
+        return $this->proxyV2XmlBasic("verificaCompetencia", "{$cpf}");
     }
 
     /**
@@ -71,12 +49,6 @@ trait GetBancoCompetencia
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV2FromReturnXml(
-            "listarCompetenciasPorCPF",
-            "{$cpf}")
-        ;
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV2XmlBasic("listarCompetenciasPorCPF", "{$cpf}");
     }
 }

@@ -209,45 +209,67 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListaCandidatosProgramaEdital(string $uuidEdital)`
         1. `getDataDivulgacao(string $uuidEdital)`
     1. SICAVE
-        1. `sicaveveiculo(string $cpf)`    
-        1. `sicaveadvertencias(string $cpf)`    
+        1. `sicaveveiculo(string $cpf)`
+        1. `sicaveadvertencias(string $cpf)`
     1. BANCO COMPETENCIAS
-        1. `getVerificaCompetencia(string $cpf)`    
-        1. `getListarCompetenciasPorCPF(string $cpf)`    
+        1. `getVerificaCompetencia(string $cpf)`
+        1. `getListarCompetenciasPorCPF(string $cpf)`
     1. SERVIDORES (v3)
-        1. `getContarTotalColaboradores()`    
-        1. `getBuscarCargosServidoresFiocruz()`    
-        1. `getBuscarColaboradorPorCpf(string $cpf, bool $somenteSituacaoAtivo = true)`    
-        1. `getBuscarColaboradorPorNome(string $nome, $somenteSituacaoAtivo = true)`    
-        1. `getBuscarColaboradorPorMatriculaSiape(int $matricula)`    
-        1. `getBuscarColaboradoresPorVinculo(string $vinculo)`    
-        1. `getBuscarColaboradoresPorCodigoLocalizacao(string $codigolocalizacao)`    
-        1. `getBuscarColaboradoresPorCodigoLotacao(string $codigolotacao)`    
-        1. `getBuscarColaboradorAtivoPorEmail(string $email)`    
-        1. `getTodoHistoricoLotacaoLocalizacaoPorMatricula(string $matriculaSiape)`    
-        1. `getBuscarColaboradoresPorVinculoPaginando($codigoVinculo = "02", int $limin = 1, int $limax = 10)`    
-        1. `getBuscarColaboradoresPorCodigoLotacaoPaginando($codigoLotacao, int $limin = 1, int $limax = 10)`    
+        1. `getContarTotalColaboradores()`
+        1. `getBuscarCargosServidoresFiocruz()`
+        1. `getBuscarColaboradorPorCpf(string $cpf, bool $somenteSituacaoAtivo = true)`
+        1. `getBuscarColaboradorPorNome(string $nome, bool $somenteSituacaoAtivo = true)`
+        1. `getBuscarColaboradorPorMatriculaSiape(int $matricula)`
+        1. `getBuscarColaboradoresPorVinculo(string $vinculo)`
+        1. `getBuscarColaboradoresPorCodigoLocalizacao(string $codigolocalizacao)`
+        1. `getBuscarColaboradoresPorCodigoLotacao(string $codigolotacao)`
+        1. `getBuscarColaboradorAtivoPorEmail(string $email)`
+        1. `getTodoHistoricoLotacaoLocalizacaoPorMatricula(string $matriculaSiape)`
+        1. `getBuscarColaboradoresPorVinculoPaginando($codigoVinculo = "02", int $limin = 1, int $limax = 10)`
+        1. `getBuscarColaboradoresPorCodigoLotacaoPaginando($codigoLotacao, int $limin = 1, int $limax = 10)`
     1. TRANSPORTE
-        1. `getListarUsuariosPorLinha($usuLinha)`    
-        1. `getLinhasusuario(string $cpf)`    
+        1. `getListarUsuariosPorLinha($usuLinha)`
+        1. `getLinhasusuario(string $cpf)`
     1. SIEF
-        1. `getContarEdicoes()`    
-        1. `getIndiceProgramas()`    
-        1. `getListarEditaisPrevistos()`    
-        1. `getListarProcessosSeletivosAbertos()`    
-        1. `getBuscarCurso($idCurso)`    
-        1. `getListarCoordenadoresCurso($idCurso)`    
-        1. `getListarLinhasDePesquisa($idCurso)`    
-        1. `getListarDocumentosPorEdital($idEdital)`    
-        1. `getInscritosProcessoSeletivo($idEdital)`    
-        1. `getListarCandidatosDesistentesEdital($idEdital)`    
-        1. `getBuscarNatureza($idNatureza)`    
-        1. `getListarAreasDeConcentracao($idNatureza)`    
-        1. `getBuscarPrograma($idPrograma)`    
-        1. `getBuscarUnidade($idUnidade)`    
-        1. `getBuscarNaturezaTipo($idNatTipo)`    
-        1. `getBuscarTipoNatureza($idTipo)`    
-        1. `getListarEdicoesCursos($limim,$limax)`    
-        1. `getBuscarPais($idpais)`    
-        1. `getBuscarCidade($idCidade)`    
-        1. `getBuscarUF($idUf)`    
+        1. `getContarEdicoes()`
+        1. `getIndiceProgramas()`
+        1. `getListarEditaisPrevistos()`
+        1. `getListarProcessosSeletivosAbertos()`
+        1. `getBuscarCurso(int $idCurso)`
+        1. `getListarCoordenadoresCurso(int $idCurso)`
+        1. `getListarLinhasDePesquisa(int $idCurso)`
+        1. `getListarDocumentosPorEdital(string $uuidEdital)`
+        1. `getInscritosProcessoSeletivo(string $uuidEdital)`
+        1. `getListarCandidatosDesistentesEdital(string $uuidEdital)`
+        1. `getBuscarNatureza(int $idNatureza)`
+        1. `getBuscarPrograma(int $idPrograma)`
+        1. `getBuscarUnidade(string $uuidUnidade)`
+        1. `getBuscarNaturezaTipo(int $idNatTipo)`
+        1. `getBuscarTipoNatureza(int $idTipo)`
+        1. `getListarEdicoesCursos(int $limim = 1, int $limax = 1)`
+        1. `getBuscarPais(string $uuidPais)`
+        1. `getBuscarCidade(string $uuidCidade)`
+        1. `getBuscarUF(string $uuidUf)`
+    1. MOBILIDADE
+        1. `getObterEditaisPublicados()`
+        1. `getObterAnexosEdital(int $idEdital)`
+        1. `getListarDadosPorMatricula(int $codigo)`
+        1. `getListarSituacaoFuncionalPorCodigo(string $codigo)`
+        1. `getListarTipoAfastamentoPorCodigo(string $codigo)`
+        1. `getListarMatriculaCargoPorCpf(string $cpf)`
+        1. `getListarAvaliacaoDesempenhoPorSiape(int $matriculaSiape, int $anoInicial, int $anoFinal)`
+        1. `getListarAfastamentoServidorSiapeDataInicio(int $matriculaSiape, string $dtInicio, string $dtFim)`
+        1. `getListarAfastamentoServidorSiapeDataFim(int $matriculaSiape, string $dtInicio, string $dtFim)`
+        1. `getListarHistoricoLotacaoLocalizacao(int $matriculaSiape, string $dtInicio, string $dtFim)`
+    1. BASE CORPORATIVA
+        1. `getDadosPessoais(string $cpf)`
+        1. `getDadosPessoaisPorEmail(string $email)`
+    1. RSI
+        1. `getListarHistoricoChamadosPorCpf(string $cpf)`
+        1. `getListarChamadosAbertosPorCpf(string $cpf)`
+        1. `getListarChamadosNaoFinalizadosPorCpf(string $cpf)`
+        1. `getListarChamadosEncerrados(int $limim = 1, int $limax = 10)`
+        1. `getListarServicos(int $limim = 1, int $limax = 10)`
+        1. `getListarTecnicosPorEquipe(int $limim = 1, int $limax = 10)`
+        1. `getListarDadosRequisicao(int $limim = 1, int $limax = 10)`
+        

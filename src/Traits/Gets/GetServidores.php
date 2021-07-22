@@ -18,10 +18,7 @@ trait GetServidores
      */
     public function getContarTotalColaboradores()
     {
-        // busca api
-        $api = $this->getApiV3FromReturnXml("contarTotalColaboradores");
-
-        return $this->feedbackBasic([$api]);
+        return $this->proxyV3XmlBasic("buscarCargosServidoresFiocruz", null, true);
     }
 
     /**
@@ -35,10 +32,7 @@ trait GetServidores
      */
     public function getBuscarCargosServidoresFiocruz()
     {
-        // busca api
-        $api = $this->getApiV3FromReturnXml("buscarCargosServidoresFiocruz");
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarCargosServidoresFiocruz", null);
     }
 
     /**
@@ -61,15 +55,8 @@ trait GetServidores
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradorPorCpf",
-            "{$cpf}")
-        ;
-
         $this->somenteAtivo = $somenteSituacaoAtivo;
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradorPorCpf", "{$cpf}");
     }
 
     /**
@@ -83,21 +70,10 @@ trait GetServidores
      * @param   bool $somenteSituacaoAtivo
      * @return  array|json ( "nome", "email", "email_alternativo", "login_unico", "data_nascimento", "cpf", "uni_codigo", "localizacao", "sexo", "uni_sigla", "empresa", "vinculo", "situacao", "data_efetivo_exercicio", "matricula", "nacionalidade", "end_logradouro", "end_complemento", "end_bairro", "end_municipio", "end_cep", "end_uf", "cargo", "nome_empresa", "desc_vinculo" )
      */
-    public function getBuscarColaboradorPorNome(string $nome, $somenteSituacaoAtivo = true)
+    public function getBuscarColaboradorPorNome(string $nome, bool $somenteSituacaoAtivo = true)
     {
-        if (empty($nome)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradorPorNome",
-            $this->preperNome($nome)
-        );
-
         $this->somenteAtivo = $somenteSituacaoAtivo;
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradorPorNome", $this->preperNome($nome));
     }
 
     /**
@@ -112,17 +88,7 @@ trait GetServidores
      */
     public function getBuscarColaboradorPorMatriculaSiape(int $matricula)
     {
-        if (empty($matricula)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradorPorMatriculaSiape",
-            "{$matricula}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradorPorMatriculaSiape", "{$matricula}");
     }
 
     /**
@@ -137,17 +103,7 @@ trait GetServidores
      */
     public function getBuscarColaboradoresPorVinculo(string $vinculo)
     {
-        if (empty($vinculo)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradoresPorVinculo",
-            "{$vinculo}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradoresPorVinculo", "{$vinculo}");
     }
 
     /**
@@ -162,17 +118,7 @@ trait GetServidores
      */
     public function getBuscarColaboradoresPorCodigoLocalizacao(string $codigolocalizacao)
     {
-        if (empty($codigolocalizacao)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradoresPorCodigoLocalizacao",
-            "{$codigolocalizacao}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradoresPorCodigoLocalizacao", "{$codigolocalizacao}");
     }
 
     /**
@@ -187,17 +133,7 @@ trait GetServidores
      */
     public function getBuscarColaboradoresPorCodigoLotacao(string $codigolotacao)
     {
-        if (empty($codigolotacao)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradoresPorCodigoLotacao",
-            "{$codigolotacao}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradoresPorCodigoLotacao", "{$codigolotacao}");
     }
 
     /**
@@ -215,14 +151,7 @@ trait GetServidores
         if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->trateReturn();
         }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradorAtivoPorEmail",
-            "{$email}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradorAtivoPorEmail", "{$email}");
     }
 
     /**
@@ -237,17 +166,7 @@ trait GetServidores
      */
     public function getTodoHistoricoLotacaoLocalizacaoPorMatricula(string $matriculaSiape)
     {
-        if (empty($matriculaSiape)) {
-            return $this->trateReturn();
-        }
-
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "todoHistoricoLotacaoLocalizacaoPorMatricula",
-            "{$matriculaSiape}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("todoHistoricoLotacaoLocalizacaoPorMatricula", "{$matriculaSiape}");
     }
 
     /**
@@ -268,13 +187,7 @@ trait GetServidores
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradoresPorVinculoPaginando",
-            "{$codigoVinculo}/{$limin}/{$limax}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradoresPorVinculoPaginando", "{$codigoVinculo}/{$limin}/{$limax}");
     }
 
     /**
@@ -295,13 +208,7 @@ trait GetServidores
             return $this->trateReturn();
         }
 
-        // busca api
-        $api = $this->getApiV3FromReturnXml(
-            "buscarColaboradoresPorCodigoLotacaoPaginando",
-            "{$codigoLotacao}/{$limin}/{$limax}"
-        );
-
-        return $this->feedbackBasic($api);
+        return $this->proxyV3XmlBasic("buscarColaboradoresPorCodigoLotacaoPaginando", "{$codigoLotacao}/{$limin}/{$limax}");
     }
 
 }
