@@ -42,6 +42,6 @@ trait GetBaseCorporativa
             return $this->trateReturn();
         }
 
-        return $this->proxyV3XmlBasic("dadosPessoais", "{$email}");
+        return $this->proxyV3XmlBasic("dadosPessoaisPorEmail", "{$email}");
     }
 }
