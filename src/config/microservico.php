@@ -86,6 +86,11 @@ $serviceV2Sief = "{$serviceV2Ambiente}SiefCursos";
 $serviceV2Transporte = "{$serviceV2}transporte";
 
 /**
+ * @url https://ei.fiocruz.br/services/v2-mobilidade
+ */
+$serviceV2Mobilidade = "{$serviceV2}mobilidade";
+
+/**
  * @url https://ei.fiocruz.br/services/v3-servidores
  */
 $serviceV3Sevidores = "{$serviceV3}servidores";
@@ -676,6 +681,109 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "linhasUsuario" => "{$serviceV2Transporte}/linhasUsuario",
+
+
+        #############################################
+        #                 MOBILIDADE                #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/obterEditaisPublicados
+         * @api     obterEditaisPublicados
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "obterEditaisPublicados" => "{$serviceV2Mobilidade}/obterEditaisPublicados",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/obterAnexosEdital/{idEdital}
+         * @param   $idEdital
+         * @api     obterAnexosEdital
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "obterAnexosEdital" => "{$serviceV2Mobilidade}/obterAnexosEdital",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarDadosPorMatricula/{codigo}
+         * @param   $codigo
+         * @api     listarDadosPorMatricula
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarDadosPorMatricula" => "{$serviceV2Mobilidade}/listarDadosPorMatricula",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarSituacaoFuncionalPorCodigo/{codigo}
+         * @param   $codigo
+         * @api     listarSituacaoFuncionalPorCodigo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarSituacaoFuncionalPorCodigo" => "{$serviceV2Mobilidade}/listarSituacaoFuncionalPorCodigo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarTipoAfastamentoPorCodigo/{codigo}
+         * @param   $codigo
+         * @api     listarTipoAfastamentoPorCodigo
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarTipoAfastamentoPorCodigo" => "{$serviceV2Mobilidade}/listarTipoAfastamentoPorCodigo",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarMatriculaCargoPorCpf/{cpf}
+         * @param   $cpf
+         * @api     listarMatriculaCargoPorCpf
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarMatriculaCargoPorCpf" => "{$serviceV2Mobilidade}/listarMatriculaCargoPorCpf",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarAvaliacaoDesempenhoPorSiape/{matriculaSiape}/{anoInicial}/{anoFinal}
+         * @param   $matriculaSiape
+         * @param   $anoInicial
+         * @param   $anoFinal
+         * @api     listarAvaliacaoDesempenhoPorSiape
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarAvaliacaoDesempenhoPorSiape" => "{$serviceV2Mobilidade}/listarAvaliacaoDesempenhoPorSiape",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarAfastamentoServidorSiapeDataInicio/{matriculaSiape}/{dtInicio}/{dtFim}
+         * @param   $matriculaSiape
+         * @param   $dtInicio
+         * @param   $dtFim
+         * @api     listarAfastamentoServidorSiapeDataInicio
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarAfastamentoServidorSiapeDataInicio" => "{$serviceV2Mobilidade}/listarAfastamentoServidorSiapeDataInicio",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarAfastamentoServidorSiapeDataFim/{matriculaSiape}/{dtInicio}/{dtFim}
+         * @param   $matriculaSiape
+         * @param   $dtInicio
+         * @param   $dtFim
+         * @api     listarAfastamentoServidorSiapeDataFim
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarAfastamentoServidorSiapeDataFim" => "{$serviceV2Mobilidade}/listarAfastamentoServidorSiapeDataFim",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacao/{matriculaSiape}/{dtInicio}/{dtFim}
+         * @param   $matriculaSiape
+         * @param   $dtInicio
+         * @param   $dtFim
+         * @api     listarHistoricoLotacaoLocalizacao
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarHistoricoLotacaoLocalizacao" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacao",
+
     ],
 
     "v3" => [

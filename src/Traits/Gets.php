@@ -4,6 +4,7 @@ namespace Gsferro\MicroServico\Traits;
 
 use Gsferro\MicroServico\Traits\Gets\GetAcesso;
 use Gsferro\MicroServico\Traits\Gets\GetBancoCompetencia;
+use Gsferro\MicroServico\Traits\Gets\GetMobilidade;
 use Gsferro\MicroServico\Traits\Gets\GetServidores;
 use Gsferro\MicroServico\Traits\Gets\GetSicave;
 use Gsferro\MicroServico\Traits\Gets\GetSief;
@@ -79,6 +80,7 @@ trait Gets
         , GetServidores
         , GetTransporte
         , GetSief
+        , GetMobilidade
         ;
 
     /*
@@ -188,7 +190,7 @@ trait Gets
      * @param   bool $encapsulaApiComArray
      * @return  array|json
      */
-    private function proxyV2XmlBasic(string $endpoint, $param, bool $encapsulaApiComArray = false)
+    private function proxyV2XmlBasic(string $endpoint, $param = null, bool $encapsulaApiComArray = false)
     {
         if (empty($param)) {
             return $this->trateReturn();
