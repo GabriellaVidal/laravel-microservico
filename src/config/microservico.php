@@ -76,9 +76,9 @@ $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 $serviceV2Sicave = "{$serviceV2}sicave";
 
 /**
- * @url https://ei.fiocruz.br/services/v2-SiefCursos
+ * @url https://ei.fiocruz.br/services/v2-{$ambienteServices|null}SiefCursos
  */
-$serviceV2Sief = "{$serviceV2}SiefCursos";
+$serviceV2Sief = "{$serviceV2Ambiente}SiefCursos";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-transporte
