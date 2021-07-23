@@ -262,7 +262,7 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListarAvaliacaoDesempenhoPorSiape(int $matriculaSiape, int $anoInicial, int $anoFinal)`
         1. `getListarAfastamentoServidorSiapeDataInicio(int $matriculaSiape, string $dtInicio, string $dtFim)`
         1. `getListarAfastamentoServidorSiapeDataFim(int $matriculaSiape, string $dtInicio, string $dtFim)`
-        1. `getListarHistoricoLotacaoLocalizacao(int $matriculaSiape, string $dtInicio, string $dtFim)`
+        1. `getListarHistoricoLotacaoLocalizacao(int $matriculaSiape, int $anoInicial, int $anoFinal)`
     1. BASE CORPORATIVA
         1. `getDadosPessoais(string $cpf)`
         1. `getDadosPessoaisPorEmail(string $email)`

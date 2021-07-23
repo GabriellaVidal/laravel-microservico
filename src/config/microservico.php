@@ -795,10 +795,10 @@ return [
         "listarAfastamentoServidorSiapeDataFim" => "{$serviceV2Mobilidade}/listarAfastamentoServidorSiapeDataFim",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacao/{matriculaSiape}/{dtInicio}/{dtFim}
-         * @param   $matriculaSiape
-         * @param   $dtInicio
-         * @param   $dtFim
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacao/{matriculaSiape}/{anoInicial}/{anoFinal}
+         * @param   int $matriculaSiape
+         * @param   int $anoInicial
+         * @param   int $anoFinal
          * @api     listarHistoricoLotacaoLocalizacao
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})

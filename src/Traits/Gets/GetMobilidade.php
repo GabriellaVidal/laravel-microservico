@@ -193,25 +193,25 @@ trait GetMobilidade
      * @api     listarHistoricoLotacaoLocalizacao
      *
      * @param   int $matriculaSiape
-     * @param   string $dtInicio
-     * @param   string $dtFim
+     * @param   int $anoInicial
+     * @param   int $anoFinal
      * @return  array|json ( "data_alteracao", "codigo_lotacao", "descricao_lotacao", "codigo_localizacao", "descricao_localizacao", )
      */
     public function getListarHistoricoLotacaoLocalizacao(
         int $matriculaSiape,
-        string $dtInicio,
-        string $dtFim
+        int $anoInicial,
+        int $anoFinal
     ) {
 
         if (empty($matriculaSiape)
-            || (empty($dtInicio) || strlen($dtInicio) != 10)
-            || (empty($dtFim)    || strlen($dtFim) != 10)
+            || (empty($anoInicial) || strlen($anoInicial) != 4)
+            || (empty($anoFinal) || strlen($anoFinal) != 4)
         ) {
             return $this->trateReturn();
         }
 
         // validar datas
 
-        return $this->proxyV2XmlBasic("listarHistoricoLotacaoLocalizacao", "{$matriculaSiape}/{$dtInicio}/{$dtFim}");
+        return $this->proxyV2XmlBasic("listarHistoricoLotacaoLocalizacao", "{$matriculaSiape}/{$anoInicial}/{$anoFinal}");
     }
 }
