@@ -159,7 +159,8 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 
 # Versão 2.0
 - Implementação do principio: `Tell, Don´t ask`, criando métodos que já implementam a lógica em cima da chamada da api, evitando assim que toda a vez que for usado em um projeto, aja a necessidade de copiar o código. 
-- Para manter a compatibilidade, ainda poderá ser usado o metodo da v1 e os retornos deles não foi alterado.
+- Para manter a compatibilidade, ainda poderá ser usado o metodo da v1 e os retornos deles não foram alterado.
+- Nas novas apis, foi aplicado o padrão `snake_case` em todos os campos.
 - Necessário para implementação de segurança, além das que já existe no integrator, nas apis internas seguindo o exigido pela nova lei da LGPD. 
 - O verbo http é o prefixo do metodo, seguindo com o devido endpoint configurado no `config.microservico`.
 - PHPDoc implementado em cada novo metodo com retornos e parametros
