@@ -41,7 +41,7 @@ trait GetMobilidade
      * @api     listarDadosPorMatricula
      *
      * @param   int $codigo
-     * @return  array|json ( "cpf", "nome", "email", "unidade", "lotacao", "localizacao", "login", )
+     * @return  array|json ( "cpf", "nome", "email", "emai", "lotacao", "localizacao", "login",  "codigo_situacao", "descricao_situacao",)
      */
     public function getListarDadosPorMatricula(int $codigo)
     {
