@@ -174,18 +174,20 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 
 ```env 
 ############## configurar somente para ambientes de desenv/teste/homol:
-API_V1_SERVICE (
-    desenv-basecorporativa
-    teste-basecorporativa
-    homolog-basecorporativa
-)
 
-APP_AMBIENTE (
-    "Desenv -"   
-    "Teste -" 
-    "Homolog -" 
-)
-# pode ser usado também para concatenar ao nome do sistema para deixar claro o ambiente
+# desenv
+API_V1_SERVICE="desenv-basecorporativa" 
+APP_AMBIENTE="Desenv -"
+
+# teste
+API_V1_SERVICE="teste-basecorporativa" 
+APP_AMBIENTE="Teste -"
+
+# homol
+API_V1_SERVICE="homolog-basecorporativa" 
+APP_AMBIENTE="Homolog -"
+
+# APP_AMBIENTE pode ser usado também para concatenar ao nome do sistema para deixar claro o ambiente
 ```
 
 ### Uso
