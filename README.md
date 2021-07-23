@@ -159,7 +159,7 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 
 # Versão 2.0
 - Implementação do principio: `Tell, Don´t ask`, criando métodos que já implementam a lógica em cima da chamada da api, evitando assim que toda a vez que for usado em um projeto, aja a necessidade de copiar o código. 
-- Para manter a compatibilidade, ainda poderá ser usado o metodo da v1 e o retorno não foi alterado como padrão de api.
+- Para manter a compatibilidade, ainda poderá ser usado o metodo da v1 e os retornos deles não foi alterado.
 - Necessário para implementação de segurança, além das que já existe no integrator, nas apis internas seguindo o exigido pela nova lei da LGPD. 
 - O verbo http é o prefixo do metodo, seguindo com o devido endpoint configurado no `config.microservico`.
 - PHPDoc implementado em cada novo metodo com retornos e parametros
@@ -174,19 +174,18 @@ microservico()->getWithData("exemplo", ["foo" => "bar"]);
 
 ```env 
 ############## configurar somente para ambientes de desenv/teste/homol:
-# !!!!!!!!!!!!!!
 API_V1_SERVICE (
     desenv-basecorporativa
     teste-basecorporativa
     homolog-basecorporativa
 )
 
-# pode ser usado para concatenar ao nome do sistema para deixar claro o ambiente
 APP_AMBIENTE (
-    Desenv -   
-    Teste - 
-    Homolog - 
+    "Desenv -"   
+    "Teste -" 
+    "Homolog -" 
 )
+# pode ser usado também para concatenar ao nome do sistema para deixar claro o ambiente
 ```
 
 ### Uso
@@ -209,8 +208,8 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListaCandidatosProgramaEdital(string $uuidEdital)`
         1. `getDataDivulgacao(string $uuidEdital)`
     1. SICAVE
-        1. `sicaveveiculo(string $cpf)`
-        1. `sicaveadvertencias(string $cpf)`
+        1. `getSicaveVeiculo(string $cpf)`
+        1. `getSicaveAdvertencias(string $cpf)`
     1. BANCO COMPETENCIAS
         1. `getVerificaCompetencia(string $cpf)`
         1. `getListarCompetenciasPorCPF(string $cpf)`
