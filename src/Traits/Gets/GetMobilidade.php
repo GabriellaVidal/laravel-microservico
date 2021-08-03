@@ -40,10 +40,10 @@ trait GetMobilidade
      * @version v2
      * @api     listarDadosPorMatricula
      *
-     * @param   int $codigo
+     * @param   string $codigo
      * @return  array|json ( "cpf", "nome", "email", "emai", "lotacao", "localizacao", "login",  "codigo_situacao", "descricao_situacao",)
      */
-    public function getListarDadosPorMatricula(int $codigo)
+    public function getListarDadosPorMatricula(string $codigo)
     {
         return $this->proxyV2XmlBasic("listarDadosPorMatricula", "{$codigo}");
     }

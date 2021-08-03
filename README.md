@@ -255,7 +255,7 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
     1. MOBILIDADE
         1. `getObterEditaisPublicados()`
         1. `getObterAnexosEdital(int $idEdital)`
-        1. `getListarDadosPorMatricula(int $codigo)`
+        1. `getListarDadosPorMatricula(string $codigo)`
         1. `getListarSituacaoFuncionalPorCodigo(string $codigo)`
         1. `getListarTipoAfastamentoPorCodigo(string $codigo)`
         1. `getListarMatriculaCargoPorCpf(string $cpf)`
