@@ -10,7 +10,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     contarTotalColaboradores
      *
@@ -24,7 +24,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarCargosServidoresFiocruz
      *
@@ -38,7 +38,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradorPorCpf
      *
@@ -62,7 +62,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradorPorNome
      *
@@ -79,7 +79,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradorPorMatriculaSiape
      *
@@ -94,7 +94,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradoresPorVinculo
      *
@@ -109,7 +109,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradoresPorCodigoLocalizacao
      *
@@ -124,7 +124,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradoresPorCodigoLotacao
      *
@@ -139,7 +139,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradorAtivoPorEmail
      *
@@ -157,7 +157,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     todoHistoricoLotacaoLocalizacaoPorMatricula
      *
@@ -172,7 +172,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradoresPorVinculoPaginando
      *
@@ -193,7 +193,7 @@ trait GetServidores
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetServidores
      * @version v3
      * @api     buscarColaboradoresPorCodigoLotacaoPaginando
      *

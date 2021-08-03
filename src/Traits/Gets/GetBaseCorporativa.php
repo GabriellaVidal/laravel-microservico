@@ -7,7 +7,7 @@ trait GetBaseCorporativa
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetBaseCorporativa
      * @version v3
      * @api     dadosPessoais
      *
@@ -29,7 +29,7 @@ trait GetBaseCorporativa
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetBaseCorporativa
      * @version v3
      * @api     dadosPessoaisPorEmail
      *

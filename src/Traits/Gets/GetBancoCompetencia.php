@@ -11,7 +11,7 @@ trait GetBancoCompetencia
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetBancoCompetencia
      * @version v2
      * @api     verificaCompetencia
      *
@@ -33,7 +33,7 @@ trait GetBancoCompetencia
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetBancoCompetencia
      * @version v2
      * @api     listarCompetenciasPorCPF
      *

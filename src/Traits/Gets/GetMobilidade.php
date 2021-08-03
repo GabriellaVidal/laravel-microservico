@@ -7,7 +7,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     obterEditaisPublicados
      *
@@ -21,7 +21,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     obterAnexosEdital
      *
@@ -36,7 +36,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarDadosPorMatricula
      *
@@ -51,7 +51,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarSituacaoFuncionalPorCodigo
      *
@@ -66,7 +66,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarTipoAfastamentoPorCodigo
      *
@@ -81,7 +81,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarMatriculaCargoPorCpf
      *
@@ -103,7 +103,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarAvaliacaoDesempenhoPorSiape
      *
@@ -130,7 +130,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarAfastamentoServidorSiapeDataInicio
      *
@@ -159,7 +159,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarAfastamentoServidorSiapeDataFim
      *
@@ -188,7 +188,7 @@ trait GetMobilidade
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
      * @api     listarHistoricoLotacaoLocalizacao
      *

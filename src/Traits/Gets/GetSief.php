@@ -7,7 +7,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     contarEdicoes
      *
@@ -21,7 +21,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     indiceProgramas
      *
@@ -35,7 +35,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarEditaisPrevistos
      *
@@ -49,7 +49,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarProcessosSeletivosAbertos
      *
@@ -63,7 +63,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarCurso
      *
@@ -78,7 +78,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarCoordenadoresCurso
      *
@@ -93,7 +93,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarLinhasDePesquisa
      *
@@ -108,7 +108,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarDocumentosPorEdital
      *
@@ -127,7 +127,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     inscritosProcessoSeletivo
      *
@@ -146,7 +146,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarCandidatosDesistentesEdital
      *
@@ -165,7 +165,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarNatureza
      *
@@ -180,7 +180,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarPrograma
      *
@@ -195,7 +195,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarUnidade
      *
@@ -214,7 +214,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarNaturezaTipo
      *
@@ -229,7 +229,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarTipoNatureza
      *
@@ -244,7 +244,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     listarEdicoesCursos
      *
@@ -264,7 +264,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarPais
      *
@@ -283,7 +283,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarCidade
      *
@@ -302,7 +302,7 @@ trait GetSief
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSief
      * @version v2
      * @api     buscarUF
      *

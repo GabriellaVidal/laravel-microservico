@@ -7,7 +7,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v3
      * @api     listarHistoricoChamadosPorCpf
      *
@@ -29,7 +29,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v3
      * @api     listarChamadosAbertosPorCpf
      *
@@ -51,7 +51,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v3
      * @api     listarChamadosNaoFinalizadosPorCpf
      *
@@ -73,7 +73,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v2
      * @api     listarChamadosEncerrados
      *
@@ -93,7 +93,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v2
      * @api     listarServicos
      *
@@ -113,7 +113,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v2
      * @api     listarTecnicosPorEquipe
      *
@@ -133,7 +133,7 @@ trait GetRsi
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetRsi
      * @version v2
      * @api     listarDadosRequisicao
      *

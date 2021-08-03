@@ -10,9 +10,9 @@ trait GetAcesso
     /**
      * @author Guilherme Ferro
      * @method get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
-     * @api     rogramasEspeciais
+     * @api     programasEspeciais
      *
      * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
      * @return array|json ( "nome", "id", "situacao", )
@@ -37,7 +37,7 @@ trait GetAcesso
     /**
      * @author Guilherme Ferro
      * @method get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     dadosModal
      *
@@ -64,7 +64,7 @@ trait GetAcesso
     /**
      * @author Guilherme Ferro
      * @method get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     pessoaInscricoes
      *
@@ -90,7 +90,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     listaProgramasEspeciais
      *
@@ -116,7 +116,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     listaEditaisAbertos
      *
@@ -134,7 +134,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     listaProgramasEspeciaisComFuturos
      *
@@ -160,7 +160,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     listaCandidatosProgramaEspecial
      *
@@ -186,7 +186,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     listaCandidatosEdital
      *
@@ -213,7 +213,7 @@ trait GetAcesso
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetAcesso
      * @version v2
      * @api     dataDivulgacao
      *

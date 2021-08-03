@@ -7,7 +7,7 @@ trait GetSicave
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSicave
      * @version v2
      * @api     sicaveveiculo
      *
@@ -29,7 +29,7 @@ trait GetSicave
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetSicave
      * @version v2
      * @api     sicaveadvertencias
      *

@@ -7,7 +7,7 @@ trait GetTransporte
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetTransporte
      * @version v2
      * @api     listarUsuariosPorLinha
      *
@@ -22,7 +22,7 @@ trait GetTransporte
     /**
      * @author  Guilherme Ferro
      * @method  get
-     * @package Gsferro\MicroServico
+     * @package Gsferro\MicroServico\Traits\Gets\GetTransporte
      * @version v2
      * @api     linhasUsuario
      *
