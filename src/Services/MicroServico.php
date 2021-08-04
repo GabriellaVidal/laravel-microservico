@@ -416,24 +416,14 @@ class MicroServico
             // caso o método precise add novos campos com formatação - técnica aplicada na PowerModel
             if (!empty($this->fmts)
                 && in_array($field, array_keys($this->fmts))
-                && !empty($value)
             ) {
 
-                // escolhe o tipo
-                switch ($this->fmts[ $field ]) {
-                    case "data_db_br":
-                        $new = \Carbon\Carbon::parse($value)->format('d/m/Y');
-                    break;
-                    case "hora_min":
-                        $new = \Carbon\Carbon::parse($value)->format('H:i');
-                    break;
-                    case "cpf":
-                        $new = maskCpf($value);
-                    break;
-                }
-
                 // o campo sempre recebe o sufixo _fmt
-                $dado[ "{$field}_fmt" ] = $new ?? $value;
+                $dado[ "{$field}_fmt" ] = (
+                    empty($value)
+                    ? null
+                    : $this->tipoFmt($field, $value)
+                );
             }
         }
 
@@ -465,5 +455,33 @@ class MicroServico
         }
 
         return $this->trateReturn();
+    }
+
+    /**
+     * @param string $field
+     * @param string $value
+     * @return string|null
+     */
+    private function tipoFmt(string $field, string $value): ?string
+    {
+        // escolhe o tipo
+        switch ($this->fmts[ $field ]) {
+            case "data_db_br":
+                $new = now()->parse($value)->format('d/m/Y');
+            break;
+            case "hora_min":
+                $new = now()->parse($value)->format('H:i');
+            break;
+            case "data_hora_br":
+                $new = now()->parse($value)->format('d/m/Y H:i');
+            break;
+            case "data_hora_full_br":
+                $new = now()->parse($value)->format('d/m/Y H:i:s');
+            break;
+            case "cpf":
+                $new = maskCpf($value);
+            break;
+        }
+        return $new ?? null;
     }
 }

@@ -12,7 +12,7 @@ trait GetRsi
      * @api     listarHistoricoChamadosPorCpf
      *
      * @param   string $cpf
-     * @return  array|json ( "num_rsi", "ano", "req_cpf_solicitante", "situacao", "cpf", "atendente", "aca_descricao", "his_descricao", "data_hora", "num_contrato", )
+     * @return  array|json ( "num_rsi", "ano", "req_cpf_solicitante", "situacao", "cpf", "atendente", "aca_descricao", "his_descricao", "data_hora", "data_hora_fmt", "num_contrato", )
      */
     public function getListarHistoricoChamadosPorCpf(string $cpf)
     {
@@ -22,6 +22,11 @@ trait GetRsi
         if (blank($cpf) || strlen($cpf) != 11) {
             return $this->trateReturn();
         }
+
+        $this->fmts = [
+            "req_cpf_solicitante" => "cpf",
+            "data_hora"           => "data_hora_full_br",
+        ];
 
         return $this->proxyV2XmlBasic("listarHistoricoChamadosPorCpf", "{$cpf}");
     }
@@ -34,7 +39,7 @@ trait GetRsi
      * @api     listarChamadosAbertosPorCpf
      *
      * @param   string $cpf
-     * @return  array|json ( "num_rsi", "cpf_solicitante", "nome_solicitante", "tipo_servico", "req_categoria", "req_idcatalogo", "sit_descricao", "req_origem", "req_avaliacao", "req_equipe", "equipe", "req_codigo_unidade", "req_data_hora_criacao", "req_telefone_requisitante", "req_localizacao_solicitante", "req_ano", "req_ano_origem", "req_ramal", "req_data_hora_encerramento", "req_tipo_requisicao", "req_etapa", "req_avaliacao_atendente", )
+     * @return  array|json ( "num_rsi", "cpf_solicitante", "nome_solicitante", "tipo_servico", "req_categoria", "req_idcatalogo", "sit_descricao", "req_origem", "req_avaliacao", "req_equipe", "equipe", "req_codigo_unidade", "req_data_hora_criacao", "req_data_hora_criacao_fmt", "req_telefone_requisitante", "req_localizacao_solicitante", "req_ano", "req_ano_origem", "req_ramal", "req_data_hora_encerramento", "req_data_hora_encerramento_fmt", "req_tipo_requisicao", "req_etapa", "req_avaliacao_atendente", )
      */
     public function getListarChamadosAbertosPorCpf(string $cpf)
     {
@@ -44,6 +49,11 @@ trait GetRsi
         if (blank($cpf) || strlen($cpf) != 11) {
             return $this->trateReturn();
         }
+
+        $this->fmts = [
+            "req_data_hora_criacao"      => "data_hora_full_br",
+            "req_data_hora_encerramento" => "data_hora_full_br",
+        ];
 
         return $this->proxyV2XmlBasic("listarChamadosAbertosPorCpf", "{$cpf}");
     }
@@ -56,7 +66,7 @@ trait GetRsi
      * @api     listarChamadosNaoFinalizadosPorCpf
      *
      * @param   string $cpf
-     * @return  array|json ( "req_id", "req_cpf_solicitante", "req_cpf_atendente", "usu_nome", "req_categoria", "req_id_catalogo", "req_situacao", "sit_descricao", "req_origem", "req_avaliacao", "req_equipe", "req_codigo_unidade", "req_data_hora_criacao", "req_telefone_requisitante", "req_localizacao_solicitante", "req_ano", "req_num", "req_ano_origem", "req_ramal", "req_data_hora_encerramento", "req_tipo_requisicao", "req_etapa", "req_avaliacao_atendente", )
+     * @return  array|json ( "req_id", "req_cpf_solicitante", "req_cpf_solicitante_fmt", "req_cpf_atendente", "req_cpf_atendente_fmt", "usu_nome", "req_categoria", "req_id_catalogo", "req_situacao", "sit_descricao", "req_origem", "req_avaliacao", "req_equipe", "req_codigo_unidade", "req_data_hora_criacao", "req_data_hora_criacao_fmt", "req_telefone_requisitante", "req_localizacao_solicitante", "req_ano", "req_num", "req_ano_origem", "req_ramal", "req_data_hora_encerramento", "req_data_hora_encerramento_fmt", "req_tipo_requisicao", "req_etapa", "req_avaliacao_atendente", )
      */
     public function getListarChamadosNaoFinalizadosPorCpf(string $cpf)
     {
@@ -66,6 +76,13 @@ trait GetRsi
         if (blank($cpf) || strlen($cpf) != 11) {
             return $this->trateReturn();
         }
+
+        $this->fmts = [
+            "req_cpf_solicitante"        => "cpf",
+            "req_cpf_atendente"          => "cpf",
+            "req_data_hora_criacao"      => "data_hora_full_br",
+            "req_data_hora_encerramento" => "data_hora_full_br",
+        ];
 
         return $this->proxyV2XmlBasic("listarChamadosNaoFinalizadosPorCpf", "{$cpf}");
     }
