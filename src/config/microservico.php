@@ -717,15 +717,6 @@ return [
         "obterEditaisPublicados" => "{$serviceV2Mobilidade}/obterEditaisPublicados",
 
         /**
-         * @url     https://ei.fiocruz.br/services/v2-mobilidade/obterAnexosEdital/{idEdital}
-         * @param   $idEdital
-         * @api     obterAnexosEdital
-         * @methods get
-         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
-         */
-        "obterAnexosEdital" => "{$serviceV2Mobilidade}/obterAnexosEdital",
-
-        /**
          * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarDadosPorMatricula/{codigo}
          * @param   $codigo
          * @api     listarDadosPorMatricula

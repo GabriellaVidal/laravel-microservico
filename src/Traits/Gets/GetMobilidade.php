@@ -23,21 +23,6 @@ trait GetMobilidade
      * @method  get
      * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
      * @version v2
-     * @api     obterAnexosEdital
-     *
-     * @param   int $idEdital
-     * @return  array|json ( "anexos" )
-     */
-    public function getObterAnexosEdital(int $idEdital)
-    {
-        return $this->proxyV2XmlBasic("obterAnexosEdital", "{$idEdital}");
-    }
-
-    /**
-     * @author  Guilherme Ferro
-     * @method  get
-     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
-     * @version v2
      * @api     listarDadosPorMatricula
      *
      * @param   string $codigo
