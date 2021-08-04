@@ -10,12 +10,25 @@ use Illuminate\Support\Str;
 class MicroServico
 {
     Use Gets, Tokens;
+
+    /** @var string */
     private $link;
+    /** @var array */
     private $extraHeader   = [];
+    /** @var array */
     private $return        = [];
+    /**
+     * colunas que irão receber o sufixo _fmt
+     * @var array
+     */
+    private $fmts          = [];
+    /** @var bool */
     private $returnArray   = true;
+    /** @var bool */
     private $curlSimple    = false;
+    /** @var bool */
     private $somenteAtivo  = false;
+    /** @var string */
     private $campoSituacao = "situacao";
 
     /**
@@ -376,29 +389,53 @@ class MicroServico
 
     /**
      * Aplica o tratamento usado em todos os foreachs de return da api
+     * Tratamentos aplicados:
+     *  - data_db_br: transforma data no formato de banco para pt-br: d/m/Y
+     *  - hora_min: transforma data_hora no formato de H:i
      *
      * @param object|array $dados
      * @return array
      */
     private function tratamentoItensApi($item): array
     {
-        //        dd("tratamentoItensApi", $item);
+        // prepara de acordo como o tipo do item q vier
         $item = (is_object($item)
             ? get_object_vars($item)
             : $item
         );
-        //        dd("tratamentoItensApi", $item);
+
         $dado = [];
         foreach ($item as $id => $key) {
+            // encapsula os valores
+            $field = Str::snake(trim($id));
+            $value = !is_string($key) ? null : trim($key);
 
-            //            dump($id, $key);
+            // insere na resposta
+            $dado[ $field ] = $value;
 
-            $dado[ Str::snake(trim($id)) ] = (!is_string($key) ? null : trim($key));
+            // caso o método precise add novos campos com formatação - técnica aplicada na PowerModel
+            if (!empty($this->fmts)
+                && in_array($field, array_keys($this->fmts))
+                && !empty($value)
+            ) {
+
+                // escolhe o tipo
+                switch ($this->fmts[ $field ]) {
+                    case "data_db_br":
+                        $new = \Carbon\Carbon::parse($value)->format('d/m/Y');
+                    break;
+                    case "hora_min":
+                        $new = \Carbon\Carbon::parse($value)->format('H:i');
+                    break;
+                    case "cpf":
+                        $new = maskCpf($value);
+                    break;
+                }
+
+                // o campo sempre recebe o sufixo _fmt
+                $dado[ "{$field}_fmt" ] = $new ?? $value;
+            }
         }
-
-        //        if (true && isset( $dado["situacao"]) &&  $dado["situacao"] == "INATIVO") {
-        //            return [];
-        //        }
 
         return $dado;
     }

@@ -34,7 +34,7 @@ trait GetSicave
      * @api     sicaveadvertencias
      *
      * @param   string $cpf
-     * @return  array|json ( "advertencia_descricao", "advertencia_data", "advertencia_hora", "advertencia_local", "advertencia_motivo_descricao", "selo_numero" )
+     * @return  array|json ( "advertencia_descricao",  "advertencia_data", "advertencia_data_fmt", "advertencia_hora", "advertencia_hora_fmt", "advertencia_local", "advertencia_motivo_descricao", "selo_numero" )
      */
     public function getSicaveAdvertencias(string $cpf)
     {
@@ -44,6 +44,11 @@ trait GetSicave
         if (blank($cpf) || strlen($cpf) != 11) {
             return $this->trateReturn();
         }
+
+        $this->fmts = [
+            "advertencia_data" => "data_db_br",
+            "advertencia_hora" => "hora_min",
+        ];
 
         return $this->proxyV2XmlBasic("sicaveadvertencias", "{$cpf}");
     }

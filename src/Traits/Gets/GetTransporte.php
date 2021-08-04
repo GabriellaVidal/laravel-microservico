@@ -27,7 +27,7 @@ trait GetTransporte
      * @api     linhasUsuario
      *
      * @param   string $cpf
-     * @return  array|json ( "cpf", "sigla", "nome", "cartao", "data_inicio", "data_fim", "link", "status", )
+     * @return  array|json ( "cpf", "sigla", "nome", "cartao", "data_inicio", "data_inicio_fmt", "data_fim", "data_fim_fmt", "link", "status", )
      */
     public function getLinhasUsuario(string $cpf)
     {
@@ -37,6 +37,11 @@ trait GetTransporte
         if (blank($cpf) || strlen($cpf) != 11) {
             return $this->trateReturn();
         }
+
+        $this->fmts = [
+            "data_inicio" => "data_db_br",
+            "data_fim"    => "data_db_br",
+        ];
 
         return $this->proxyV2XmlBasic("linhasUsuario", "{$cpf}");
     }

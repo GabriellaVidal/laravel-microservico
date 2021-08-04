@@ -63,7 +63,7 @@ if (!function_exists('maskCpf')) {
      * @param string $cpf
      * @return string
      */
-    function maskCpf($cpf): string
+    function maskCpf(string $cpf): string
     {
         if (strlen($cpf) == 11 || strlen($cpf) == 14) {
             return mask("###.###.###-##", removeMask($cpf));
@@ -80,7 +80,7 @@ if (!function_exists('isUuidV4')) {
      * @param string $uuid
      * @return bool
      */
-    function isUuidV4($uuid): bool
+    function isUuidV4(string $uuid): bool
     {
         $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
         return (bool) preg_match($UUIDv4, $uuid);
