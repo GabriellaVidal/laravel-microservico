@@ -92,13 +92,13 @@ trait GetMobilidade
      * @version v2
      * @api     listarAvaliacaoDesempenhoPorSiape
      *
-     * @param    int $matriculaSiape
+     * @param    string $matriculaSiape
      * @param    int $anoInicial
      * @param    int $anoFinal
      * @return  array|json ( "matricula_siape", "ano_avaliacao", "mes_avaliacao", "descricao", "data_ciclo", )
      */
     public function getListarAvaliacaoDesempenhoPorSiape(
-        int $matriculaSiape,
+        string $matriculaSiape,
         int $anoInicial,
         int $anoFinal
     ) {
@@ -119,13 +119,13 @@ trait GetMobilidade
      * @version v2
      * @api     listarAfastamentoServidorSiapeDataInicio
      *
-     * @param    int $matriculaSiape
+     * @param    string $matriculaSiape
      * @param    string $dtInicio
      * @param    string $dtFim
      * @return  array|json ( "cod_afastamento", "dt_inicio", "dt_fim", )
      */
     public function getListarAfastamentoServidorSiapeDataInicio(
-        int $matriculaSiape,
+        string $matriculaSiape,
         string $dtInicio,
         string $dtFim
     ) {
@@ -148,13 +148,13 @@ trait GetMobilidade
      * @version v2
      * @api     listarAfastamentoServidorSiapeDataFim
      *
-     * @param   int $matriculaSiape
+     * @param   string $matriculaSiape
      * @param   string $dtInicio
      * @param   string $dtFim
      * @return  array|json ( "cod_afastamento", "dt_inicio", "dt_fim", )
      */
     public function getListarAfastamentoServidorSiapeDataFim(
-        int $matriculaSiape,
+        string $matriculaSiape,
         string $dtInicio,
         string $dtFim
     ) {
@@ -177,13 +177,13 @@ trait GetMobilidade
      * @version v2
      * @api     listarHistoricoLotacaoLocalizacao
      *
-     * @param   int $matriculaSiape
+     * @param   string $matriculaSiape
      * @param   int $anoInicial
      * @param   int $anoFinal
      * @return  array|json ( "data_alteracao", "codigo_lotacao", "descricao_lotacao", "codigo_localizacao", "descricao_localizacao", )
      */
     public function getListarHistoricoLotacaoLocalizacao(
-        int $matriculaSiape,
+        string $matriculaSiape,
         int $anoInicial,
         int $anoFinal
     ) {
