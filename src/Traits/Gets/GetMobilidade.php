@@ -189,8 +189,8 @@ trait GetMobilidade
     ) {
 
         if (empty($matriculaSiape)
-            || (empty($anoInicial) || strlen($anoInicial) != 4)
-            || (empty($anoFinal) || strlen($anoFinal) != 4)
+            || (empty($anoInicial) || !in_array(strlen($anoInicial), [4, 10]))
+            || (empty($anoFinal) || !in_array(strlen($anoFinal), [4, 10]))
         ) {
             return $this->trateReturn();
         }
