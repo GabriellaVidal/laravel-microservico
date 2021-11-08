@@ -788,13 +788,24 @@ return [
         /**
          * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacao/{matriculaSiape}/{anoInicial}/{anoFinal}
          * @param   int $matriculaSiape
-         * @param   int $anoInicial
-         * @param   int $anoFinal
+         * @param   string $anoInicial
+         * @param   string $anoFinal
          * @api     listarHistoricoLotacaoLocalizacao
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "listarHistoricoLotacaoLocalizacao" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacaoPorAno/{matriculaSiape}/{anoInicial}/{anoFinal}
+         * @param   int $matriculaSiape
+         * @param   int $anoInicial
+         * @param   int $anoFinal
+         * @api     listarHistoricoLotacaoLocalizacaoPorAno
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarHistoricoLotacaoLocalizacaoPorAno" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacaoPorAno",
 
 
         #############################################
