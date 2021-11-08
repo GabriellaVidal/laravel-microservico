@@ -184,6 +184,36 @@ trait GetMobilidade
      */
     public function getListarHistoricoLotacaoLocalizacao(
         string $matriculaSiape,
+        string $anoInicial,
+        string $anoFinal
+    ) {
+
+        if (empty($matriculaSiape)
+            || (empty($anoInicial) || !in_array(strlen($anoInicial), [4, 10]))
+            || (empty($anoFinal) || !in_array(strlen($anoFinal), [4, 10]))
+        ) {
+            return $this->trateReturn();
+        }
+
+        // validar datas
+
+        return $this->proxyV2XmlBasic("listarHistoricoLotacaoLocalizacao", "{$matriculaSiape}/{$anoInicial}/{$anoFinal}");
+    }
+
+    /**
+     * @author  Gabriella Vidal
+     * @method  get
+     * @package Gsferro\MicroServico\Traits\Gets\GetMobilidade
+     * @version v2
+     * @api     listarHistoricoLotacaoLocalizacaoPorAno
+     *
+     * @param   string $matriculaSiape
+     * @param   int $anoInicial
+     * @param   int $anoFinal
+     * @return  array|json ( "data_alteracao", "codigo_lotacao", "descricao_lotacao", "codigo_localizacao", "descricao_localizacao", )
+     */
+    public function getListarHistoricoLotacaoLocalizacaoPorAno(
+        string $matriculaSiape,
         int $anoInicial,
         int $anoFinal
     ) {
@@ -197,6 +227,6 @@ trait GetMobilidade
 
         // validar datas
 
-        return $this->proxyV2XmlBasic("listarHistoricoLotacaoLocalizacao", "{$matriculaSiape}/{$anoInicial}/{$anoFinal}");
+        return $this->proxyV2XmlBasic("listarHistoricoLotacaoLocalizacaoPorAno", "{$matriculaSiape}/{$anoInicial}/{$anoFinal}");
     }
 }
