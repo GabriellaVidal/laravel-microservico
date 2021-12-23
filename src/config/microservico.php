@@ -81,6 +81,11 @@ $serviceV2Acesso = "{$serviceV2Ambiente}acesso";
 $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 
 /**
+ * @url https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias
+ */
+$serviceV3BancoCompetenciaHomolog = "proxy-homolog-bancoCompetencias";
+
+/**
  * @url https://ei.fiocruz.br/services/v2-sicave
  */
 $serviceV2Sicave = "{$serviceV2}sicave";
@@ -1025,6 +1030,28 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "dadosPessoaisPorEmail" => "{$serviceV3BaseCorporativa}/dadosPessoaisPorEmail",
+
+        #############################################
+        #              BANCO COMPETENCIAS           #
+        #############################################
+
+        /**
+         * @url     https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias/verificaCompetencia/{cpf}
+         * @param   $cpf
+         * @api     verificaCompetencia
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "verificaCompetencia" => "{$serviceV3BancoCompetenciaHomolog}/verificaCompetencia",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias/listarCompetenciasPorCPF/{cpf}
+         * @param   $cpf
+         * @api     listarCompetenciasPorCPF
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarCompetenciasPorCPF" => "{$serviceV3BancoCompetenciaHomolog}/listarCompetenciasPorCPF",
 
     ],
 
