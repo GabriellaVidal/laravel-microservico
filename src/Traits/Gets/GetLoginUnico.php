@@ -20,7 +20,7 @@ trait GetLoginUnico
             return $this->trateReturn();
         }
 
-        return $this->proxyV2XmlBasic("getListarDadosPorEmail", "{$email}");
+        return $this->proxyV2XmlBasic("listarDadosPorEmail", "{$email}");
     }
 
     /**
@@ -42,6 +42,6 @@ trait GetLoginUnico
             return $this->trateReturn();
         }
 
-        return $this->proxyV2XmlBasic("getListarDadosPorCpf", "{$cpf}");
+        return $this->proxyV2XmlBasic("listarDadosPorCpf", "{$cpf}");
     }
 }
