@@ -120,6 +120,12 @@ trait Gets
      */
     private function returnXml($xml)
     {
+        $returnJson = json_decode($xml);
+
+        if(json_last_error() === JSON_ERROR_NONE){
+            return $returnJson;
+        }
+        
         return  json_decode(
             json_encode(
                 simplexml_load_string(
