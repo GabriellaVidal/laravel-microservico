@@ -273,5 +273,7 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
         1. `getListarChamadosEncerrados(int $limim = 1, int $limax = 10)`
         1. `getListarServicos(int $limim = 1, int $limax = 10)`
         1. `getListarTecnicosPorEquipe(int $limim = 1, int $limax = 10)`
-        1. `getListarDadosRequisicao(int $limim = 1, int $limax = 10)`
-        
+        1. `getListarDadosRequisicao(int $limim = 1, int $limax = 10)`        
+    1. LOGIN UNICO
+        1. `getListarDadosPorEmail(string $email)`
+        1. `getListarDadosPorCpf(string $cpf)`
