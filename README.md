@@ -216,6 +216,8 @@ GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD
     1. BANCO COMPETENCIAS
         1. `getVerificaCompetencia(string $cpf)`
         1. `getListarCompetenciasPorCPF(string $cpf)`
+        1. `getVerificaCompetenciaProxy(string $cpf)`
+        1. `getListarCompetenciasPorCPFProxy(string $cpf)`
     1. SERVIDORES (v3)
         1. `getContarTotalColaboradores()`
         1. `getBuscarCargosServidoresFiocruz()`
