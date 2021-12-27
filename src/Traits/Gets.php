@@ -119,13 +119,7 @@ trait Gets
      * @return mixed
      */
     private function returnXml($xml)
-    {
-        $returnJson = json_decode($xml);
-
-        if(json_last_error() === JSON_ERROR_NONE){
-            return $returnJson;
-        }
-        
+    {        
         return  json_decode(
             json_encode(
                 simplexml_load_string(
@@ -194,5 +188,29 @@ trait Gets
         }
 
         return $this->feedbackBasic( !$encapsulaApiComArray ? $api : [$api]);
+    }
+
+    /**
+     * Reuso para receber um json de return do WSO2
+     *
+     * @param $json
+     * @return mixed
+     */
+    private function returnJsonToArray($json)
+    {
+        return  json_decode($json, true);
+    }
+
+    /**
+     * Tratando apis v3 com retorno de json
+     *
+     * @param string $endpoint
+     * @param null $params
+     * @return json
+     */
+    private function getApiV3FromReturnJSON(string $endpoint, $params = null)
+    {
+        $this->curlSimple = true;
+        return $this->returnJsonToArray($this->getApiV3("{$endpoint}", "{$params}"));
     }
 }

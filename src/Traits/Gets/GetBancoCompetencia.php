@@ -62,7 +62,7 @@ trait GetBancoCompetencia
      * @param   string $cpf
      * @return  array|json ( "id_lattes", "data_atualizacao" )
      */
-    public function getVerificaCompetenciaProxyHomolog(string $cpf)
+    public function getVerificaCompetenciaProxy(string $cpf)
     {
         // pega somente numeros
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
@@ -71,7 +71,7 @@ trait GetBancoCompetencia
             return $this->trateReturn();
         }
 
-        return $this->proxyV3XmlBasic("verificaCompetenciaProxyHomolog", "{$cpf}");
+        return $this->getApiV3FromReturnJSON("verificaCompetenciaProxy", "{$cpf}");
     }
 
     /**
@@ -84,7 +84,7 @@ trait GetBancoCompetencia
      * @param   string $cpf
      * @return  array|json ( "justificativa", "anexos", "cpf", "descricao" )
      */
-    public function getListarCompetenciasPorCPFProxyHomolog(string $cpf)
+    public function getListarCompetenciasPorCPFProxy(string $cpf)
     {
         // pega somente numeros
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
@@ -93,6 +93,6 @@ trait GetBancoCompetencia
             return $this->trateReturn();
         }
 
-        return $this->proxyV3XmlBasic("listarCompetenciasPorCPFProxyHomolog", "{$cpf}");
+        return $this->getApiV3FromReturnJSON("listarCompetenciasPorCPFProxy", "{$cpf}");
     }
 }

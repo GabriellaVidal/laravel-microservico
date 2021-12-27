@@ -68,6 +68,10 @@ $serviceV3Dss         = "{$hostEiServices}/dss-v3-";
 $serviceV2DssAmbiente = "{$serviceV2Dss}{$ambienteServices}";
 $serviceV3DssAmbiente = "{$serviceV3Dss}{$ambienteServices}";
 
+# com proxy
+$serviceProxy         = "{$hostEiServices}/proxy-";
+$serviceProxyAmbiente = "{$serviceProxy}{$ambienteServices}";
+
 ############################################################################################
 ####################### V2
 /**
@@ -81,9 +85,9 @@ $serviceV2Acesso = "{$serviceV2Ambiente}acesso";
 $serviceV2BancoCompetencia = "{$serviceV2}bancoCompetencias";
 
 /**
- * @url https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias
+ * @url https://ei.fiocruz.br/services/proxy-{$ambienteServices|null}bancoCompetencias
  */
-$serviceV3BancoCompetenciaHomolog = "{$hostEiServices}/proxy-homolog-bancoCompetencias";
+$serviceV3BancoCompetencia = "{$serviceProxyAmbiente}bancoCompetencias";
 
 /**
  * @url https://ei.fiocruz.br/services/v2-sicave
@@ -1036,22 +1040,22 @@ return [
         #############################################
 
         /**
-         * @url     https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias/verificaCompetencia/{cpf}
+         * @url     https://ei.fiocruz.br/services/proxy-{$ambienteServices|null}-bancoCompetencias/verificaCompetencia/{cpf}
          * @param   $cpf
          * @api     verificaCompetencia
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
-        "verificaCompetenciaProxyHomolog" => "{$serviceV3BancoCompetenciaHomolog}/verificaCompetencia",
+        "verificaCompetenciaProxy" => "{$serviceV3BancoCompetencia}/verificaCompetencia",
 
         /**
-         * @url     https://ei.fiocruz.br/services/proxy-homolog-bancoCompetencias/listarCompetenciasPorCPF/{cpf}
+         * @url     https://ei.fiocruz.br/services/proxy-{$ambienteServices|null}-bancoCompetencias/listarCompetenciasPorCPF/{cpf}
          * @param   $cpf
          * @api     listarCompetenciasPorCPF
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
-        "listarCompetenciasPorCPFProxyHomolog" => "{$serviceV3BancoCompetenciaHomolog}/listarCompetenciasPorCPF",
+        "listarCompetenciasPorCPFProxy" => "{$serviceV3BancoCompetencia}/listarCompetenciasPorCPF",
 
     ],
 
