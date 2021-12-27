@@ -11,6 +11,7 @@ use Gsferro\MicroServico\Traits\Gets\GetServidores;
 use Gsferro\MicroServico\Traits\Gets\GetSicave;
 use Gsferro\MicroServico\Traits\Gets\GetSief;
 use Gsferro\MicroServico\Traits\Gets\GetTransporte;
+use Gsferro\MicroServico\Traits\Gets\GetLoginUnico;
 
 trait Gets
 {
@@ -37,6 +38,7 @@ trait Gets
         , GetMobilidade
         , GetRsi
         , GetBaseCorporativa
+        , GetLoginUnico
         ;
 
     /*
