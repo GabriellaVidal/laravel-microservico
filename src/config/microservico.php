@@ -350,6 +350,17 @@ return [
     'https_sief_cursos'           => "{$host_ei_https}/services/sief",
     'https_transporte'            => "{$host_ei_https}/services/transporte",
     'https_service_unidades'      => "{$host_ei_https}/services/Unidades",
+
+    /*
+    |--------------------------------------------
+    |Outras APIS - Sistema Mobilidade
+    |--------------------------------------------
+    */
+
+    'service_unidades_v2'      => "{$host_ei_https}/services/UnidadesV2",
+    'hierarquia_fiocruz'      => "{$host_ei_https}/hierarquiaFiocruz",
+    
+
     ///////////////////////////////////////////////////////////////////////////
     /*
     |---------------------------------------------------
@@ -381,6 +392,25 @@ return [
         | variavel: $serviceV2BancoCompetencia
         |
         */
+
+        #############################################
+        #              LOGIN ÚNICO                  #
+        #############################################
+        /**
+         * @url https://ei.fiocruz.br/services/loginUnico/listarDadosPorEmail/{mail}
+         * @api     loginUnico/listarDadosPorEmail
+         * @methods get
+         * @params  email
+         */
+        "listarDadosPorEmail" => "{$hostEiServices}/loginUnico/listarDadosPorEmail",
+
+        /**
+         * @url https://ei.fiocruz.br/services/loginUnico/listarDadosPorCpf/{cpf}
+         * @api     loginUnico/listarDadosPorCpf
+         * @methods get
+         * @params  cpf
+         */
+        "listarDadosPorCpf" => "{$hostEiServices}/loginUnico/listarDadosPorCpf",
 
         #############################################
         #              BASE CORPORATIVA             #
@@ -797,13 +827,24 @@ return [
         /**
          * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacao/{matriculaSiape}/{anoInicial}/{anoFinal}
          * @param   int $matriculaSiape
-         * @param   int $anoInicial
-         * @param   int $anoFinal
+         * @param   string $anoInicial
+         * @param   string $anoFinal
          * @api     listarHistoricoLotacaoLocalizacao
          * @methods get
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "listarHistoricoLotacaoLocalizacao" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacao",
+
+        /**
+         * @url     https://ei.fiocruz.br/services/v2-mobilidade/listarHistoricoLotacaoLocalizacaoPorAno/{matriculaSiape}/{anoInicial}/{anoFinal}
+         * @param   int $matriculaSiape
+         * @param   int $anoInicial
+         * @param   int $anoFinal
+         * @api     listarHistoricoLotacaoLocalizacaoPorAno
+         * @methods get
+         * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
+         */
+        "listarHistoricoLotacaoLocalizacaoPorAno" => "{$serviceV2Mobilidade}/listarHistoricoLotacaoLocalizacaoPorAno",
 
 
         #############################################
@@ -1034,7 +1075,7 @@ return [
          * @middleware("autheticate", "user"={env("GSFERRO_MICROSERVICO_WSO2_EI_USER")} , "password" ={env("GSFERRO_MICROSERVICO_WSO2_EI_PASSWORD")})
          */
         "dadosPessoaisPorEmail" => "{$serviceV3BaseCorporativa}/dadosPessoaisPorEmail",
-
+      
         #############################################
         #        proxy BANCO COMPETENCIAS           #
         #############################################
